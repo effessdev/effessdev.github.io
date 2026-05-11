@@ -1,5 +1,5 @@
 const username = "felixfsdev";
-const container = document.getElementById("pinned");
+const container = document.getElementById("repos");
 
 /*
   Add repo names here that you want to hide from the website
