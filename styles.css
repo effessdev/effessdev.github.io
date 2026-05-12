@@ -33,7 +33,7 @@ body {
 }
 
 .hero {
-  text-align: left;
+  text-align: center;
 }
 
 .hero h1 {
@@ -87,7 +87,7 @@ a:hover {
 .hero-links {
   display: flex;
   gap: 12px;
-  justify-content: left;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
