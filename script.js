@@ -1,4 +1,4 @@
-const username = "felixfsdev";
+const username = "faseehfs-dev";
 const container = document.getElementById("repos");
 
 /*
@@ -8,6 +8,8 @@ const container = document.getElementById("repos");
 const hiddenRepos = [username, username + ".github.io"];
 
 async function loadRepos() {
+  container.innerHTML = `<div class="card">Loading repositories...</div>`;
+
   try {
     const res = await fetch(
       `https://api.github.com/users/${username}/repos?per_page=100`,
@@ -17,7 +19,11 @@ async function loadRepos() {
     const visibleRepos = repos
       .filter((repo) => !repo.fork)
       .filter((repo) => !hiddenRepos.includes(repo.name))
-      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      .sort((a, b) => {
+        if (a.description && !b.description) return -1;
+        if (!a.description && b.description) return 1;
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      });
 
     container.innerHTML = "";
 
@@ -27,7 +33,7 @@ async function loadRepos() {
 
       card.innerHTML = `
         <h3>${repo.name}</h3>
-        <p>${repo.description || "No description provided."}</p>
+        ${repo.description ? `<p>${repo.description}</p>` : ""}
         <p style="font-size: 0.9rem; opacity: 0.7;">
           ⭐ ${repo.stargazers_count} • Updated ${new Date(repo.updated_at).toLocaleDateString()}
         </p>
