@@ -118,24 +118,3 @@ a:hover {
   text-decoration: none;
   transform: translateY(-2px);
 }
-
-.archived-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
-}
-
-.card.compact {
-  padding: 12px 16px;
-  margin-bottom: 0;
-  font-size: 0.9rem;
-}
-
-.card.compact h3 {
-  font-size: 1.1rem;
-  margin: 0 0 5px 0;
-}
-
-.card.compact p {
-  margin: 5px 0;
-}

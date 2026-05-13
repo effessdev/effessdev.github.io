@@ -74,23 +74,21 @@
       <section class="section">
         <h2>📜 Archived Repositories</h2>
 
-        <div class="archived-grid">
-          {% for repo in repos.archivedRepos %}
-            <div class="card compact">
-              <h3>{{ repo.name }}</h3>
+        {% for repo in repos.archivedRepos %}
+          <div class="card">
+            <h3>{{ repo.name }}</h3>
 
-              {% if repo.description %}
-                <p>{{ repo.description }}</p>
-              {% endif %}
+            {% if repo.description %}
+              <p>{{ repo.description }}</p>
+            {% endif %}
 
-              <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 8px;">
-                ⭐ {{ repo.stargazers_count }} • Updated {{ repo.updated_at }}
-              </p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">
+              ⭐ {{ repo.stargazers_count }} • Updated {{ repo.updated_at }}
+            </p>
 
-              <a href="{{ repo.html_url }}" target="_blank">View on GitHub</a>
-            </div>
-          {% endfor %}
-        </div>
+            <a href="{{ repo.html_url }}" target="_blank">View on GitHub</a>
+          </div>
+        {% endfor %}
       </section>
 
       <footer class="footer">
