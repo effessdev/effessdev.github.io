@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,11 +23,17 @@ jobs:
 
       - run: npm run build
 
+      - name: Inject build stamp
+        run: |
+          mkdir -p .meta
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .meta/build.txt
+
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
           git add -A
-          git diff --cached --quiet && exit 0
-          git commit -m "daily rebuild"
+
+          git commit -m "daily rebuild" || exit 0
           git push
