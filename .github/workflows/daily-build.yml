@@ -1,0 +1,26 @@
+name: Daily Build
+
+on:
+  schedule:
+    - cron: "0 2 * * *" # every day at 02:00 UTC
+  workflow_dispatch: # optional manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
