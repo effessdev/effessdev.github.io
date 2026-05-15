@@ -1,4 +1,6 @@
-async function getRepos(username) {
+module.exports = async function getRepos() {
+  const username = "effessdev";
+
   const hiddenRepos = [username, username + ".github.io"];
 
   const res = await fetch(
@@ -31,13 +33,4 @@ async function getRepos(username) {
       if (!a.description && b.description) return 1;
       return new Date(b.updated_at) - new Date(a.updated_at);
     });
-}
-
-module.exports = async function () {
-  const [mainRepos, archivedRepos] = await Promise.all([
-    getRepos("faseehfs-dev"),
-    getRepos("faseehfs-archive"),
-  ]);
-
-  return { mainRepos, archivedRepos };
 };
