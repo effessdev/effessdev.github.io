@@ -7,6 +7,7 @@
   --card-bg: rgba(255, 255, 255, 0.65);
   --card-border: rgba(255, 255, 255, 0.4);
   --primary: #3b82f6;
+  --primary-rgb: 59, 130, 246; /* For pulse shadow */
   --btn-text: #ffffff;
   --blob1: #60a5fa;
   --blob2: #c084fc;
@@ -20,6 +21,7 @@
     --card-bg: rgba(15, 23, 42, 0.5);
     --card-border: rgba(255, 255, 255, 0.1);
     --primary: #818cf8;
+    --primary-rgb: 129, 140, 248; /* For pulse shadow */
     --btn-text: #020617;
     --blob1: #1e3a8a;
     --blob2: #4c1d95;
@@ -115,7 +117,7 @@ body {
   }
 }
 
-/* Profile Image Styles */
+/* Profile Image */
 .profile-img {
   width: 100px;
   height: 100px;
@@ -140,8 +142,11 @@ p {
   opacity: 0.9;
 }
 
+/* Enhanced Animated Button */
 .btn {
   display: inline-block;
+  position: relative;
+  overflow: hidden;
   background-color: var(--primary);
   color: var(--btn-text);
   text-decoration: none;
@@ -149,14 +154,59 @@ p {
   border-radius: 50px;
   font-weight: 600;
   font-size: 1.05rem;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: pulseAttention 2.5s infinite;
+}
+
+/* Shimmer Light Sweep Effect */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shimmer 3.5s infinite;
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 25px rgba(var(--primary-rgb), 0.4);
   filter: brightness(1.1);
+  animation: none; /* Pauses the pulse on hover */
+}
+
+/* Keyframes for Button Animations */
+@keyframes pulseAttention {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.5);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 12px rgba(var(--primary-rgb), 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 200%;
+  }
+  100% {
+    left: 200%;
+  } /* Creates a pause between sweeps */
 }
