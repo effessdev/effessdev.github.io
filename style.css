@@ -7,7 +7,7 @@
   --card-bg: rgba(255, 255, 255, 0.65);
   --card-border: rgba(255, 255, 255, 0.4);
   --primary: #3b82f6;
-  --primary-rgb: 59, 130, 246; /* For pulse shadow */
+  --primary-rgb: 59, 130, 246;
   --btn-text: #ffffff;
   --blob1: #60a5fa;
   --blob2: #c084fc;
@@ -21,7 +21,7 @@
     --card-bg: rgba(15, 23, 42, 0.5);
     --card-border: rgba(255, 255, 255, 0.1);
     --primary: #818cf8;
-    --primary-rgb: 129, 140, 248; /* For pulse shadow */
+    --primary-rgb: 129, 140, 248;
     --btn-text: #020617;
     --blob1: #1e3a8a;
     --blob2: #4c1d95;
@@ -154,8 +154,11 @@ p {
   border-radius: 50px;
   font-weight: 600;
   font-size: 1.05rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  animation: pulseAttention 2.5s infinite;
+  transition:
+    filter 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  animation: pulseAttention 1.5s infinite;
 }
 
 /* Shimmer Light Sweep Effect */
@@ -176,25 +179,22 @@ p {
   animation: shimmer 3.5s infinite;
 }
 
+/* Hover State - Color and shadow change only */
 .btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 15px 25px rgba(var(--primary-rgb), 0.4);
-  filter: brightness(1.1);
-  animation: none; /* Pauses the pulse on hover */
+  filter: brightness(1.2);
+  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.5);
+  animation-play-state: paused; /* Pauses the pulse smoothly without snapping */
 }
 
 /* Keyframes for Button Animations */
 @keyframes pulseAttention {
   0% {
-    transform: scale(1);
     box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.5);
   }
   50% {
-    transform: scale(1.03);
     box-shadow: 0 0 0 12px rgba(var(--primary-rgb), 0);
   }
   100% {
-    transform: scale(1);
     box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
   }
 }
@@ -208,5 +208,5 @@ p {
   }
   100% {
     left: 200%;
-  } /* Creates a pause between sweeps */
+  }
 }
