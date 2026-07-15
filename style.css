@@ -179,13 +179,6 @@ p {
   animation: shimmer 3.5s infinite;
 }
 
-/* Hover State - Color and shadow change only */
-.btn:hover {
-  filter: brightness(1.2);
-  box-shadow: 0 10px 25px rgba(var(--primary-rgb), 0.5);
-  animation-play-state: paused; /* Pauses the pulse smoothly without snapping */
-}
-
 /* Keyframes for Button Animations */
 @keyframes pulseAttention {
   0% {
