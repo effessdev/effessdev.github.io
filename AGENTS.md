@@ -4,7 +4,7 @@ Images have 4:3 aspect ratio.
 
 # Social links
 
-These must be placed in the header prominently (in buttons).
+These must be placed in the header prominently (in buttons), and in the footer too.
 
 - GitHub: https://github.com/effessdev/
 - itch.io: https://effessdev.itch.io/
