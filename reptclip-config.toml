@@ -1,0 +1,7 @@
+include = ["**"]
+exclude = [".vscode/**", "reptclip-config.toml"]
+
+[[presets]]
+name = "all"
+include = ["**"]
+exclude = []

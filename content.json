@@ -1,0 +1,67 @@
+{
+  "header": {
+    "title": "Hi, I am EffessDev",
+    "description": "I build apps, games, and websites, and program MCUs and IoT devices.",
+    "personal_info": {
+      "full_name": "Faseeh Zaman F. S.",
+      "location": "Kerala",
+      "email": "effessdev@gmail.com",
+      "birth_year": "2007"
+    }
+  },
+  "featured": {
+    "content": [
+      {
+        "title": "MmOrganized",
+        "description": "An AI-powered, multi-tenant, full-stack Next.js application with secure authentication (Google & GitHub OAuth), payment gateway integration (Razorpay), and real-time notifications (using Pusher). Motion (Framer Motion), Shadcn UI, Drizzle ORM, Better Auth, and Lucide React were used to speed up development. New users get limited free credits to try it out!",
+        "image": "",
+        "links": [
+          {
+            "title": "Visit Website",
+            "url": "https://mmorganized.vercel.app"
+          }
+        ]
+      },
+      {
+        "title": "ghsync-gui",
+        "description": "A GUI app built with Electron to back up your GitHub repositories into your local machine with a single click. Supports Git LFS, automatic dark and light mode and ignoring specific repos.",
+        "image": "",
+        "links": [
+          {
+            "title": "View on GitHub",
+            "url": "https://github.com/effessdev/ghsync-gui"
+          }
+        ]
+      },
+      {
+        "title": "The Stellar Expedition",
+        "description": "A skill-based space exploration game made with Godot. Features realistic gravity physics, real-time orbital trajectory prediction, a custom particle system for the rocket thruster, various planets, with gas planets having a drag force, and cryptographic data hashing and validation to prevent cheating. Available on the browser, Windows, Linux, and Android. Click the link below to play without installing or download the game for free.",
+        "image": "",
+        "links": [
+          {
+            "title": "Play/Download",
+            "url": "https://effessdev.itch.io/the-stellar-expedition"
+          }
+        ]
+      }
+    ]
+  },
+  "latest": {
+    "content": "I am new to embedded systems development. So I am currently creating an ESP-IDF project named smart-led to learn more about it."
+  },
+  "archived": {
+    "content": [
+      {
+        "title": "Dummy",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "link": "https://github.com/effessdev/dummy"
+      },
+      {
+        "title": "Dummy",
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "link": "https://github.com/effessdev/dummy"
+      }
+    ]
+  },
+  "footer": "Thanks for visiting. See you again soon!"
+}
