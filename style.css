@@ -141,6 +141,10 @@ p {
   gap: 1.5rem;
 }
 
+main section + section {
+  margin-top: 4rem;
+}
+
 /* Align cards at the start of their row so they size to content rather than stretching */
 #featured .grid {
   align-items: start;
