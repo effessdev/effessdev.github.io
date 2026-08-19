@@ -2,6 +2,7 @@
 :root {
   --bg-color: #ffffff;
   --text-color: #111111;
+  --text-color-muted: #555555;
   --surface-color: #f4f4f4;
   --border-color: #222222;
   --content-padding: clamp(1rem, 4vw, 2rem);
@@ -11,6 +12,7 @@
   :root {
     --bg-color: #121212;
     --text-color: #eeeeee;
+    --text-color-muted: #aaaaaa;
     --surface-color: #1e1e1e;
     --border-color: #aaaaaa;
   }
@@ -73,22 +75,7 @@ p {
 
 .lead {
   font-size: clamp(1.15rem, 3vw, 1.5rem);
-}
-
-.development-note {
-  color: #9b0000;
-  background-color: #fff08a;
-  padding: 0.75rem 1rem;
-  border: 2px solid #9b0000;
-  font-weight: 700;
-}
-
-@media (prefers-color-scheme: dark) {
-  .development-note {
-    color: #ffb4ab;
-    background-color: #4c2700;
-    border-color: #ffb4ab;
-  }
+  color: var(--text-color-muted);
 }
 
 .personal-info {
@@ -125,6 +112,11 @@ p {
 }
 
 .btn:hover {
+  background-color: var(--border-color);
+  color: var(--bg-color);
+}
+
+.btn:focus {
   background-color: var(--text-color);
   color: var(--bg-color);
 }
@@ -137,17 +129,13 @@ p {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
   gap: 1.5rem;
+  align-items: start;
 }
 
 main section + section {
   margin-top: 4rem;
-}
-
-/* Align cards at the start of their row so they size to content rather than stretching */
-#featured .grid {
-  align-items: start;
 }
 
 .card {
@@ -158,31 +146,15 @@ main section + section {
   display: flex;
   flex-direction: column;
 }
+.card p {
+  color: var(--text-color-muted);
+}
 
 .card-links {
   margin-top: auto;
   padding-top: 1.5rem;
   display: flex;
   gap: 1rem;
-}
-
-/* Enforced 4:3 Aspect Ratio for Project Images */
-.card img,
-.card-img-placeholder {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border: 3px solid var(--border-color);
-  margin-bottom: 1.5rem;
-}
-
-.card-img-placeholder {
-  background-color: var(--border-color);
-  color: var(--bg-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
 }
 
 footer {
