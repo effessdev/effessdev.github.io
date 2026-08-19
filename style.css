@@ -211,6 +211,10 @@ footer {
     padding-bottom: 2rem;
   }
 
+  .card {
+    padding: 1rem;
+  }
+
   .header-social,
   .card-links {
     flex-direction: column;
