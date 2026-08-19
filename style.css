@@ -104,8 +104,8 @@ p {
   font-weight: bold;
   font-size: 1.1rem;
   transition:
-    background-color 0.2s,
-    color 0.2s;
+    background-color 0.1s,
+    color 0.1s;
   border-radius: 0;
   cursor: pointer;
 }
