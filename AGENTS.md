@@ -1,13 +1,10 @@
-# General instructions
+# Rules to follow
 
-Images have 4:3 aspect ratio.
+- Keep the HTML file simple.
+- If possible, offload complexity in the HTML file into the CSS file. I update the HTML file more frequently.
+- You can give a bit more importance to code readability and maintainability than the absolute perfect visuals.
 
-# Social links
+# Style choices
 
-These must be placed in the header prominently (in buttons), and in the footer too.
-
-- GitHub: https://github.com/effessdev/
-- itch.io: https://effessdev.itch.io/
-- LinkedIn: https://www.linkedin.com/in/effessdev/
-
-Icons should be included.
+- The website should not look generic - it should be different.
+- It should use a grayscale color scheme, and should feel like paper.
