@@ -16,7 +16,7 @@ const socialItems = [
     href: "https://www.linkedin.com/in/effessdev/",
     icon: "fab fa-linkedin",
   },
-  { label: "Posts", href: "/read", icon: "fas fa-book" },
+  { label: "Posts", href: "/posts", icon: "fas fa-book" },
 ];
 
 interface SocialLinksProps {

@@ -27,7 +27,7 @@ export default function NotFound() {
               Home
             </Link>
             <Link
-              href="/read"
+              href="/posts"
               className={buttonVariants({
                 variant: "outline",
                 size: "default",

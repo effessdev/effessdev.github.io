@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
-import Footer from "./read/footer";
+import Footer from "./posts/footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 

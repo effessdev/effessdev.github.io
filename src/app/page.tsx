@@ -43,13 +43,13 @@ const featuredProjects = [
   },
 ];
 
-const latest = {
+const status = {
   text: "I am currently working through the NimBLE GATT server example from the ESP-IDF docs and turning the findings into a practical write-up to help others navigate the same setup.",
   updated: "Aug 26, 2026",
 };
 
 const quickLinks = [
-  { href: "/read", label: "Read posts" },
+  { href: "/posts", label: "Read posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
   { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
   { href: "https://effessdev.itch.io", label: "itch.io" },
@@ -72,7 +72,7 @@ export default function Home() {
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/read"
+              href="/posts"
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
               Read posts
@@ -124,7 +124,7 @@ export default function Home() {
               Featured work
             </h2>
             <Link
-              href="/read"
+              href="/posts"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Browse posts →
@@ -175,11 +175,11 @@ export default function Home() {
         <section>
           <Card className="border-border/80 bg-card">
             <CardHeader>
-              <CardTitle className="text-2xl">Latest note</CardTitle>
+              <CardTitle className="text-2xl">Status</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 pb-6 text-muted-foreground">
-              <p className="text-base leading-7">{latest.text}</p>
-              <p className="text-sm">Updated on {latest.updated}</p>
+              <p className="text-base leading-7">{status.text}</p>
+              <p className="text-sm">Updated on {status.updated}</p>
             </CardContent>
           </Card>
         </section>

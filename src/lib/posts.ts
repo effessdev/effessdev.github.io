@@ -17,7 +17,7 @@ export function getAllPosts(): Post[] {
       const { data, content } = matter(fileContents);
 
       return {
-        uuid: data.uuid,
+        id: data.id,
         title: data.title,
         description: data.description,
         updated: data.updated,
@@ -34,13 +34,13 @@ export function getAllPosts(): Post[] {
   });
 }
 
-export function getPostByUuid(uuid: string): Post | null {
+export function getPostById(id: string): Post | null {
   const posts = getAllPosts();
-  const post = posts.find((p) => p.uuid === uuid);
+  const post = posts.find((p) => p.id === id);
   return post || null;
 }
 
-export function getAllUuids(): string[] {
+export function getAllPostIds(): string[] {
   const posts = getAllPosts();
-  return posts.map((post) => post.uuid);
+  return posts.map((post) => post.id);
 }

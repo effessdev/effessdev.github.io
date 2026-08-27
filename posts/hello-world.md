@@ -1,5 +1,5 @@
 ---
-uuid: "f5b50a04-7375-4c4c-ba33-8f3bd136e761"
+id: "f5b50a04-7375-4c4c-ba33-8f3bd136e761"
 title: "Hello World!"
 description: "My first blog post using Next.js and Markdown"
 updated: "2026-08-27"

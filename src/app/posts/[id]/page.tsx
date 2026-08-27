@@ -10,26 +10,26 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Markdown } from "@/lib/markdown";
-import { getAllUuids, getPostByUuid } from "@/lib/posts";
+import { getAllPostIds, getPostById } from "@/lib/posts";
 
 interface PostPageProps {
   params: Promise<{
-    uuid: string;
+    id: string;
   }>;
 }
 
 export async function generateStaticParams() {
-  const uuids = getAllUuids();
-  return uuids.map((uuid) => ({
-    uuid,
+  const ids = getAllPostIds();
+  return ids.map((id) => ({
+    id,
   }));
 }
 
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
-  const { uuid } = await params;
-  const post = getPostByUuid(uuid);
+  const { id } = await params;
+  const post = getPostById(id);
 
   if (!post) {
     return {
@@ -57,8 +57,8 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { uuid } = await params;
-  const post = getPostByUuid(uuid);
+  const { id } = await params;
+  const post = getPostById(id);
 
   if (!post) {
     notFound();
@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PostPageProps) {
     <main className="space-y-8">
       <div className="flex flex-wrap items-center gap-3">
         <Link
-          href="/read"
+          href="/posts"
           className={buttonVariants({ variant: "outline", size: "default" })}
         >
           ← All posts

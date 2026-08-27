@@ -50,8 +50,8 @@ export default function ReadPage() {
 
           return (
             <article
-              key={post.uuid}
-              className="rounded-2xl border border-border bg-background p-5"
+              key={post.id}
+              className="rounded-2xl bg-card border border-border bg-background p-5"
             >
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-3">
@@ -63,7 +63,7 @@ export default function ReadPage() {
                   </p>
                 </div>
                 <Link
-                  href={`/${post.uuid}`}
+                  href={`/posts/${post.id}`}
                   className={buttonVariants({
                     variant: "default",
                     size: "sm",
