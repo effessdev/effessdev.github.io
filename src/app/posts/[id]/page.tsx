@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Markdown } from "@/lib/markdown";
 import { getAllPostIds, getPostById } from "@/lib/posts";
+import { Badge } from "@/components/ui/badge";
 
 interface PostPageProps {
   params: Promise<{
@@ -88,9 +89,15 @@ export default async function PostPage({ params }: PostPageProps) {
       </div>
 
       <article className="rounded-2xl border border-border bg-card p-5 md:p-8">
+        <h1 className="text-6xl font-bold border-b pb-2">{post.title}</h1>
+        <p className="text-muted-foreground my-4">{post.description}</p>
         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-          <span>Updated {formattedDate}</span>
-          {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
+          <Badge>Updated on {post.updated}</Badge>
+          {post.tags?.map((tag, index) => (
+            <Badge variant="secondary" key={index}>
+              {tag}
+            </Badge>
+          ))}
         </div>
         <Markdown content={post.content} />
       </article>
