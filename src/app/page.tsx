@@ -12,7 +12,7 @@ const featuredProjects = [
   {
     title: "MmOrganized",
     description:
-      "AI-assisted workspace management with OAuth sign-ins, subscriptions, real-time updates, and a polished full-stack product experience.",
+      "An AI-powered, multi-tenant, full-stack Next.js application with               secure authentication (Google and GitHub OAuth), payment gateway               integration (Razorpay), and real-time notifications (using Pusher). Motion (Framer Motion), Shadcn UI, Tailwind CSS, Drizzle ORM, Better Auth, Lucide React, etc. were used to speed up development. Used for memorizing and recalling facts easily with control. Import and export data. New users get limited free credits to try it out!",
     href: "https://mmorganized.vercel.app",
     label: "Visit website",
     tags: ["Next.js", "Better Auth", "Razorpay"],
@@ -20,7 +20,7 @@ const featuredProjects = [
   {
     title: "The Stellar Expedition",
     description:
-      "A physics-driven space game with orbital planning, device support, and a custom rocket systems feel tuned for experimentation.",
+      "A skill-based space exploration game made with Godot. Features realistic gravity physics, real-time orbital trajectory prediction, a custom particle system for the rocket thruster, various planets, with gas planets having a drag force, and cryptographic data hashing and validation to prevent cheating. Available on Browser, Windows, Linux, and Android. Click the button below to play without installing or download the game for free.",
     href: "https://effessdev.itch.io/the-stellar-expedition",
     label: "Play or download",
     tags: ["Godot", "Physics", "Game design"],
@@ -28,7 +28,7 @@ const featuredProjects = [
   {
     title: "ReptClip",
     description:
-      "A fast repository-to-Markdown exporter for LLM workflows, built to make coding context sharing simple and repeatable.",
+      "A fast, cross-platform Python CLI app that turns a git repository into clean Markdown context for an LLM chat, and copies it straight to your clipboard. Supports including/excluding files using glob patterns, default patterns though reptclip-config.toml, easy install using pip, and custom presets.",
     href: "https://github.com/effessdev/reptclip",
     label: "View repo",
     tags: ["Python", "CLI", "AI tooling"],
@@ -36,7 +36,7 @@ const featuredProjects = [
   {
     title: "ghsync-gui",
     description:
-      "A one-click GitHub backup utility with sane defaults, local storage, and cross-platform convenience for developers.",
+      "A GUI app built with Electron to back up your GitHub repositories into your local machine with a single click. Supports Git LFS, automatic dark and light mode and ignoring specific repos.",
     href: "https://github.com/effessdev/ghsync-gui",
     label: "Open project",
     tags: ["Electron", "GitHub", "Desktop"],
