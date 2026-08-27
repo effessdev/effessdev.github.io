@@ -155,7 +155,7 @@ export default function Home() {
                     target="_blank"
                     rel="noreferrer"
                     className={buttonVariants({
-                      variant: "outline",
+                      variant: "default",
                       size: "default",
                     })}
                   >

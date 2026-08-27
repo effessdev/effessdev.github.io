@@ -71,7 +71,7 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <main className="space-y-8 py-0">
+    <main className="space-y-8">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href="/read"
@@ -87,22 +87,11 @@ export default async function PostPage({ params }: PostPageProps) {
         </Link>
       </div>
 
-      <Card className="border-border/80 bg-card">
-        <CardHeader className="gap-4">
-          <CardTitle className="text-4xl font-bold tracking-tight md:text-5xl">
-            {post.title}
-          </CardTitle>
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            <span>Updated {formattedDate}</span>
-            {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
-          </div>
-          <CardDescription className="text-lg leading-8 text-muted-foreground">
-            {post.description}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-
       <article className="rounded-2xl border border-border bg-card p-5 md:p-8">
+        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+          <span>Updated {formattedDate}</span>
+          {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
+        </div>
         <Markdown content={post.content} />
       </article>
     </main>
