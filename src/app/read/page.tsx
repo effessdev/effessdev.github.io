@@ -20,7 +20,7 @@ export default function ReadPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="space-y-6 py-0 ">
+    <main className="space-y-6 py-0">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href="/"
@@ -74,8 +74,10 @@ export default function ReadPage() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <span>{formattedDate}</span>
-                {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
+                <span>
+                  Updated on {formattedDate} •{" "}
+                  {post.tags.length > 0 && post.tags.join(", ")}
+                </span>
               </div>
             </article>
           );

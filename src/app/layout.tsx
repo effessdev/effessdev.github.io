@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
+import Footer from "./read/footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -50,6 +51,8 @@ export default function RootLayout({
             <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
               {children}
             </div>
+
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

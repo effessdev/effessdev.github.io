@@ -43,6 +43,11 @@ const featuredProjects = [
   },
 ];
 
+const latest = {
+  text: "I am currently working through the NimBLE GATT server example from the ESP-IDF docs and turning the findings into a practical write-up to help others navigate the same setup.",
+  updated: "Aug 26, 2026",
+};
+
 const quickLinks = [
   { href: "/read", label: "Read posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
@@ -173,12 +178,8 @@ export default function Home() {
               <CardTitle className="text-2xl">Latest note</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 pb-6 text-muted-foreground">
-              <p className="text-base leading-7">
-                I&apos;m currently working through the NimBLE GATT server
-                example from the ESP-IDF docs and turning the findings into a
-                practical write-up to help others navigate the same setup.
-              </p>
-              <p className="text-sm">Updated on Aug 26, 2026</p>
+              <p className="text-base leading-7">{latest.text}</p>
+              <p className="text-sm">Updated on {latest.updated}</p>
             </CardContent>
           </Card>
         </section>
@@ -206,36 +207,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t py-8 w-full">
-        <div className="flex flex-col items-center justify-between gap-4 text-center text-muted-foreground sm:flex-row sm:text-left">
-          <p className="text-base">Thanks for visiting. See you again soon.</p>
-          <div className="flex items-center gap-3 text-sm">
-            <a
-              href="https://github.com/effessdev"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-foreground"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/effessdev"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-foreground"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://effessdev.itch.io"
-              className="hover:text-foreground"
-            >
-              Itch.io
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }
