@@ -21,7 +21,7 @@ export default function Home() {
 
             <div className="social-links header-social">
               <Link href="/read" className="btn">
-                <i className="fas fa-book"></i> Read
+                <i className="fas fa-book"></i> Posts
               </Link>
               <a href="https://github.com/effessdev/" className="btn">
                 <i className="fab fa-github"></i> GitHub
@@ -220,9 +220,6 @@ export default function Home() {
           <div className="footer-inner">
             <p className="lead">Thanks for visiting. See you again soon!</p>
             <div className="social-links footer-social">
-              <Link href="/read" className="btn">
-                <i className="fas fa-book"></i> Read
-              </Link>
               <a href="https://github.com/effessdev/" aria-label="GitHub">
                 <i className="fab fa-github"></i>
               </a>
@@ -235,6 +232,9 @@ export default function Home() {
               >
                 <i className="fab fa-linkedin"></i>
               </a>
+              <Link href="/read" aria-label="Posts">
+                <i className="fas fa-book"></i>
+              </Link>
             </div>
           </div>
         </footer>
