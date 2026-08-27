@@ -1,4 +1,4 @@
-include = ["**"]
+include = ["AGENTS.md", "**/*.html", "**/*.css", "**/*.js"]
 exclude = [".vscode/**", "reptclip-config.toml"]
 
 [[presets]]
