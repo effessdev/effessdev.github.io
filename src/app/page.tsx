@@ -53,7 +53,7 @@ const quickLinks = [
 export default function Home() {
   return (
     <>
-      <header className="py-8 md:py-12">
+      <header className="py-8">
         <div className="flex flex-col gap-8">
           <div>
             <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
@@ -207,7 +207,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-border/80 py-8">
+      <footer className="border-t py-8 w-full">
         <div className="flex flex-col items-center justify-between gap-4 text-center text-muted-foreground sm:flex-row sm:text-left">
           <p className="text-base">Thanks for visiting. See you again soon.</p>
           <div className="flex items-center gap-3 text-sm">

@@ -71,7 +71,7 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <main className="space-y-8 py-8 md:py-12">
+    <main className="space-y-8 py-0">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href="/read"

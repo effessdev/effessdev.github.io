@@ -20,7 +20,7 @@ export default function ReadPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="space-y-6 py-8 md:py-12">
+    <main className="space-y-6 py-0 ">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href="/"
@@ -30,69 +30,57 @@ export default function ReadPage() {
         </Link>
       </div>
 
-      <Card className="border-border/80 bg-card">
-        <CardHeader>
-          <CardTitle className="text-4xl font-bold tracking-tight">
-            All posts
-          </CardTitle>
-          <CardDescription className="text-base text-muted-foreground">
-            {posts.length} post{posts.length === 1 ? "" : "s"} available
-          </CardDescription>
-        </CardHeader>
+      <h1 className="text-4xl font-bold tracking-tight">All posts</h1>
+      <p className="text-base text-muted-foreground">
+        {posts.length} post{posts.length === 1 ? "" : "s"} available
+      </p>
 
-        <CardContent className="space-y-4 pb-6">
-          {posts.length === 0 ? (
-            <p className="text-muted-foreground">
-              No posts yet. Check back soon.
-            </p>
-          ) : (
-            posts.map((post) => {
-              const formattedDate = new Date(post.updated).toLocaleDateString(
-                "en-US",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                },
-              );
+      {posts.length === 0 ? (
+        <p className="text-muted-foreground">No posts yet. Check back soon.</p>
+      ) : (
+        posts.map((post) => {
+          const formattedDate = new Date(post.updated).toLocaleDateString(
+            "en-US",
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            },
+          );
 
-              return (
-                <article
-                  key={post.uuid}
-                  className="rounded-2xl border border-border bg-background p-5"
+          return (
+            <article
+              key={post.uuid}
+              className="rounded-2xl border border-border bg-background p-5"
+            >
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div className="space-y-3">
+                  <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                    {post.title}
+                  </h2>
+                  <p className="max-w-2xl text-muted-foreground">
+                    {post.description}
+                  </p>
+                </div>
+                <Link
+                  href={`/${post.uuid}`}
+                  className={buttonVariants({
+                    variant: "default",
+                    size: "sm",
+                  })}
                 >
-                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                    <div className="space-y-3">
-                      <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                        {post.title}
-                      </h2>
-                      <p className="max-w-2xl text-muted-foreground">
-                        {post.description}
-                      </p>
-                    </div>
-                    <Link
-                      href={`/${post.uuid}`}
-                      className={buttonVariants({
-                        variant: "default",
-                        size: "sm",
-                      })}
-                    >
-                      Read article
-                    </Link>
-                  </div>
+                  Read
+                </Link>
+              </div>
 
-                  <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                    <span>{formattedDate}</span>
-                    {post.tags.length > 0 && (
-                      <span>• {post.tags.join(", ")}</span>
-                    )}
-                  </div>
-                </article>
-              );
-            })
-          )}
-        </CardContent>
-      </Card>
+              <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                <span>{formattedDate}</span>
+                {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
+              </div>
+            </article>
+          );
+        })
+      )}
     </main>
   );
 }
