@@ -1,5 +1,5 @@
-include = ["AGENTS.md", "**/*.html", "**/*.css", "**/*.js"]
-exclude = [".vscode/**", "reptclip-config.toml"]
+include = ["AGENTS.md", "package.json"]
+exclude = []
 
 [[presets]]
 name = "all"
