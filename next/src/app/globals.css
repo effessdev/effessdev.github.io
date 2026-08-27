@@ -345,3 +345,63 @@ footer {
   border-top: 2px solid var(--card-border);
   margin: 2rem 0;
 }
+
+/* Syntax highlighting styles */
+.markdown-content .hljs {
+  background: transparent;
+  padding: 0;
+  color: var(--text-color);
+}
+
+.markdown-content .hljs-comment,
+.markdown-content .hljs-quote {
+  color: #6a9955;
+}
+
+.markdown-content .hljs-keyword,
+.markdown-content .hljs-selector-tag,
+.markdown-content .hljs-addition {
+  color: #569cd6;
+}
+
+.markdown-content .hljs-number,
+.markdown-content .hljs-string,
+.markdown-content .hljs-meta .hljs-meta-string,
+.markdown-content .hljs-literal,
+.markdown-content .hljs-doctag,
+.markdown-content .hljs-regexp {
+  color: #ce9178;
+}
+
+.markdown-content .hljs-title,
+.markdown-content .hljs-section,
+.markdown-content .hljs-name,
+.markdown-content .hljs-selector-id,
+.markdown-content .hljs-selector-class {
+  color: #d7ba7d;
+}
+
+.markdown-content .hljs-attr {
+  color: #9cdcfe;
+}
+
+.markdown-content .hljs-variable,
+.markdown-content .hljs-template-variable,
+.markdown-content .hljs-type,
+.markdown-content .hljs-class .hljs-title {
+  color: #4ec9b0;
+}
+
+.markdown-content .hljs-bullet,
+.markdown-content .hljs-symbol,
+.markdown-content .hljs-link {
+  color: #f8f8f2;
+}
+
+.markdown-content .hljs-emphasis {
+  font-style: italic;
+}
+
+.markdown-content .hljs-strong {
+  font-weight: bold;
+}
