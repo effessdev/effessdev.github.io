@@ -1,215 +1,241 @@
-import { FeatureCard } from "@/components/feature-card";
-import { PageHeader } from "@/components/page-header";
-import { PageSection } from "@/components/page-section";
-import { SiteFooter } from "@/components/site-footer";
-import { SocialLinks } from "@/components/social-links";
-import { ActionLink } from "@/components/ui/action-link";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+const featuredProjects = [
+  {
+    title: "MmOrganized",
+    description:
+      "AI-assisted workspace management with OAuth sign-ins, subscriptions, real-time updates, and a polished full-stack product experience.",
+    href: "https://mmorganized.vercel.app",
+    label: "Visit website",
+    tags: ["Next.js", "Better Auth", "Razorpay"],
+  },
+  {
+    title: "The Stellar Expedition",
+    description:
+      "A physics-driven space game with orbital planning, device support, and a custom rocket systems feel tuned for experimentation.",
+    href: "https://effessdev.itch.io/the-stellar-expedition",
+    label: "Play or download",
+    tags: ["Godot", "Physics", "Game design"],
+  },
+  {
+    title: "ReptClip",
+    description:
+      "A fast repository-to-Markdown exporter for LLM workflows, built to make coding context sharing simple and repeatable.",
+    href: "https://github.com/effessdev/reptclip",
+    label: "View repo",
+    tags: ["Python", "CLI", "AI tooling"],
+  },
+  {
+    title: "ghsync-gui",
+    description:
+      "A one-click GitHub backup utility with sane defaults, local storage, and cross-platform convenience for developers.",
+    href: "https://github.com/effessdev/ghsync-gui",
+    label: "Open project",
+    tags: ["Electron", "GitHub", "Desktop"],
+  },
+];
+
+const quickLinks = [
+  { href: "/read", label: "Read posts" },
+  { href: "https://github.com/effessdev", label: "GitHub" },
+  { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
+  { href: "https://effessdev.itch.io", label: "itch.io" },
+];
 
 export default function Home() {
   return (
     <>
-      <PageHeader>
-        <h1 className="mb-4 text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.1] tracking-[-0.05em] text-[var(--text-color)]">
-          Hi, I am EffessDev
-        </h1>
-        <p className="mb-8 text-[clamp(1.15rem,3vw,1.5rem)] text-[var(--text-color-muted)]">
-          I build apps, games, and websites, and program MCUs and IoT devices.
-        </p>
+      <header className="py-8 md:py-12">
+        <div className="flex flex-col gap-8">
+          <div>
+            <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
+              Hi, I&apos;m EffessDev.
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl">
+              I build apps, games, and websites, and I enjoy writing firmware
+              and connected devices that bring ideas to life.
+            </p>
+          </div>
 
-        <div className="mb-8 border-l-4 border-[var(--accent)] pl-4 text-base text-[var(--text-color)]">
-          <strong>Full name: Faseeh Zaman F. S.</strong>
-          <br />
-          Location: Kerala, Email:{" "}
-          <a
-            href="mailto:effessdev@gmail.com"
-            className="text-inherit underline"
-          >
-            effessdev@gmail.com
-          </a>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/read"
+              className={buttonVariants({ variant: "default", size: "lg" })}
+            >
+              Read posts
+            </Link>
+            <a
+              href="mailto:effessdev@gmail.com"
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              Email me
+            </a>
+            <a
+              href="https://github.com/effessdev"
+              target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ variant: "secondary", size: "lg" })}
+            >
+              GitHub
+            </a>
+          </div>
         </div>
 
-        <SocialLinks />
-      </PageHeader>
-
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <PageSection title="Featured">
-          <div className="grid gap-6 md:grid-cols-2">
-            <FeatureCard
-              title="MmOrganized"
-              description={
-                <p>
-                  An AI-powered, multi-tenant, full-stack Next.js application
-                  with secure authentication (Google &amp; GitHub OAuth),
-                  payment gateway integration (Razorpay), and real-time
-                  notifications (using Pusher). Motion (Framer Motion), Shadcn
-                  UI, Drizzle ORM, Better Auth, and Lucide React were used to
-                  speed up development. New users get limited free credits to
-                  try it out!
-                </p>
-              }
-              actionHref="https://mmorganized.vercel.app"
-              actionLabel="Visit Website"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="The Stellar Expedition"
-              description={
-                <p>
-                  A skill-based space exploration game made with Godot. Features
-                  realistic gravity physics, real-time orbital trajectory
-                  prediction, a custom particle system for the rocket thruster,
-                  various planets, with gas planets having a drag force, and
-                  cryptographic data hashing and validation to prevent cheating.
-                  Available on Browser, Windows, Linux, and Android. Click the
-                  button below to play without installing or download the game
-                  for free.
-                </p>
-              }
-              actionHref="https://effessdev.itch.io/the-stellar-expedition"
-              actionLabel="Play/Download"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="ReptClip"
-              description={
-                <p>
-                  A fast, cross-platform Python CLI app that turns a git
-                  repository into clean Markdown context for an LLM chat, and
-                  copies it straight to your clipboard. Supports
-                  including/excluding files using glob patterns, default
-                  patterns though reptclip-config.toml, easy install using pip,
-                  and custom presets.
-                </p>
-              }
-              actionHref="https://github.com/effessdev/reptclip"
-              actionLabel="View Repo"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="ghsync-gui"
-              description={
-                <p>
-                  A GUI app built with Electron to back up your GitHub
-                  repositories into your local machine with a single click.
-                  Supports Git LFS, automatic dark and light mode and ignoring
-                  specific repos.
-                </p>
-              }
-              actionHref="https://github.com/effessdev/ghsync-gui"
-              actionLabel="View on GitHub"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-          </div>
-        </PageSection>
-
-        <PageSection title="Latest">
-          <article className="rounded-[var(--card-radius)] border border-[var(--card-border)] bg-[var(--surface-color)] p-6 shadow-[0_6px_20px_rgba(2,6,23,0.04)] sm:p-8">
-            <p className="mb-4 text-[var(--text-color)]">
-              Trying to figure out the NimBLE_GATT_Server example from the
-              official ESP-IDF docs. Also writing a tutorial about this on DEV
-              to help others like me.
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <p className="text-sm text-muted-foreground">Full name</p>
+            <p className="mt-2 font-medium text-foreground">
+              Faseeh Zaman F. S.
             </p>
-            <p className="pl-4 text-[var(--text-color-muted)]">
-              Updated on: Aug 26, 2026
-            </p>
-          </article>
-        </PageSection>
-
-        <PageSection title="Early Work &amp; Experiments">
-          <div className="grid gap-6 md:grid-cols-2">
-            <FeatureCard
-              title="File Encrypter"
-              description={
-                <p>
-                  A small Python GUI app made with Tkinter to encrypt and
-                  decrypt individual files.
-                </p>
-              }
-              actionHref="https://github.com/effessdev/file-encrypter"
-              actionLabel="View Repo"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="Apple Jump"
-              description={
-                <p>
-                  A small Unity game (probably my first one) that I made when I
-                  was a kid. Available on Windows.
-                </p>
-              }
-              actionHref="https://effessdev.itch.io/apple-jump"
-              actionLabel="Download on itch.io"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="Recall Words"
-              description={
-                <p>
-                  A small Python Flask web app to build vocabulary using spaced
-                  repetition.
-                </p>
-              }
-              actionHref="https://github.com/effessdev/recall-words"
-              actionLabel="View Repo"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
-
-            <FeatureCard
-              title="Trigonometric Visualizer"
-              description={
-                <p>
-                  Graphical visualization of trigonometric concepts. Made with
-                  Python and Pygame.
-                </p>
-              }
-              actionHref="https://github.com/effessdev/trigonometric-visualizer"
-              actionLabel="View Repo"
-              actionExternal
-              actionTarget="_blank"
-              actionRel="noreferrer"
-            />
           </div>
-        </PageSection>
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <p className="text-sm text-muted-foreground">Location</p>
+            <p className="mt-2 font-medium text-foreground">Kerala, India</p>
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-4">
+            <p className="text-sm text-muted-foreground">Contact</p>
+            <a
+              href="mailto:effessdev@gmail.com"
+              className="mt-2 inline-block font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              effessdev@gmail.com
+            </a>
+          </div>
+        </div>
+      </header>
 
-        <PageSection title="More stuff">
-          <div className="grid gap-6 md:grid-cols-1">
-            <article className="rounded-[var(--card-radius)] border border-[var(--card-border)] bg-[var(--surface-color)] p-6 shadow-[0_6px_20px_rgba(2,6,23,0.04)] sm:p-8">
-              <p className="mb-6 text-[var(--text-color-muted)]">
-                The projects that aren't listed here can be found on my GitHub.
-              </p>
-              <ActionLink
-                href="https://github.com/effessdev?tab=repositories"
-                external
-                target="_blank"
-                rel="noreferrer"
+      <main className="space-y-8 pb-10">
+        <section>
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Featured work
+            </h2>
+            <Link
+              href="/read"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Browse posts →
+            </Link>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <Card
+                key={project.title}
+                className="h-full border-border/80 bg-card"
               >
-                Browse Repos
-              </ActionLink>
-            </article>
+                <CardHeader>
+                  <CardTitle className="text-2xl">{project.title}</CardTitle>
+                  <CardDescription className="mt-2 text-base leading-7 text-muted-foreground">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-5">
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-border bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={buttonVariants({
+                      variant: "outline",
+                      size: "default",
+                    })}
+                  >
+                    {project.label}
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </PageSection>
+        </section>
+
+        <section>
+          <Card className="border-border/80 bg-card">
+            <CardHeader>
+              <CardTitle className="text-2xl">Latest note</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 pb-6 text-muted-foreground">
+              <p className="text-base leading-7">
+                I&apos;m currently working through the NimBLE GATT server
+                example from the ESP-IDF docs and turning the findings into a
+                practical write-up to help others navigate the same setup.
+              </p>
+              <p className="text-sm">Updated on Aug 26, 2026</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section>
+          <div className="mb-4">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              More links
+            </h2>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {quickLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                className="flex items-center justify-between rounded-2xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+              >
+                <span>{link.label}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            ))}
+          </div>
+        </section>
       </main>
 
-      <SiteFooter />
+      <footer className="border-t border-border/80 py-8">
+        <div className="flex flex-col items-center justify-between gap-4 text-center text-muted-foreground sm:flex-row sm:text-left">
+          <p className="text-base">Thanks for visiting. See you again soon.</p>
+          <div className="flex items-center gap-3 text-sm">
+            <a
+              href="https://github.com/effessdev"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-foreground"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/effessdev"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-foreground"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://effessdev.itch.io"
+              className="hover:text-foreground"
+            >
+              Itch.io
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

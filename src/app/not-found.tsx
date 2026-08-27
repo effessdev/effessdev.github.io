@@ -1,23 +1,43 @@
-import { ActionLink } from "@/components/ui/action-link";
-import { PageHeader } from "@/components/page-header";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function NotFound() {
   return (
-    <PageHeader>
-      <h1 className="mb-4 text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.1] tracking-[-0.05em] text-[var(--text-color)]">
-        404 - Post Not Found
-      </h1>
-      <p className="mb-8 text-[clamp(1.15rem,3vw,1.5rem)] text-[var(--text-color-muted)]">
-        Oops! The post you're looking for doesn't exist or has been moved.
-      </p>
-      <div className="flex flex-wrap gap-3">
-        <ActionLink href="/">
-          <i className="fas fa-home" aria-hidden="true"></i> Back to Home
-        </ActionLink>
-        <ActionLink href="/read">
-          <i className="fas fa-book" aria-hidden="true"></i> View All Posts
-        </ActionLink>
-      </div>
-    </PageHeader>
+    <main className="flex min-h-[60vh] items-center justify-center py-12">
+      <Card className="w-full max-w-xl border-border/80 bg-card text-center">
+        <CardHeader>
+          <CardTitle className="text-4xl font-bold tracking-tight">
+            404
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6 pb-6">
+          <p className="text-lg text-muted-foreground">
+            The page you&apos;re looking for isn&apos;t here, or it may have
+            moved.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link
+              href="/"
+              className={buttonVariants({
+                variant: "default",
+                size: "default",
+              })}
+            >
+              Home
+            </Link>
+            <Link
+              href="/read"
+              className={buttonVariants({
+                variant: "outline",
+                size: "default",
+              })}
+            >
+              Read posts
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+    </main>
   );
 }

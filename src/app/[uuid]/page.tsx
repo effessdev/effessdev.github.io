@@ -1,10 +1,16 @@
-import { ActionLink } from "@/components/ui/action-link";
-import { PageHeader } from "@/components/page-header";
-import { SiteFooter } from "@/components/site-footer";
-import { Markdown } from "@/lib/markdown";
-import { getAllUuids, getPostByUuid } from "@/lib/posts";
+import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Markdown } from "@/lib/markdown";
+import { getAllUuids, getPostByUuid } from "@/lib/posts";
 
 interface PostPageProps {
   params: Promise<{
@@ -15,7 +21,7 @@ interface PostPageProps {
 export async function generateStaticParams() {
   const uuids = getAllUuids();
   return uuids.map((uuid) => ({
-    uuid: uuid,
+    uuid,
   }));
 }
 
@@ -65,50 +71,40 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <>
-      <PageHeader>
-        <div className="mb-6">
-          <ActionLink href="/">
-            <i className="fas fa-arrow-left" aria-hidden="true"></i> Back to
-            Home
-          </ActionLink>
-        </div>
-        <h1 className="mb-4 text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.1] tracking-[-0.05em] text-[var(--text-color)]">
-          {post.title}
-        </h1>
-        <div className="mb-4 flex flex-wrap gap-4 text-sm text-[var(--text-color-muted)]">
-          <span>
-            <i className="fas fa-calendar-alt" aria-hidden="true"></i> Updated:{" "}
-            {formattedDate}
-          </span>
-          {post.tags.length > 0 && (
-            <span>
-              <i className="fas fa-tags" aria-hidden="true"></i>{" "}
-              {post.tags.join(", ")}
-            </span>
-          )}
-        </div>
-        <p className="text-[clamp(1.15rem,3vw,1.5rem)] text-[var(--text-color-muted)]">
-          {post.description}
-        </p>
-      </PageHeader>
+    <main className="space-y-8 py-8 md:py-12">
+      <div className="flex flex-wrap items-center gap-3">
+        <Link
+          href="/read"
+          className={buttonVariants({ variant: "outline", size: "default" })}
+        >
+          ← All posts
+        </Link>
+        <Link
+          href="/"
+          className={buttonVariants({ variant: "secondary", size: "default" })}
+        >
+          Home
+        </Link>
+      </div>
 
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <article className="rounded-[var(--card-radius)] border border-[var(--card-border)] bg-[var(--surface-color)] p-6 shadow-[0_6px_20px_rgba(2,6,23,0.04)] sm:p-8">
-          <Markdown content={post.content} />
-        </article>
+      <Card className="border-border/80 bg-card">
+        <CardHeader className="gap-4">
+          <CardTitle className="text-4xl font-bold tracking-tight md:text-5xl">
+            {post.title}
+          </CardTitle>
+          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+            <span>Updated {formattedDate}</span>
+            {post.tags.length > 0 && <span>• {post.tags.join(", ")}</span>}
+          </div>
+          <CardDescription className="text-lg leading-8 text-muted-foreground">
+            {post.description}
+          </CardDescription>
+        </CardHeader>
+      </Card>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-4 text-center">
-          <ActionLink href="/read">
-            <i className="fas fa-book" aria-hidden="true"></i> View All Posts
-          </ActionLink>
-          <ActionLink href="/">
-            <i className="fas fa-home" aria-hidden="true"></i> Home
-          </ActionLink>
-        </div>
-      </main>
-
-      <SiteFooter text="Thanks for reading!" />
-    </>
+      <article className="rounded-2xl border border-border bg-card p-5 md:p-8">
+        <Markdown content={post.content} />
+      </article>
+    </main>
   );
 }
