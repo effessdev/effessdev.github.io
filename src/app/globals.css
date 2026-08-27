@@ -48,19 +48,6 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #0b0b0b;
-    --text-color: #eeeeee;
-    --text-color-muted: #bdbdbd;
-    --surface-color: #111111;
-    --border-color: #aaaaaa;
-    --accent: #4a4a4a;
-    --dots-color: #656565;
-    --card-border: rgba(255, 255, 255, 0.596);
-  }
-}
-
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
