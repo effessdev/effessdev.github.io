@@ -1,6 +1,8 @@
+import { ActionLink } from "@/components/ui/action-link";
+import { PageHeader } from "@/components/page-header";
+import { SiteFooter } from "@/components/site-footer";
 import { getAllPosts } from "@/lib/posts";
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "All Posts | EffessDev",
@@ -13,29 +15,30 @@ export default function ReadPage() {
 
   return (
     <>
-      <div className="gradient">
-        <header>
-          <div className="header-inner">
-            <div style={{ marginBottom: "1.5rem" }}>
-              <Link href="/" className="btn" style={{ display: "inline-flex" }}>
-                <i className="fas fa-arrow-left"></i> Back to Home
-              </Link>
-            </div>
-            <h1>All Posts</h1>
-            <p className="lead">
-              {posts.length} post{posts.length !== 1 ? "s" : ""} available
-            </p>
-          </div>
-        </header>
-      </div>
+      <PageHeader>
+        <div className="mb-6">
+          <ActionLink href="/">
+            <i className="fas fa-arrow-left" aria-hidden="true"></i> Back to
+            Home
+          </ActionLink>
+        </div>
+        <h1 className="mb-4 text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.1] tracking-[-0.05em] text-[var(--text-color)]">
+          All Posts
+        </h1>
+        <p className="text-[clamp(1.15rem,3vw,1.5rem)] text-[var(--text-color-muted)]">
+          {posts.length} post{posts.length !== 1 ? "s" : ""} available
+        </p>
+      </PageHeader>
 
-      <main>
+      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         {posts.length === 0 ? (
-          <div className="card">
-            <p>No posts yet. Check back soon!</p>
-          </div>
+          <article className="rounded-[var(--card-radius)] border border-[var(--card-border)] bg-[var(--surface-color)] p-6 shadow-[0_6px_20px_rgba(2,6,23,0.04)]">
+            <p className="text-[var(--text-color-muted)]">
+              No posts yet. Check back soon!
+            </p>
+          </article>
         ) : (
-          <div className="grid">
+          <div className="grid gap-6 md:grid-cols-2">
             {posts.map((post) => {
               const formattedDate = new Date(post.updated).toLocaleDateString(
                 "en-US",
@@ -47,67 +50,48 @@ export default function ReadPage() {
               );
 
               return (
-                <div className="card" key={post.uuid}>
-                  <h3>{post.title}</h3>
-                  <p>{post.description}</p>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "1rem",
-                      flexWrap: "wrap",
-                      marginBottom: "1rem",
-                      color: "var(--text-color-muted)",
-                      fontSize: "0.9rem",
-                    }}
-                  >
+                <article
+                  key={post.uuid}
+                  className="flex h-full flex-col rounded-[var(--card-radius)] border border-[var(--card-border)] bg-[var(--surface-color)] p-6 shadow-[0_6px_20px_rgba(2,6,23,0.04)] sm:p-8"
+                >
+                  <h3 className="mb-4 text-[clamp(1.5rem,4vw,2rem)] font-semibold tracking-[-0.02em] text-[var(--text-color)]">
+                    {post.title}
+                  </h3>
+                  <p className="mb-4 text-[var(--text-color-muted)]">
+                    {post.description}
+                  </p>
+                  <div className="mb-6 flex flex-wrap gap-4 text-sm text-[var(--text-color-muted)]">
                     <span>
-                      <i className="fas fa-calendar-alt"></i> {formattedDate}
+                      <i className="fas fa-calendar-alt" aria-hidden="true"></i>{" "}
+                      {formattedDate}
                     </span>
                     {post.tags.length > 0 && (
                       <span>
-                        <i className="fas fa-tags"></i> {post.tags.join(", ")}
+                        <i className="fas fa-tags" aria-hidden="true"></i>{" "}
+                        {post.tags.join(", ")}
                       </span>
                     )}
                   </div>
-                  <div className="card-links">
-                    <Link href={`/${post.uuid}`} className="btn">
-                      <i className="fas fa-book-open"></i> Read Post
-                    </Link>
+                  <div className="mt-auto pt-2">
+                    <ActionLink href={`/${post.uuid}`}>
+                      <i className="fas fa-book-open" aria-hidden="true"></i>{" "}
+                      Read Post
+                    </ActionLink>
                   </div>
-                </div>
+                </article>
               );
             })}
           </div>
         )}
 
-        <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <Link href="/" className="btn">
-            <i className="fas fa-home"></i> Back to Home
-          </Link>
+        <div className="mt-8 text-center">
+          <ActionLink href="/">
+            <i className="fas fa-home" aria-hidden="true"></i> Back to Home
+          </ActionLink>
         </div>
       </main>
 
-      <div className="footer-container">
-        <footer>
-          <div className="footer-inner">
-            <p className="lead">Thanks for visiting. See you again soon!</p>
-            <div className="social-links footer-social">
-              <a href="https://github.com/effessdev/" aria-label="GitHub">
-                <i className="fab fa-github"></i>
-              </a>
-              <a href="https://effessdev.itch.io/" aria-label="itch.io">
-                <i className="fab fa-itch-io"></i>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/effessdev/"
-                aria-label="LinkedIn"
-              >
-                <i className="fab fa-linkedin"></i>
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <SiteFooter />
     </>
   );
 }
