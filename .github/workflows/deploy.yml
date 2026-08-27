@@ -1,8 +1,8 @@
-name: Deploy out folder to GitHub Pages
+name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: ["main"] # Change to your default branch name if different
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -24,14 +24,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Point this to your "out" directory
-          path: './out'
+          path: "./out"
 
       - name: Deploy to GitHub Pages
         id: deployment
