@@ -3,7 +3,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/post", label: "Posts" },
+  { href: "/posts", label: "Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
   { href: "mailto:effessdev@gmail.com", label: "Email" },
 ];
