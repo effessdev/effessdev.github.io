@@ -6,6 +6,8 @@ This is the source code for my website.
 
 Place your posts in the "posts" directory as Markdown files. When you push your changes, a GitHub Action will build everything into a static site and deploy it to GitHub Pages.
 
+> **Note:** Currently, I use the creation date as the post id since it doesn't change.
+
 ## Documentation I Used
 
 - Shadcn UI installation: <https://ui.shadcn.com/docs/installation>
