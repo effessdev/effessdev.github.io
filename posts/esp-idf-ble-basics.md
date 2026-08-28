@@ -7,7 +7,7 @@ draft: true
 tags: ["esp-idf", "ble", "nimble"]
 ---
 
-This tutorial covers the basics on how to use Bluetooth Low Energy (BLE) in your ESP-IDF project. It's based on the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) by Espressif Systems.
+This tutorial covers the basics of how to use Bluetooth Low Energy (BLE) in your ESP-IDF project. It's based on the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) by Espressif Systems.
 
 This is a step-by-step tutorial, focusing on building a conceptual understanding of BLE and it's basic code implementation, rather than every single feature in detail. You can follow along from the beginning to the end. After completing this tutorial, you will learn the basics of Bluetooth Low Energy and NimBLE and you will be able to understand the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server).
 
