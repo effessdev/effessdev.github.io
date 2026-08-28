@@ -74,8 +74,8 @@ export default function Home() {
               Hi, I&apos;m EffessDev.
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              I build apps, games, and websites, and I enjoy writing firmware
-              and connected devices that bring ideas to life.
+              I enjoy building apps, games, and websites, and programming MCUs
+              and IoT devices.
             </p>
           </div>
 
