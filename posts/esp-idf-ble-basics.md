@@ -7,9 +7,13 @@ draft: true
 tags: ["esp-idf", "ble", "nimble"]
 ---
 
-This tutorial covers how to use Bluetooth Low Energy (BLE) with your ESP32 (ESP-IDF). It's based on the official documentation by Espressif Systems, which you can [view here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html).
+This tutorial covers the basics on how to use Bluetooth Low Energy (BLE) in your ESP-IDF project. It's based on the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) by Espressif Systems.
 
-This is a step-by-step tutorial, focusing on the implementation rather than every single detail. So you can follow along from the beginning to the end. Let's start!
+This is a step-by-step tutorial, focusing on building a conceptual understanding of BLE and it's basic code implementation, rather than every single feature in detail. You can follow along from the beginning to the end. After completing this tutorial, you will learn the basics of Bluetooth Low Energy and NimBLE and you will be able to understand the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server).
+
+You can download the full final code [here](https://github.com/effessdev/esp-idf-examples/blob/main/examples/ble_led/main/main.c) and the full project [here](https://github.com/effessdev/esp-idf-examples/tree/main/examples/ble_led), but I recommend you to write the code yourself by following this tutorial instead.
+
+Let's start!
 
 ## Enabling BLE in ESP-IDF
 
@@ -77,11 +81,19 @@ void app_main(void) {
 }
 ```
 
-You can change the `TAG` and `DEVICE_NAME` if required.
+You can change the `TAG` and `DEVICE_NAME` if required. `TAG` is just a label which we use for logging (we will use it later in the tutorial). `DEVICE_NAME` is how our ESP32 appears to the other devices (like our phone). Later, we are going to connect your phone to your ESP32. In your phone's "available devices" list, you will see this `DEVICE_NAME`.
+
+### Tips for beginners
+
+We use `#define` to define macros. Macros are of two types - **object-like macros** and **function-like macros**. Here, `TAG` and `DEVICE_NAME` are object like macros. For now, let's only consider object-like macros (the ones we are using here).
+
+How it works is that, we define `DEVICE_NAME` to be `"NimBLE_LED"` and use `DEVICE_NAME` like a variable in our code (e.g., we can call a function like this: `setDeviceName(DEVICE_NAME)`). When we compile our code, before the compilation step begins, the preprocessor **literally replaces all instances of `DEVICE_NAME` with `"NimBLE_LED"`**, so the previous function call becomes `setDeviceName("NimBLE_LED")`. So, it is functionally identical to we directly using the string everywhere.
+
+The main reason why we use it is because the exact same string `"NimBLE_LED"` will be used in multiple places in our code. If we use `#define`, we can be 100% sure that it will be identical everywhere. Also, if we want to change the name of our device, we just have to update `DEVICE_NAME` instead of eveywhere.
 
 ## Initialize NVS Flash (Non-Volatile Storage)
 
-The BLE stack requires NVS flash to store configurations, so it should be initialized using `nvs_flash_init()`. Call it in the main function:
+The BLE stack requires NVS flash to store configurations, so it should be initialized using `nvs_flash_init()`. You don't need to overthink about it at this point. Just call it in the main function:
 
 ```c
 void app_main(void) {
@@ -112,9 +124,9 @@ void app_main(void) {
 
 Here, `esp_err_t` is just an `int`, not some mysterious type. It's provided by `esp_err.h`, which we included in `common.h`. `esp_err_t` stands for "ESP Error Type". That alias was defined for code readability.
 
-Similarly, `ESP_ERR_NVS_NO_FREE_PAGES`, `ESP_ERR_NVS_NEW_VERSION_FOUND`, etc. are also `int`s, which are defined in `nvs.h`. They are **preprocessor macros** defined using `#define`, which means they will be replaced with their actual values (`4365` and `4368` in this case) in the preprocessing step.
+Similarly, `ESP_ERR_NVS_NO_FREE_PAGES`, `ESP_ERR_NVS_NEW_VERSION_FOUND`, etc. are also `int`s, which are defined in `nvs.h`. They are **object-like macros** defined using `#define` (just like how defined `TAG` and `DEVICE_NAME`), which means they will be replaced with their actual values (`4365` and `4368` in this case) in the preprocessing step.
 
-`ESP_LOGE` ("E" stands for "Error") is a function-like macro used to log errors. `ESP_LOGI` is used for logging "Info".
+`ESP_LOGE` ("E" stands for "Error") is a function-like macro used to log errors. They are similar to object-like macros, but instead of replacing with an object, it replace with a function. `ESP_LOGI` is used for logging "Info".
 
 ## Initialize GPIO2 output pin
 
@@ -210,7 +222,7 @@ A GATT profile has one or more services, which have one or more characteristics 
 +---------------------------+
 ```
 
-For example, you can create a Heart Rate service that has a Heart Rate Measurement characteristic, which holds the value.
+For example, you can create a "Heart Rate" service that has a "Heart Rate Measurement" characteristic, which holds the value.
 
 Before defining our services and characteristics, let's initialize GATT:
 
