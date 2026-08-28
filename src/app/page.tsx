@@ -87,10 +87,12 @@ export default function Home() {
               Read posts
             </Link>
             <a
-              href="mailto:effessdev@gmail.com"
+              href="https://effessdev.itch.io"
+              target="_blank"
+              rel="noreferrer"
               className={buttonVariants({ variant: "outline", size: "lg" })}
             >
-              Email me
+              itch.io
             </a>
             <a
               href="https://github.com/effessdev"

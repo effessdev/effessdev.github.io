@@ -5,7 +5,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/posts", label: "Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
-  { href: "mailto:effessdev@gmail.com", label: "Email" },
+  { href: "https://effessdev.itch.io", label: "itch.io" },
 ];
 
 export default function Navbar() {
