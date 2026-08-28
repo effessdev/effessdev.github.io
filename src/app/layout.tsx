@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "EffessDev",
   description:
     "I build apps, games, and websites, and program MCUs and IoT devices.",
+  verification: {
+    google: "TKdqNOADhD-ATBbkWCSmNBH5dYWCBpWFuzxbRFSHGHo",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
