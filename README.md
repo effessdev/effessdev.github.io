@@ -18,3 +18,9 @@ I chose not to include keywords in my post URLs. Instead, each post is identifie
 I also skipped the common compromise of combining IDs with titles (/posts/asdfkj-post-title) because that would introduce unnecessary URL complexity for practically zero SEO gain. Google has stated that keywords in URLs are a "very, very lightweight" ranking factor, contributing less than 1% to overall ranking weight.
 
 Since search engines can already read the HTML `<title>` tag, meta description, and the page body itself, the URL adds little additional signal. The trade-off is that I sacrifice a minor user experience benefit (readable URLs in search results) for complete operational freedom, which I consider a worthwhile exchange.
+
+## Notes
+
+- Running the development server: `npm run dev`
+- Generating the output: `npm run build`
+- Serving the output: `npx serve@latest out`

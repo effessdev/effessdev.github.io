@@ -84,7 +84,7 @@ export function Markdown({ content }: MarkdownProps) {
               <img
                 src={src}
                 alt={alt}
-                className="my-6 max-w-full rounded-[var(--card-radius)]"
+                className="my-6 max-w-full rounded-(--card-radius)"
               />
             ),
             hr: () => <hr className="my-8 border-t-2 border-border" />,

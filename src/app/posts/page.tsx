@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getAllPosts } from "@/lib/posts";
+import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "All Posts | EffessDev",
@@ -74,10 +75,13 @@ export default function ReadPage() {
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <span>
-                  Updated on {formattedDate} •{" "}
-                  {post.tags.length > 0 && post.tags.join(", ")}
-                </span>
+                <Badge variant="outline">Updated on {formattedDate}</Badge>
+                {post.tags?.map((tag, index) => (
+                  <Badge variant="secondary" key={index}>
+                    {tag}
+                  </Badge>
+                ))}
+                {post.draft && <Badge variant="destructive">Draft</Badge>}
               </div>
             </article>
           );

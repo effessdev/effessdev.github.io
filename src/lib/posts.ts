@@ -21,6 +21,7 @@ export function getAllPosts(): Post[] {
         title: data.title,
         description: data.description,
         updated: data.updated,
+        draft: data.draft === true,
         tags: data.tags || [],
         content: content,
       } as Post;

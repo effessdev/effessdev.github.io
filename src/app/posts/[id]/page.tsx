@@ -91,12 +91,13 @@ export default async function PostPage({ params }: PostPageProps) {
       <article className="rounded-2xl border border-border bg-card p-5 md:p-8">
         <h1 className="text-6xl font-bold border-b pb-2">{post.title}</h1>
         <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
-          <Badge>Updated on {post.updated}</Badge>
+          <Badge variant="outline">Updated on {post.updated}</Badge>
           {post.tags?.map((tag, index) => (
             <Badge variant="secondary" key={index}>
               {tag}
             </Badge>
           ))}
+          {post.draft && <Badge variant="destructive">Draft</Badge>}
         </div>
         <Markdown content={post.content} />
       </article>
