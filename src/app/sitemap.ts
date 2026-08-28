@@ -1,6 +1,8 @@
-// src/app/sitemap.ts
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
+
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://effessdev.github.io";
