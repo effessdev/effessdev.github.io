@@ -10,7 +10,7 @@ interface MarkdownProps {
 export function Markdown({ content }: MarkdownProps) {
   return (
     <>
-      <div className="max-w-none">
+      <div className="max-w-none flex flex-col gap-6">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           rehypePlugins={[
@@ -19,43 +19,44 @@ export function Markdown({ content }: MarkdownProps) {
           ]}
           components={{
             h1: ({ children }) => (
-              <h1 className="mb-6 text-[clamp(2.5rem,8vw,4rem)] font-bold leading-[1.1] tracking-tighter text-foreground">
+              <h1 className="text-destructive text-5xl font-bold w-full border-b border-destructive pb-2">
                 {children}
               </h1>
             ),
             h2: ({ children }) => (
-              <h2 className="mb-6 mt-10 inline-block border-b-[3px] border-accent pb-2 text-[clamp(2rem,6vw,3rem)] font-bold tracking-[-0.01em] text-foreground">
+              <h2 className="text-4xl font-bold w-full border-b pb-2">
                 {children}
               </h2>
             ),
             h3: ({ children }) => (
-              <h3 className="mb-4 mt-8 text-[clamp(1.5rem,4vw,2rem)] font-semibold tracking-[-0.02em] text-foreground">
-                {children}
-              </h3>
+              <h3 className="text-3xl font-bold">{children}</h3>
             ),
-            p: ({ children }) => (
-              <p className="mb-6 text-foreground">{children}</p>
+            h4: ({ children }) => (
+              <h4 className="text-2xl font-bold">{children}</h4>
             ),
+            h5: ({ children }) => (
+              <h5 className="text-xl font-bold">{children}</h5>
+            ),
+            h6: ({ children }) => (
+              <h6 className="text-lg font-bold">{children}</h6>
+            ),
+            p: ({ children }) => <p>{children}</p>,
             ul: ({ children }) => (
-              <ul className="mb-6 list-disc space-y-2 pl-8 text-foreground">
-                {children}
-              </ul>
+              <ul className="list-disc pl-8 text-foreground">{children}</ul>
             ),
             ol: ({ children }) => (
-              <ol className="mb-6 list-decimal space-y-2 pl-8 text-foreground">
-                {children}
-              </ol>
+              <ol className="list-decimal pl-8 text-foreground">{children}</ol>
             ),
             li: ({ children }) => <li className="leading-7">{children}</li>,
             blockquote: ({ children }) => (
-              <blockquote className="my-6 border-l-4 border-accent pl-6 text-muted-foreground">
+              <blockquote className="border-l-4 border-accent pl-6 text-muted-foreground">
                 {children}
               </blockquote>
             ),
             a: ({ href, children }) => (
               <a
                 href={href}
-                className="text-foreground underline decoration-accent underline-offset-4 hover:text-muted-foreground dark:hover:text-foreground"
+                className="text-foreground underline underline-offset-2 hover:text-muted-foreground"
                 target={href?.startsWith("http") ? "_blank" : undefined}
                 rel={href?.startsWith("http") ? "noreferrer" : undefined}
               >
@@ -63,7 +64,7 @@ export function Markdown({ content }: MarkdownProps) {
               </a>
             ),
             pre: ({ children }) => (
-              <pre className="mb-6 overflow-x-auto rounded-(--card-radius) border border-border bg-background p-6 text-sm text-card-foreground">
+              <pre className="overflow-x-auto rounded-(--card-radius) border border-border bg-background p-2 md:p-6 text-sm text-card-foreground">
                 {children}
               </pre>
             ),
@@ -84,10 +85,10 @@ export function Markdown({ content }: MarkdownProps) {
               <img
                 src={src}
                 alt={alt}
-                className="my-6 max-w-full rounded-(--card-radius)"
+                className="max-w-full rounded-(--card-radius)"
               />
             ),
-            hr: () => <hr className="my-8 border-t-2 border-border" />,
+            hr: () => <hr className="border-t-2 border-border" />,
           }}
         >
           {content}
