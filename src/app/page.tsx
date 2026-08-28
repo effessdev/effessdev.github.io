@@ -7,6 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { getPostById } from "@/lib/posts";
+import { Post } from "@/lib/types";
 
 const featuredProjects = [
   {
@@ -38,15 +42,12 @@ const featuredProjects = [
     description:
       "A GUI app built with Electron to back up your GitHub repositories into your local machine with a single click. Supports Git LFS, automatic dark and light mode and ignoring specific repos.",
     href: "https://github.com/effessdev/ghsync-gui",
-    label: "Open project",
+    label: "View repo",
     tags: ["Electron", "GitHub", "Desktop"],
   },
 ];
 
-const status = {
-  text: "I am currently working through the NimBLE GATT server example from the ESP-IDF docs and turning the findings into a practical write-up to help others navigate the same setup.",
-  updated: "Aug 26, 2026",
-};
+const featuredPostIds = ["2026-08-27"];
 
 const quickLinks = [
   { href: "/posts", label: "Read posts" },
@@ -56,6 +57,14 @@ const quickLinks = [
 ];
 
 export default function Home() {
+  let featuredPosts: Post[] = [];
+
+  if (featuredPostIds.length > 0) {
+    featuredPosts = featuredPostIds
+      .map((id) => getPostById(id))
+      .filter((post): post is Post => post !== null);
+  }
+
   return (
     <>
       <header className="py-8">
@@ -121,13 +130,13 @@ export default function Home() {
         <section>
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Featured work
+              Featured Work
             </h2>
             <Link
               href="/posts"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Browse posts →
+              Browse posts <ArrowRight />
             </Link>
           </div>
 
@@ -146,12 +155,9 @@ export default function Home() {
                 <CardContent className="space-y-5">
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border border-border bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-                      >
+                      <Badge variant="secondary" key={tag}>
                         {tag}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
 
@@ -173,15 +179,51 @@ export default function Home() {
         </section>
 
         <section>
-          <Card className="border-border/80 bg-card">
-            <CardHeader>
-              <CardTitle className="text-2xl">Status</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 pb-6 text-muted-foreground">
-              <p className="text-base leading-7">{status.text}</p>
-              <p className="text-sm">Updated on {status.updated}</p>
-            </CardContent>
-          </Card>
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Featured Posts
+            </h2>
+            <Link
+              href="/posts"
+              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Browse posts <ArrowRight />
+            </Link>
+          </div>
+
+          <div className="space-y-6">
+            {featuredPosts.map((post) => (
+              <Card
+                key={post.title}
+                className="h-full border-border/80 bg-card"
+              >
+                <CardContent>
+                  <div className="flex gap-4 mb-2 w-full justify-between items-start">
+                    <CardTitle className="text-2xl">{post.title}</CardTitle>
+                    <Link
+                      href={`/posts/${post.id}`}
+                      className={buttonVariants({
+                        variant: "default",
+                        size: "default",
+                      })}
+                    >
+                      Read
+                    </Link>
+                  </div>
+                  <p className="text-base leading-7 text-muted-foreground">
+                    {post.description}
+                  </p>
+                  <div className="flex mt-4 flex-wrap gap-2">
+                    {post.tags.map((tag) => (
+                      <Badge variant="secondary" key={tag}>
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <section>
