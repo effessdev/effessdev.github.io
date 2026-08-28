@@ -403,8 +403,17 @@ Now you have done the coding part. Let's test your device!
 
 1. Build and flash the code to your ESP32.
 2. Install nRF Connect on your mobile phone.
-3. Enable Bluetooth on your phone and scan for nearby devices.
-4. Select your ESP32 device using the designated name (e.g., `DEVICE_NAME`) and tap **Connect**.
-5. Locate the **Automation IO** service (`0x1815`).
-6. Select the **Digital** characteristic (`0x2A56`) and tap the Write action.
-7. Send a payload of `01` (type = BYTE) to turn GPIO2 High (LED ON), or send `00` to switch it Low (LED OFF).
+3. Enable Bluetooth on your phone.
+4. Open nRF Connect and scan for nearby devices.
+5. Select your ESP32 device using the provided name (`DEVICE_NAME`) and tap **Connect**.
+6. Locate the **Automation IO** service (`0x1815`).
+7. Select the **Digital** characteristic (`0x2A56`) and tap the Write action.
+8. Send a payload of `01` (type = BYTE) to turn GPIO2 High (LED ON), or send `00` to switch it Low (LED OFF).
+
+If your LED responded, congrats! You just successfuly created a bluetooth-controlled IoT device and controlled it using your phone!
+
+## What's Next
+
+Now you have built the foundations of BLE. To learn more about BLE, check out the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) and the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server). Since you now know the basic concepts, the official docs will feel much easier.
+
+If you found this tutorial helpful, please let me know!
