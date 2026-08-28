@@ -17,14 +17,12 @@ Before you can use BLE, you have to enable it using Menuconfig. There are two wa
 
 ### Option 1: Using the VS Code Command Palette
 
-> **Warning:** Only follow this method if you are developing using the ESP-IDF VS Code extension.
+> **Warning:** Only use this option if you are developing using the ESP-IDF VS Code extension.
 
 1. Click `Ctrl + Shift + P` to open the command palette.
 2. Search for and select `ESP-IDF: SDK Configuration Editor (Menuconfig)`.
 3. Navigate to `Component Config -> Bluetooth`.
-4. Check the Bluetooth box and select `NimBLE - BLE only` from the Host selector, like this:
-
-![Image](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/nmh4adx074qycofljqsj.png)
+4. Check the Bluetooth box and select `NimBLE - BLE only` from the Host selector.
 
 ### Option 2: Using the ESP-IDF terminal
 
@@ -75,11 +73,11 @@ This program requires a lot of headers to be included. Update your `main.c` like
 #define DEVICE_NAME "NimBLE_GATT"
 
 void app_main(void) {
-
+    // Empty for now
 }
 ```
 
-This is much cleaner than pasting everything in `main.c`. Change the `TAG` and `DEVICE_NAME` in `common.h` if required.
+You can change the `TAG` and `DEVICE_NAME` if required.
 
 ## Initialize NVS Flash (Non-Volatile Storage)
 
@@ -173,9 +171,44 @@ void app_main(void) {
 
 This is the hard part. GATT stands for Generic Attribute. It defines how two connected devices package, format, and send data using a structured hierarchy of services and characteristics.
 
-A GATT profile has one or more services, which have one or more characteristics within them, which hold data and descriptors. Each service and characteristic has a UUID. Here is a diagram showing the GATT hierarchy (taken from the official docs):
+A GATT profile has one or more services, which have one or more characteristics within them, which hold data and descriptors. Each service and characteristic has a UUID. Here is a diagram showing the GATT hierarchy:
 
-![Image description](https://dev-to-uploads.s3.us-east-2.amazonaws.com/uploads/articles/p4qb6fstiavmr69a7cwv.png)
+```
++---------------------------+
+|          PROFILE          |
++---------------------------+
+|                           |
+|  +---------------------+  |
+|  | SERVICE             |  |
+|  +---------------------+  |
+|  |                     |  |
+|  | CHARACTERISTIC      |  |
+|  |  - PROPERTIES       |  |
+|  |  - VALUE            |  |
+|  |  - DESCRIPTOR       |  |
+|  |                     |  |
+|  +---------------------+  |
+|  |                     |  |
+|  |  CHARACTERISTIC     |  |
+|  |  - PROPERTIES       |  |
+|  |  - VALUE            |  |
+|  |  - DESCRIPTOR       |  |
+|  |                     |  |
+|  +---------------------+  |
+|                           |
+|  +---------------------+  |
+|  | SERVICE             |  |
+|  +---------------------+  |
+|  |                     |  |
+|  | CHARACTERISTIC      |  |  
+|  |  - PROPERTIES       |  |
+|  |  - VALUE            |  |
+|  |  - DESCRIPTOR       |  |
+|  |                     |  |
+|  +---------------------+  |
+|                           |
++---------------------------+
+```
 
 For example, you can create a Heart Rate service that has a Heart Rate Measurement characteristic, which holds the value.
 
