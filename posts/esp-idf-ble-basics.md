@@ -330,11 +330,11 @@ void app_main(void) {
 }
 ```
 
-## Configuring Advertising
+## Advertising
 
-To enable smartphones or central devices to discover your ESP32, you must start advertising.
+To enable smartphones or central devices to discover your ESP32, you must start advertising. Advertising is like sending the signals so that other devices (like your phone) can find your ESP32.
 
-Define an `on_sync` callback function that executes automatically once NimBLE is synchronized and ready:
+Define an `on_sync` callback function that handles advertising. You don't really need to worry about this function right now, just copy it into your file:
 
 ```c
 static void gatt_svr_on_sync(void) {
@@ -369,7 +369,7 @@ static void gatt_svr_on_sync(void) {
 }
 ```
 
-Now, assign the sync callback in the main function:
+Now, assign the sync callback in the main function so that it runs at the correct time:
 
 ```c
 void app_main(void) {
