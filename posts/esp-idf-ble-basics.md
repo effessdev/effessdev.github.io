@@ -376,6 +376,7 @@ void app_main(void) {
     ...
     ble_hs_cfg.sync_cb = gatt_svr_on_sync;
 }
+```
 
 ## Running the NimBLE Task
 
