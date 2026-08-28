@@ -69,8 +69,8 @@ This program requires a lot of headers to be included. Update your `main.c` like
 #include "services/gatt/ble_svc_gatt.h"
 
 /* Defines */
-#define TAG "NimBLE_GATT_Server"
-#define DEVICE_NAME "NimBLE_GATT"
+#define TAG "NimBLE_LED"
+#define DEVICE_NAME "NimBLE_LED"
 
 void app_main(void) {
     // Empty for now
@@ -304,9 +304,6 @@ Now that our GATT table and access callback are defined, we must register them w
 ```c
 void app_main(void) {
     ...
-    ble_svc_gatt_init();
-
-    int rc;
     rc = ble_gatts_count_cfg(gatt_svr_svcs);
     if (rc != 0) {
         ESP_LOGE(TAG, "failed to count gatt services, error code: %d", rc);
@@ -383,6 +380,7 @@ Start the task from the main function:
 
 ```c
 void app_main(void) {
+    ...
     nimble_port_freertos_init(nimble_host_task);
 }
 ```
@@ -391,10 +389,10 @@ Now you have done the coding part. Let's test your device!
 
 ## Testing Your ESP32 BLE Server
 
-1. Build and flash the code to your phone.
+1. Build and flash the code to your ESP32.
 2. Install nRF Connect on your mobile phone.
 3. Enable Bluetooth on your phone and scan for nearby devices.
 4. Select your ESP32 device using the designated name (e.g., `DEVICE_NAME`) and tap **Connect**.
 5. Locate the **Automation IO** service (`0x1815`).
 6. Select the **Digital** characteristic (`0x2A56`) and tap the Write action.
-7. Send a payload byte of `01` (HEX) to turn GPIO2 High (LED ON), or send `00` (HEX) to switch it Low (LED OFF).
+7. Send a payload of `01` (type = BYTE) to turn GPIO2 High (LED ON), or send `00` to switch it Low (LED OFF).
