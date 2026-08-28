@@ -1,13 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { getAllPosts } from "@/lib/posts";
 import { Badge } from "@/components/ui/badge";
 
@@ -52,7 +45,7 @@ export default function ReadPage() {
           return (
             <article
               key={post.id}
-              className="rounded-2xl bg-card border border-border bg-background p-5"
+              className="rounded-2xl bg-card border border-border p-5"
             >
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-3">
