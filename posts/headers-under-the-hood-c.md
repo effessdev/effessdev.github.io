@@ -50,7 +50,7 @@ Then, we include the header, and call the function:
 
 #include "functions.h"
 
-void main(void) {
+int main() {
   greet();
 }
 ```
@@ -66,7 +66,7 @@ Why can't we just `#include` `functions.c` directly? Why should we create a head
 
 void greet(void); // <-- Contents of functions.h
 
-void main(void) {
+int main() {
   greet();
 }
 ```
@@ -92,17 +92,9 @@ To understand this, we need to look at how compilation actually works. It happen
 - Assembly: converts assembly into machine code, producing object files (.o or .obj)
 - Linking: combines all object files into a single executable
 
-As you can see, steps 2 and 3 happen separately for each source file. The compiler processes main.c and functions.c independently, without knowing what's in the other file.
+As you can see, steps 2 and 3 happen separately for each source file. The compiler processes `main.c` and `functions.c` independently, without knowing what's in the other file.
 
-When the compiler is processing main.c and encounters:
-
-```c
-greet();
-```
-
-## Why we need declarations
-
-When the compiler processes `main.c` and sees `greet();`, it must generate the correct machine code for that call. But without a declaration, it doesn't know:
+When the compiler processes `main.c` and sees `greet();`, it must generate the correct machine code for that **call**. But without a declaration, it doesn't know:
 
 - Whether `greet` is a function or something else
 - What arguments it takes
@@ -111,7 +103,7 @@ When the compiler processes `main.c` and sees `greet();`, it must generate the c
 Different function signatures require different calling conventions (e.g., pushing arguments onto the stack, reserving space for return values). A declaration provides this missing information.
 
 ```c
-void greet(void);   // tells the compiler: function, no args, returns nothing
+void greet(void); // tells the compiler: function, no args, returns nothing
 ```
 
 Now the compiler can generate the call correctly. Since the actual implementation is in `functions.c` (compiled separately), the compiler leaves a **relocation entry**: a placeholder that says "put the address of `greet` here later".
@@ -153,12 +145,26 @@ void greet(void) {
   printf("Hi!");
 }
 
-void main(void) {
+int main() {
   greet();
 }
 ```
 
 This would actually work! But it creates new problems. If you later include `functions.c` in another file, or if you compile with `gcc -o program main.c functions.c`, you'll get a linking error because `greet()` is defined twice. Also, every file that includes `functions.c` would recompile the entire implementation, making builds slower.
+
+## A common misconception
+
+This is the classic hello world program:
+
+```c
+#include <stdio.h>
+
+int main() {
+  printf("Hello world!");
+}
+```
+
+This `stdio.h` header contains declarations for functions like `printf`, but the actual implementations are in the C standard library, which gets linked later. But beginners often think that they get the whole thing.
 
 ## Note
 
@@ -169,7 +175,7 @@ I said that `main.c` would look like this after preprocessing:
 
 void greet(void); // <-- Contents of functions.h
 
-void main(void) {
+int main() {
   greet();
 }
 ```
