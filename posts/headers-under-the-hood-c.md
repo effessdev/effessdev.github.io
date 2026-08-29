@@ -59,7 +59,7 @@ Why can't we just `#include` `functions.c` directly? Why should we create a head
 
 ## How `#include` works
 
-`#include "filename"` in C is extremely simple - **it literally copies the contents of the file named `filename` into that spot. This occurs in the preprocessing step, which happens before compilation. That means, after preprocessing, `main.c` would look something like this:
+`#include "filename"` in C is extremely simple - **it literally copies the contents of the file named `filename` into that spot**. This occurs in the preprocessing step, which happens before compilation. That means, after preprocessing, `main.c` would look something like this:
 
 ```c
 // main.c
