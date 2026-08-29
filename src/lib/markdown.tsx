@@ -18,8 +18,10 @@ export function Markdown({ content }: MarkdownProps) {
             [rehypeHighlight, { detect: true, ignoreMissing: true }],
           ]}
           components={{
+            // Warning style for h1.
+            // Used to discourage the use of h1 since the title is already h1.
             h1: ({ children }) => (
-              <h1 className="text-destructive text-5xl font-bold w-full border-b border-destructive pb-2">
+              <h1 className="text-5xl font-bold text-destructive underline-offset-4 decoration-wavy underline decoration-2 decoration-destructive">
                 {children}
               </h1>
             ),
