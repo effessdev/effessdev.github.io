@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { Post } from "./types";
+import { Post, PostSchema } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -16,7 +16,7 @@ export function getAllPosts(): Post[] {
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(fileContents);
 
-      return {
+      return PostSchema.parse({
         id: data.id,
         title: data.title,
         description: data.description,
@@ -24,7 +24,7 @@ export function getAllPosts(): Post[] {
         draft: data.draft === true,
         tags: data.tags || [],
         content: content,
-      } as Post;
+      });
     });
 
   // Sort by updated date (newest first)

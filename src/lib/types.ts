@@ -1,10 +1,13 @@
-export interface Post {
-  id: string;
-  title: string;
-  description: string;
-  draft: boolean;
-  updated: string;
-  tags: string[];
-  content: string;
-  slug?: string; // For future use if needed
-}
+import { z } from "zod";
+
+export const PostSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  updated: z.string(),
+  draft: z.boolean(),
+  tags: z.array(z.string()),
+  content: z.string(),
+});
+
+export type Post = z.infer<typeof PostSchema>;
