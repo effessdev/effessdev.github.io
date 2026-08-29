@@ -88,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </Link>
       </div>
 
-      <article className="rounded-2xl sm:border bg-card p-0 sm:p-5 md:p-8">
+      <article className="rounded-2xl sm:border bg-background sm:bg-card p-0 sm:p-5 md:p-8">
         <h1 className="text-6xl font-bold border-b pb-2">{post.title}</h1>
         <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
           <Badge variant="outline">Updated on {post.updated}</Badge>
