@@ -101,6 +101,24 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
         <Markdown content={post.content} />
       </article>
+
+      <p className="text-sm text-muted-foreground w-full text-center">
+        Found an issue? Open an{" "}
+        <a
+          href="https://github.com/effessdev/effessdev.github.io/issues"
+          className="underline underline-offset-2"
+        >
+          issue
+        </a>{" "}
+        or a{" "}
+        <a
+          href="https://github.com/effessdev/effessdev.github.io/pulls"
+          className="underline underline-offset-2"
+        >
+          pull request
+        </a>{" "}
+        on GitHub
+      </p>
     </main>
   );
 }
