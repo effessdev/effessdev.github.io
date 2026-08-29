@@ -110,7 +110,7 @@ export default async function PostPage({ params }: PostPageProps) {
         >
           issue
         </a>{" "}
-        or a{" "}
+        or submit a{" "}
         <a
           href="https://github.com/effessdev/effessdev.github.io/pulls"
           className="underline underline-offset-2"
