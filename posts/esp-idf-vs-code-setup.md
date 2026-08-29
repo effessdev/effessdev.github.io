@@ -2,7 +2,7 @@
 id: "2026-07-27"
 title: "ESP-IDF VS Code Setup Tutorial"
 description: "This tutorial covers how to setup VS Code for ESP-IDF development in Windows."
-updated: "2026-08-28"
+updated: "2026-08-29"
 draft: false
 tags: ["esp32", "esp-idf", "vscode"]
 ---
