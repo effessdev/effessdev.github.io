@@ -114,7 +114,9 @@ export default function Home() {
           </div>
           <div className="rounded-2xl border border-border bg-card p-4">
             <p className="text-sm text-muted-foreground">Location</p>
-            <p className="mt-2 font-medium text-foreground">Kerala, India</p>
+            <p className="mt-2 font-medium text-foreground">
+              Alappuzha, Kerala
+            </p>
           </div>
           <div className="rounded-2xl border border-border bg-card p-4">
             <p className="text-sm text-muted-foreground">Contact</p>
