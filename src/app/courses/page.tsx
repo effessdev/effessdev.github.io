@@ -2,6 +2,12 @@ import TopNav from "@/components/layout/top-nav";
 import { buttonVariants } from "@/components/ui/button";
 import { getAllCourses } from "@/lib/courses";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Courses | EffessDev",
+  description: "Browse my courses on various topics.",
+};
 
 export default function CoursesPage() {
   const courses = getAllCourses();

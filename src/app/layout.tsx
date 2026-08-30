@@ -5,7 +5,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
-import Footer from "./posts/footer";
+import Footer from "./footer";
 import ScrollHeader from "@/components/scroll-header"; // Adjust path as needed
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });

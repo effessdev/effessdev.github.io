@@ -4,9 +4,8 @@ import PostList from "@/components/post-list";
 import TopNav from "@/components/layout/top-nav";
 
 export const metadata: Metadata = {
-  title: "All Posts | EffessDev",
-  description:
-    "Read all my blog posts about web development, IoT, game development, and more.",
+  title: "Posts | EffessDev",
+  description: "Read my posts on various topics.",
 };
 
 export default function ReadPage() {
