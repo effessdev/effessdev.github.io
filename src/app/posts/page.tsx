@@ -1,8 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { buttonVariants } from "@/components/ui/button";
 import { getAllPosts } from "@/lib/posts";
-import { Badge } from "@/components/ui/badge";
+import PostList from "@/components/post-list";
 
 export const metadata: Metadata = {
   title: "All Posts | EffessDev",
@@ -13,73 +11,5 @@ export const metadata: Metadata = {
 export default function ReadPage() {
   const posts = getAllPosts();
 
-  return (
-    <main className="space-y-6 py-0">
-      <div className="flex flex-wrap items-center gap-3">
-        <Link
-          href="/"
-          className={buttonVariants({ variant: "outline", size: "default" })}
-        >
-          ← Home
-        </Link>
-      </div>
-
-      <h1 className="text-4xl font-bold tracking-tight">All posts</h1>
-      <p className="text-base text-muted-foreground">
-        {posts.length} post{posts.length === 1 ? "" : "s"} available
-      </p>
-
-      {posts.length === 0 ? (
-        <p className="text-muted-foreground">No posts yet. Check back soon.</p>
-      ) : (
-        posts.map((post) => {
-          const formattedDate = new Date(post.updated).toLocaleDateString(
-            "en-US",
-            {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            },
-          );
-
-          return (
-            <article
-              key={post.id}
-              className="rounded-2xl bg-card border border-border p-5"
-            >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div className="space-y-3">
-                  <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                    {post.title}
-                  </h2>
-                  <p className="max-w-2xl text-muted-foreground">
-                    {post.description}
-                  </p>
-                </div>
-                <Link
-                  href={`/posts/${post.id}`}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "sm",
-                  })}
-                >
-                  Read
-                </Link>
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <Badge variant="outline">Updated on {formattedDate}</Badge>
-                {post.tags?.map((tag, index) => (
-                  <Badge variant="secondary" key={index}>
-                    {tag}
-                  </Badge>
-                ))}
-                {post.draft && <Badge variant="destructive">Draft</Badge>}
-              </div>
-            </article>
-          );
-        })
-      )}
-    </main>
-  );
+  return <PostList heading="All Posts" posts={posts} />;
 }

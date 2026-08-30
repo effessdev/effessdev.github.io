@@ -11,3 +11,11 @@ export const PostSchema = z.object({
 });
 
 export type Post = z.infer<typeof PostSchema>;
+
+export const CourseMetaSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+export type CourseMeta = z.infer<typeof CourseMetaSchema>;
