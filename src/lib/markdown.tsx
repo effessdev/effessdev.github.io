@@ -91,6 +91,36 @@ export function Markdown({ content }: MarkdownProps) {
               />
             ),
             hr: () => <hr className="border-t-2 border-border" />,
+            table: ({ children }) => (
+              <div className="w-full overflow-x-auto rounded-(--card-radius) border border-border">
+                <table className="w-full border-collapse text-left text-sm">
+                  {children}
+                </table>
+              </div>
+            ),
+            thead: ({ children }) => (
+              <thead className="bg-muted text-muted-foreground font-semibold border-b border-border">
+                {children}
+              </thead>
+            ),
+            tbody: ({ children }) => (
+              <tbody className="divide-y divide-border bg-card text-card-foreground">
+                {children}
+              </tbody>
+            ),
+            tr: ({ children }) => (
+              <tr className="transition-colors hover:bg-muted/50">
+                {children}
+              </tr>
+            ),
+            th: ({ children }) => (
+              <th className="px-4 py-3 font-medium text-foreground">
+                {children}
+              </th>
+            ),
+            td: ({ children }) => (
+              <td className="px-4 py-3 align-middle">{children}</td>
+            ),
           }}
         >
           {content}
