@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import ScrollHeader from "@/components/scroll-header"; // Adjust path as needed
+import ScrollHeader from "@/components/scroll-header";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -74,6 +75,13 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+
+        {/* GoatCounter Analytics */}
+        <Script
+          src="https://gc.zgo.at/count.js"
+          data-goatcounter="https://effessdev.goatcounter.com/count"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
