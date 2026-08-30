@@ -14,7 +14,7 @@ export default function CoursesPage() {
         {courses.map((course) => (
           <div
             key={course.id}
-            className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between py-4"
+            className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between py-6"
           >
             <div>
               <h2 className="text-2xl mb-2 font-semibold tracking-tight">
