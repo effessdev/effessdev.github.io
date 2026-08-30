@@ -6,6 +6,11 @@ import {
   getCourseMeta,
 } from "@/lib/courses";
 import { Markdown } from "@/lib/markdown";
+import TopNav from "@/components/layout/top-nav";
+import PostComponent from "@/components/post-component";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export function generateStaticParams() {
   return getAllCourseIds().flatMap((courseId) =>
@@ -31,21 +36,41 @@ export default async function ChapterPage({
   const next = idx < chapters.length - 1 ? chapters[idx + 1] : null;
 
   return (
-    <article className="py-8">
-      <h1 className="text-4xl font-bold mb-6">{chapter.title}</h1>
-      <Markdown content={chapter.content} />
-      <nav className="flex justify-between mt-12 pt-6 border-t">
+    <>
+      <TopNav
+        backLabel="Contents"
+        backHref={`/courses/${courseId}`}
+        extraLinks={[
+          { label: "All courses", href: "/courses" },
+          { label: "Home", href: "/" },
+        ]}
+      />
+
+      <PostComponent post={chapter} />
+
+      <nav className="flex gap-2 justify-between mt-12 pt-6 border-t">
         {prev ? (
-          <a href={`/courses/${courseId}/${prev.id}`}>&larr; {prev.title}</a>
+          <Link
+            className={buttonVariants({ variant: "secondary" })}
+            href={`/courses/${courseId}/${prev.id}`}
+          >
+            <ArrowLeft /> Prev
+          </Link>
         ) : (
           <span />
         )}
         {next ? (
-          <a href={`/courses/${courseId}/${next.id}`}>{next.title} &rarr;</a>
+          <Link
+            className={buttonVariants({ variant: "secondary" })}
+            href={`/courses/${courseId}/${next.id}`}
+          >
+            Next
+            <ArrowRight />{" "}
+          </Link>
         ) : (
           <span />
         )}
       </nav>
-    </article>
+    </>
   );
 }
