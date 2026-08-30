@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getAllCourseIds, getChapter, getCourseChapters } from "@/lib/courses";
+import {
+  getAllCourseIds,
+  getChapter,
+  getCourseChapters,
+  getCourseMeta,
+} from "@/lib/courses";
 import TopNav from "@/components/layout/top-nav";
 import PostComponent from "@/components/post-component";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -14,6 +20,40 @@ export function generateStaticParams() {
       chapter: chapter.id,
     })),
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ courseId: string; chapter: string }>;
+}): Promise<Metadata> {
+  const { courseId, chapter: chapterId } = await params;
+  const course = getCourseMeta(courseId);
+  const chapter = getChapter(courseId, chapterId);
+
+  if (!chapter) {
+    return {
+      title: "Chapter Not Found",
+      description: "The requested course chapter could not be found.",
+    };
+  }
+
+  return {
+    title: `${chapter.title} | ${course.title} | EffessDev`,
+    description: chapter.description,
+    keywords: chapter.tags.join(", "),
+    openGraph: {
+      title: chapter.title,
+      description: chapter.description,
+      type: "article",
+      tags: chapter.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: chapter.title,
+      description: chapter.description,
+    },
+  };
 }
 
 export default async function ChapterPage({

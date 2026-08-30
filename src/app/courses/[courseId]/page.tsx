@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import TopNav from "@/components/layout/top-nav";
 import PostList from "@/components/post-list";
 import {
@@ -17,6 +18,29 @@ export async function generateStaticParams() {
   return ids.map((courseId) => ({
     courseId: courseId,
   }));
+}
+
+export async function generateMetadata({
+  params,
+}: CoursesPageProps): Promise<Metadata> {
+  const { courseId } = await params;
+  const course = getCourseMeta(courseId);
+
+  return {
+    title: `${course.title} | EffessDev`,
+    description: course.description,
+    keywords: [course.title, "course"].join(", "),
+    openGraph: {
+      title: course.title,
+      description: course.description,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: course.title,
+      description: course.description,
+    },
+  };
 }
 
 export default async function CoursesPage({ params }: CoursesPageProps) {

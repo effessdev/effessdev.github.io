@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -57,6 +58,25 @@ const quickLinks = [
   { href: "https://github.com/effessdev", label: "GitHub" },
   { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
 ];
+
+export const metadata: Metadata = {
+  title: "EffessDev",
+  description:
+    "I build apps, games, and websites, and program MCUs and IoT devices.",
+  openGraph: {
+    title: "EffessDev",
+    description:
+      "I build apps, games, and websites, and program MCUs and IoT devices.",
+    type: "website",
+    url: "https://effessdev.github.io",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EffessDev",
+    description:
+      "I build apps, games, and websites, and program MCUs and IoT devices.",
+  },
+};
 
 export default function Home() {
   let featuredCourses: CourseMeta[] = [];

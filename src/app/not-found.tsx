@@ -16,26 +16,15 @@ export default function NotFound() {
             The page you&apos;re looking for isn&apos;t here, or it may have
             moved.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link
-              href="/"
-              className={buttonVariants({
-                variant: "default",
-                size: "default",
-              })}
-            >
-              Home
-            </Link>
-            <Link
-              href="/posts"
-              className={buttonVariants({
-                variant: "outline",
-                size: "default",
-              })}
-            >
-              Read posts
-            </Link>
-          </div>
+          <Link
+            href="/"
+            className={buttonVariants({
+              variant: "default",
+              size: "default",
+            })}
+          >
+            Home
+          </Link>
         </CardContent>
       </Card>
     </main>

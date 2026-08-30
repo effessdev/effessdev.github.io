@@ -7,6 +7,16 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Courses | EffessDev",
   description: "Browse my courses on various topics.",
+  openGraph: {
+    title: "Courses | EffessDev",
+    description: "Browse my courses on various topics.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Courses | EffessDev",
+    description: "Browse my courses on various topics.",
+  },
 };
 
 export default function CoursesPage() {

@@ -14,6 +14,19 @@ export const metadata: Metadata = {
   title: "EffessDev",
   description:
     "I build apps, games, and websites, and program MCUs and IoT devices.",
+  openGraph: {
+    title: "EffessDev",
+    description:
+      "I build apps, games, and websites, and program MCUs and IoT devices.",
+    type: "website",
+    url: "https://effessdev.github.io",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EffessDev",
+    description:
+      "I build apps, games, and websites, and program MCUs and IoT devices.",
+  },
   verification: {
     google: "TKdqNOADhD-ATBbkWCSmNBH5dYWCBpWFuzxbRFSHGHo",
   },
