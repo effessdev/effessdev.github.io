@@ -75,7 +75,7 @@ export function Markdown({ content }: MarkdownProps) {
 
               if (isInlineCode) {
                 return (
-                  <code className="rounded-md border border-border bg-muted px-1.5 py-0.5 text-sm text-foreground">
+                  <code className="rounded-md border border-border bg-muted px-[0.3em] py-[0.1em] text-[0.9em] box-decoration-clone">
                     {children}
                   </code>
                 );
