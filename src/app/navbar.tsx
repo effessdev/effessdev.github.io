@@ -3,9 +3,9 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/courses", label: "Courses" },
   { href: "/posts", label: "Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
-  { href: "https://effessdev.itch.io", label: "itch.io" },
 ];
 
 export default function Navbar() {
