@@ -12,6 +12,7 @@ import {
 import { Markdown } from "@/lib/markdown";
 import { getAllPostIds, getPostById } from "@/lib/posts";
 import { Badge } from "@/components/ui/badge";
+import TopNav from "@/components/layout/top-nav";
 
 interface PostPageProps {
   params: Promise<{
@@ -72,53 +73,45 @@ export default async function PostPage({ params }: PostPageProps) {
   });
 
   return (
-    <main className="space-y-8">
-      <div className="flex flex-wrap items-center gap-3">
-        <Link
-          href="/posts"
-          className={buttonVariants({ variant: "outline", size: "default" })}
-        >
-          ← All posts
-        </Link>
-        <Link
-          href="/"
-          className={buttonVariants({ variant: "secondary", size: "default" })}
-        >
-          Home
-        </Link>
-      </div>
+    <>
+      <TopNav
+        backHref="/posts"
+        backLabel="All posts"
+        extraLinks={[{ label: "Home", href: "/" }]}
+      />
+      <main className="space-y-8">
+        <article className="rounded-2xl sm:border bg-background sm:bg-card p-0 sm:p-5 md:p-8">
+          <h1 className="text-6xl font-bold border-b pb-2">{post.title}</h1>
+          <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
+            <Badge variant="outline">Updated on {post.updated}</Badge>
+            {post.tags?.map((tag, index) => (
+              <Badge variant="secondary" key={index}>
+                {tag}
+              </Badge>
+            ))}
+            {post.draft && <Badge variant="destructive">Draft</Badge>}
+          </div>
+          <Markdown content={post.content} />
+        </article>
 
-      <article className="rounded-2xl sm:border bg-background sm:bg-card p-0 sm:p-5 md:p-8">
-        <h1 className="text-6xl font-bold border-b pb-2">{post.title}</h1>
-        <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
-          <Badge variant="outline">Updated on {post.updated}</Badge>
-          {post.tags?.map((tag, index) => (
-            <Badge variant="secondary" key={index}>
-              {tag}
-            </Badge>
-          ))}
-          {post.draft && <Badge variant="destructive">Draft</Badge>}
-        </div>
-        <Markdown content={post.content} />
-      </article>
-
-      <p className="text-sm text-muted-foreground w-full text-center">
-        Found an issue? Open an{" "}
-        <a
-          href="https://github.com/effessdev/effessdev.github.io/issues"
-          className="underline underline-offset-2"
-        >
-          issue
-        </a>{" "}
-        or submit a{" "}
-        <a
-          href="https://github.com/effessdev/effessdev.github.io/pulls"
-          className="underline underline-offset-2"
-        >
-          pull request
-        </a>{" "}
-        on GitHub
-      </p>
-    </main>
+        <p className="text-sm text-muted-foreground w-full text-center">
+          Found an issue? Open an{" "}
+          <a
+            href="https://github.com/effessdev/effessdev.github.io/issues"
+            className="underline underline-offset-2"
+          >
+            issue
+          </a>{" "}
+          or submit a{" "}
+          <a
+            href="https://github.com/effessdev/effessdev.github.io/pulls"
+            className="underline underline-offset-2"
+          >
+            pull request
+          </a>{" "}
+          on GitHub
+        </p>
+      </main>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import TopNav from "@/components/layout/top-nav";
 import PostList from "@/components/post-list";
 import {
   getCourseChapters,
@@ -25,10 +26,17 @@ export default async function CoursesPage({ params }: CoursesPageProps) {
   const chapters = getCourseChapters(courseId);
 
   return (
-    <PostList
-      heading={course.title}
-      description={course.description}
-      posts={chapters}
-    />
+    <>
+      <TopNav
+        backHref="/courses"
+        backLabel="Courses"
+        extraLinks={[{ label: "Home", href: "/" }]}
+      />
+      <PostList
+        heading={course.title}
+        description={course.description}
+        posts={chapters}
+      />
+    </>
   );
 }

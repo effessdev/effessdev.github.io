@@ -14,15 +14,6 @@ export default function PostList({
 }) {
   return (
     <main className="space-y-6 py-0">
-      <div className="flex flex-wrap items-center gap-3">
-        <Link
-          href="/"
-          className={buttonVariants({ variant: "outline", size: "default" })}
-        >
-          ← Home
-        </Link>
-      </div>
-
       <h1 className="text-4xl font-bold tracking-tight">{heading}</h1>
       {description && (
         <p className="text-base text-muted-foreground">{description}</p>
