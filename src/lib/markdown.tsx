@@ -51,7 +51,7 @@ export function Markdown({ content }: MarkdownProps) {
             ),
             li: ({ children }) => <li className="leading-7">{children}</li>,
             blockquote: ({ children }) => (
-              <blockquote className="border-l-4 border-accent pl-6 text-muted-foreground">
+              <blockquote className="relative pl-6 text-muted-foreground before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:rounded-full before:bg-muted-foreground">
                 {children}
               </blockquote>
             ),
