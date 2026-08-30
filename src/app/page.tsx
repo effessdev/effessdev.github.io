@@ -10,7 +10,8 @@ import {
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getPostById } from "@/lib/posts";
-import { Post } from "@/lib/types";
+import { Post, CourseMeta } from "@/lib/types";
+import { getCourseMeta } from "@/lib/courses";
 
 const featuredProjects = [
   {
@@ -47,6 +48,7 @@ const featuredProjects = [
   },
 ];
 
+const featuredCourseIds = ["embedded-c"];
 const featuredPostIds = ["2026-08-27"];
 
 const quickLinks = [
@@ -57,7 +59,14 @@ const quickLinks = [
 ];
 
 export default function Home() {
+  let featuredCourses: CourseMeta[] = [];
   let featuredPosts: Post[] = [];
+
+  if (featuredCourseIds.length > 0) {
+    featuredCourses = featuredCourseIds
+      .map((id) => getCourseMeta(id))
+      .filter((course): course is CourseMeta => course !== null);
+  }
 
   if (featuredPostIds.length > 0) {
     featuredPosts = featuredPostIds
@@ -134,12 +143,14 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               Featured Work
             </h2>
-            <Link
-              href="/posts"
+            <a
+              href="https://github.com/effessdev"
+              target="_blank"
+              rel="noreferrer"
               className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Browse posts <ArrowRight />
-            </Link>
+              GitHub <ArrowRight />
+            </a>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -183,13 +194,54 @@ export default function Home() {
         <section>
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              Featured Courses
+            </h2>
+            <Link
+              href="/courses"
+              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Browse Courses <ArrowRight />
+            </Link>
+          </div>
+
+          <div className="space-y-6">
+            {featuredCourses.map((course) => (
+              <Card
+                key={course.title}
+                className="h-full border-border/80 bg-card"
+              >
+                <CardContent>
+                  <div className="flex gap-4 mb-2 w-full justify-between items-start">
+                    <CardTitle className="text-2xl">{course.title}</CardTitle>
+                    <Link
+                      href={`/posts/${course.id}`}
+                      className={buttonVariants({
+                        variant: "default",
+                        size: "default",
+                      })}
+                    >
+                      Read
+                    </Link>
+                  </div>
+                  <p className="text-base leading-7 text-muted-foreground">
+                    {course.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
               Featured Posts
             </h2>
             <Link
               href="/posts"
               className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Browse posts <ArrowRight />
+              Browse Posts <ArrowRight />
             </Link>
           </div>
 
