@@ -48,10 +48,10 @@ export default async function ChapterPage({
 
       <PostComponent post={chapter} />
 
-      <nav className="flex gap-2 justify-between mt-12 pt-6 border-t">
+      <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
         {prev ? (
           <Link
-            className={buttonVariants({ variant: "secondary" })}
+            className={buttonVariants({ variant: "secondary", size: "lg" })}
             href={`/courses/${courseId}/${prev.id}`}
           >
             <ArrowLeft /> Prev
@@ -61,7 +61,7 @@ export default async function ChapterPage({
         )}
         {next ? (
           <Link
-            className={buttonVariants({ variant: "secondary" })}
+            className={buttonVariants({ variant: "secondary", size: "lg" })}
             href={`/courses/${courseId}/${next.id}`}
           >
             Next
