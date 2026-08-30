@@ -20,7 +20,7 @@ export default function CoursesPage() {
               <h2 className="text-2xl mb-2 font-semibold tracking-tight">
                 {course.title}
               </h2>
-              <p className="text-base text-muted-foreground">
+              <p className="text-base max-w-2xl text-muted-foreground">
                 {course.description}
               </p>
             </div>
