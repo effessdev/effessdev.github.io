@@ -214,7 +214,7 @@ export default function Home() {
                   <div className="flex gap-4 mb-2 w-full justify-between items-start">
                     <CardTitle className="text-2xl">{course.title}</CardTitle>
                     <Link
-                      href={`/posts/${course.id}`}
+                      href={`/courses/${course.id}`}
                       className={buttonVariants({
                         variant: "default",
                         size: "default",
