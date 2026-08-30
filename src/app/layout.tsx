@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import ScrollHeader from "@/components/scroll-header";
-import Script from "next/script";
-import { Suspense } from "react";
-import { Analytics } from "@/components/analytics";
+import ScrollHeader from "@/components/scroll-header"; // Adjust path as needed
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -76,19 +74,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
-
-        {/* Client-side route listener */}
-        <Suspense fallback={null}>
-          <Analytics />
-        </Suspense>
-
-        {/* GoatCounter Script */}
-        <Script
-          src="//gc.zgo.at/count.js"
-          data-goatcounter="https://effessdev.goatcounter.com/count"
-          data-goatcounter-settings='{"allow_local": false}'
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );
