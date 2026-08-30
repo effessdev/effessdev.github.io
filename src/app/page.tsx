@@ -50,10 +50,10 @@ const featuredProjects = [
 const featuredPostIds = ["2026-08-27"];
 
 const quickLinks = [
-  { href: "/posts", label: "Read posts" },
+  { href: "/courses", label: "View Courses" },
+  { href: "/posts", label: "Read Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
   { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
-  { href: "https://effessdev.itch.io", label: "itch.io" },
 ];
 
 export default function Home() {
