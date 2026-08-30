@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./navbar";
 import Footer from "./posts/footer";
+import ScrollHeader from "@/components/scroll-header"; // Adjust path as needed
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -48,12 +49,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen">
-            <Navbar />
+          <div className="flex min-h-screen flex-col">
+            <ScrollHeader>
+              <Navbar />
+            </ScrollHeader>
 
-            <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+            <main className="flex-1 w-full mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
               {children}
-            </div>
+            </main>
 
             <Footer />
           </div>
