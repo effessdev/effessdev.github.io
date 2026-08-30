@@ -1,16 +1,11 @@
 import { notFound } from "next/navigation";
-import {
-  getAllCourseIds,
-  getChapter,
-  getCourseChapters,
-  getCourseMeta,
-} from "@/lib/courses";
-import { Markdown } from "@/lib/markdown";
+import { getAllCourseIds, getChapter, getCourseChapters } from "@/lib/courses";
 import TopNav from "@/components/layout/top-nav";
 import PostComponent from "@/components/post-component";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { Post } from "@/lib/types";
 
 export function generateStaticParams() {
   return getAllCourseIds().flatMap((courseId) =>
@@ -46,31 +41,49 @@ export default async function ChapterPage({
         ]}
       />
 
+      <ChapterNav courseId={courseId} prev={prev} next={next} />
+
+      <div className="w-full h-6" />
+
       <PostComponent post={chapter} />
 
-      <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
-        {prev ? (
-          <Link
-            className={buttonVariants({ variant: "secondary", size: "lg" })}
-            href={`/courses/${courseId}/${prev.id}`}
-          >
-            <ArrowLeft /> Prev
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next ? (
-          <Link
-            className={buttonVariants({ variant: "secondary", size: "lg" })}
-            href={`/courses/${courseId}/${next.id}`}
-          >
-            Next
-            <ArrowRight />{" "}
-          </Link>
-        ) : (
-          <span />
-        )}
-      </nav>
+      <ChapterNav courseId={courseId} prev={prev} next={next} />
     </>
+  );
+}
+
+function ChapterNav({
+  courseId,
+  prev,
+  next,
+}: {
+  courseId: string;
+  prev: Post | null;
+  next: Post | null;
+}) {
+  return (
+    <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
+      {prev ? (
+        <Link
+          className={buttonVariants({ variant: "secondary", size: "lg" })}
+          href={`/courses/${courseId}/${prev.id}`}
+        >
+          <ArrowLeft /> Prev
+        </Link>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <Link
+          className={buttonVariants({ variant: "secondary", size: "lg" })}
+          href={`/courses/${courseId}/${next.id}`}
+        >
+          Next
+          <ArrowRight />{" "}
+        </Link>
+      ) : (
+        <span />
+      )}
+    </nav>
   );
 }
