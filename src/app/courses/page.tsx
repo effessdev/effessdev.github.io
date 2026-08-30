@@ -10,11 +10,11 @@ export default function CoursesPage() {
     <>
       <TopNav backLabel="Home" backHref="/" />
       <h1 className="text-3xl font-bold tracking-tight">All Courses</h1>
-      <div className="space-y-4 pt-6">
+      <div className="pt-6">
         {courses.map((course) => (
           <div
             key={course.id}
-            className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between py-6"
+            className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between pt-6"
           >
             <div>
               <h2 className="text-2xl mb-2 font-semibold tracking-tight">

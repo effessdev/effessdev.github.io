@@ -81,19 +81,17 @@ export default function Home() {
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/posts"
+              href="/courses"
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
-              Read posts
+              View Courses
             </Link>
-            <a
-              href="https://effessdev.itch.io"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/posts"
               className={buttonVariants({ variant: "outline", size: "lg" })}
             >
-              itch.io
-            </a>
+              Read Posts
+            </Link>
             <a
               href="https://github.com/effessdev"
               target="_blank"

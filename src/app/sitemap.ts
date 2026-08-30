@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
+import { getAllCourses, getCourseChapters } from "@/lib/courses";
 
 export const dynamic = "force-static";
 export const revalidate = false;
@@ -7,6 +8,7 @@ export const revalidate = false;
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://effessdev.github.io";
   const posts = getAllPosts();
+  const courses = getAllCourses();
 
   // Base URLs
   const routes = [
@@ -32,5 +34,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...routes, ...postRoutes];
+  // Courses listing
+  routes.push({
+    url: `${baseUrl}/courses`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  });
+
+  // Individual course pages
+  const courseRoutes = courses.map((course) => ({
+    url: `${baseUrl}/courses/${course.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
+  // Course chapter pages
+  const chapterRoutes = courses.flatMap((course) =>
+    getCourseChapters(course.id).map((chapter) => ({
+      url: `${baseUrl}/courses/${course.id}/${chapter.id}`,
+      lastModified: new Date(chapter.updated),
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    })),
+  );
+
+  return [...routes, ...postRoutes, ...courseRoutes, ...chapterRoutes];
 }
