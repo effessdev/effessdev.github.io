@@ -1,9 +1,38 @@
 import TopNav from "@/components/layout/top-nav";
+import { buttonVariants } from "@/components/ui/button";
+import { getAllCourses } from "@/lib/courses";
+import Link from "next/link";
 
 export default function CoursesPage() {
+  const courses = getAllCourses();
+
   return (
     <>
       <TopNav backLabel="Home" backHref="/" />
+      <h1 className="text-3xl font-bold tracking-tight">All Courses</h1>
+      <div className="space-y-4 pt-6">
+        {courses.map((course) => (
+          <div
+            key={course.id}
+            className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between py-4"
+          >
+            <div>
+              <h2 className="text-2xl mb-2 font-semibold tracking-tight">
+                {course.title}
+              </h2>
+              <p className="text-base text-muted-foreground">
+                {course.description}
+              </p>
+            </div>
+            <Link
+              href={`/courses/${course.id}`}
+              className={buttonVariants({ variant: "default" })}
+            >
+              View
+            </Link>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
