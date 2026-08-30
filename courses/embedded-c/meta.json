@@ -1,0 +1,4 @@
+{
+  "title": "Embedded C Mastery: From Application Developer to Firmware Engineer",
+  "description": "Transition from high-level programming to bare-metal embedded systems. This intermediate-to-advanced course covers the Embedded C mindset, memory-mapped I/O, interrupts, linker scripts, and RTOS fundamentals. Learn to write safe, deterministic firmware for ARM Cortex-M and other microcontrollers without the safety net of an OS. Ideal for Python, JavaScript, and game developers moving into IoT and hardware."
+}

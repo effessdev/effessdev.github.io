@@ -28,7 +28,7 @@ export default function CoursesPage() {
               href={`/courses/${course.id}`}
               className={buttonVariants({ variant: "default" })}
             >
-              View
+              View Course
             </Link>
           </div>
         ))}
