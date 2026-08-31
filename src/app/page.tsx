@@ -60,7 +60,7 @@ const quickLinks = [
 ];
 
 export const metadata: Metadata = {
-  title: "EffessDev",
+  title: "EffessDev - Free Tech Courses, Tutorials, and Software (No Ads)",
   description:
     "I build apps, games, and websites, and program MCUs and IoT devices.",
   openGraph: {
