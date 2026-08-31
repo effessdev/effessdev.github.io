@@ -26,7 +26,7 @@ export default function CoursesPage() {
     <>
       <TopNav backLabel="Home" backHref="/" />
       <h1 className="text-3xl font-bold tracking-tight">All Courses</h1>
-      <div className="pt-6">
+      <div className="pt-6 flex flex-col gap-6">
         {courses.map((course) => (
           <div
             key={course.id}
