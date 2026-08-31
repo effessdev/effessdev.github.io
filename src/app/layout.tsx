@@ -76,10 +76,10 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
 
-        {/* GoatCounter Analytics */}
+        {/* Analytics */}
         <Script
-          src="https://gc.zgo.at/count.js"
-          data-goatcounter="https://effessdev.goatcounter.com/count"
+          src="https://cloud.umami.is/script.js"
+          data-website-id="38f306eb-ba13-4b27-bcaf-e018f3224354"
           strategy="afterInteractive"
         />
       </body>
