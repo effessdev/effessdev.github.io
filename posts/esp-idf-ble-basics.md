@@ -134,7 +134,7 @@ Here, we are using GPIO2 because most ESP32s have an inbuilt LED for it.
 
 ```c
 void app_main() {
-    ...
+    // ...
     gpio_reset_pin(GPIO_NUM_2);
     gpio_set_direction(GPIO_NUM_2, GPIO_MODE_OUTPUT);
 }
@@ -146,7 +146,7 @@ Call `nimble_port_init()` to initialize NimBLE, the software stack we are using 
 
 ```c
 void app_main(void) {
-  ...
+  // ...
   ret = nimble_port_init();
   if (ret != ESP_OK) {
     ESP_LOGE(TAG, "failed to initialize nimble stack, error code: %d ", ret);
@@ -163,7 +163,7 @@ GAP stands for Generic Access Profile. Initializing it makes our ESP32 discovera
 
 ```c
 void app_main(void) {
-  ...
+  // ...
   BaseType_t rc = 0; // Still just an int; "rc" stands for "return code"
 
   ble_svc_gap_init();
@@ -228,7 +228,7 @@ Before defining our services and characteristics, let's initialize GATT:
 
 ```c
 void app_main(void) {
-  ...
+  // ...
   ble_svc_gatt_init();
 }
 ```
@@ -315,7 +315,7 @@ Now that our GATT table and access callback are defined, we must register them w
 
 ```c
 void app_main(void) {
-    ...
+    // ...
     rc = ble_gatts_count_cfg(gatt_svr_svcs);
     if (rc != 0) {
         ESP_LOGE(TAG, "failed to count gatt services, error code: %d", rc);
@@ -373,7 +373,7 @@ Now, assign the sync callback in the main function so that it runs at the correc
 
 ```c
 void app_main(void) {
-    ...
+    // ...
     ble_hs_cfg.sync_cb = gatt_svr_on_sync;
 }
 ```
@@ -393,7 +393,7 @@ Start the task from the main function:
 
 ```c
 void app_main(void) {
-    ...
+    // ...
     nimble_port_freertos_init(nimble_host_task);
 }
 ```
