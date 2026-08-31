@@ -1,7 +1,9 @@
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 interface MarkdownProps {
   content: string;
@@ -12,9 +14,10 @@ export function Markdown({ content }: MarkdownProps) {
     <>
       <div className="max-w-none flex flex-col gap-6">
         <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
+          remarkPlugins={[remarkGfm, remarkMath]}
           rehypePlugins={[
             rehypeRaw,
+            rehypeKatex,
             [rehypeHighlight, { detect: true, ignoreMissing: true }],
           ]}
           components={{
