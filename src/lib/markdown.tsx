@@ -112,9 +112,7 @@ export function Markdown({ content }: MarkdownProps) {
               </tbody>
             ),
             tr: ({ children }) => (
-              <tr className="transition-colors hover:bg-muted/50">
-                {children}
-              </tr>
+              <tr className="transition-colors">{children}</tr>
             ),
             th: ({ children }) => (
               <th className="px-4 py-3 font-medium text-foreground">
