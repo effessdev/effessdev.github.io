@@ -2,6 +2,6 @@ include = ["AGENTS.md", "package.json"]
 exclude = []
 
 [[presets]]
-name = "all"
-include = ["**"]
-exclude = []
+name = "writing"
+include = ["AGENTS.md"]
+exclude = ["package.json"]
