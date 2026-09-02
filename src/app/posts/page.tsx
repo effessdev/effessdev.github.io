@@ -1,7 +1,27 @@
 import type { Metadata } from "next";
-import { getAllPosts } from "@/lib/posts";
+import { getPostById } from "@/lib/posts";
 import PostList from "@/components/post-list";
+import { Post } from "@/lib/types";
 import TopNav from "@/components/layout/top-nav";
+
+export type Category = {
+  name: string;
+  description?: string;
+  content: string[];
+};
+
+export const postCategories: Category[] = [
+  {
+    name: "Featured posts",
+    description: "",
+    content: ["ble-basics-in-esp-idf", "esp-idf-vscode-setup-guide"],
+  },
+  {
+    name: "Other posts",
+    description: "",
+    content: ["multi-file-c-programs"],
+  },
+];
 
 export const metadata: Metadata = {
   title: "Posts | EffessDev",
@@ -19,12 +39,26 @@ export const metadata: Metadata = {
 };
 
 export default function ReadPage() {
-  const posts = getAllPosts();
-
   return (
     <>
       <TopNav backLabel="Home" backHref="/" />
-      <PostList heading="All Posts" posts={posts} />
+      <main className="space-y-8">
+        {postCategories.map((cat) => {
+          const posts: Post[] = cat.content
+            .map((id) => getPostById(id))
+            .filter((p): p is Post => p !== null);
+
+          return (
+            <section key={cat.name}>
+              <PostList
+                heading={cat.name}
+                description={cat.description}
+                posts={posts}
+              />
+            </section>
+          );
+        })}
+      </main>
     </>
   );
 }
