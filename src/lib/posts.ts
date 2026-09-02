@@ -17,7 +17,7 @@ export function getAllPosts(): Post[] {
       const { data, content } = matter(fileContents);
 
       return PostSchema.parse({
-        id: data.id,
+        id: path.basename(file, ".md"),
         title: data.title,
         description: data.description,
         updated: data.updated,
