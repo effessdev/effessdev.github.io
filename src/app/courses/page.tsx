@@ -71,19 +71,17 @@ export default function CoursesPage() {
                   {metas.map((course) => (
                     <div
                       key={course.id}
-                      className="flex flex-col sm:flex-row gap-4 border-t w-full justify-between pt-6"
+                      className="flex flex-col gap-4 border-t w-full justify-between pt-6"
                     >
-                      <div>
-                        <h2 className="text-2xl mb-2 font-semibold tracking-tight">
-                          {course.title}
-                        </h2>
-                        <p className="text-base max-w-2xl text-muted-foreground">
-                          {course.description}
-                        </p>
-                      </div>
+                      <h2 className="text-2xl font-semibold">{course.title}</h2>
+                      <p className="text-base text-muted-foreground">
+                        {course.description}
+                      </p>
                       <Link
                         href={`/courses/${course.id}`}
-                        className={buttonVariants({ variant: "default" })}
+                        className={
+                          buttonVariants({ variant: "default" }) + " w-min"
+                        }
                       >
                         View Course
                       </Link>
