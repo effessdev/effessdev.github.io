@@ -50,7 +50,7 @@ const featuredProjects = [
 ];
 
 const featuredCourseIds = ["embedded-c"];
-const featuredPostIds = ["2026-08-27"];
+const featuredPostIds = ["ble-basics-in-esp-idf", "esp-idf-vscode-setup-guide"];
 
 const quickLinks = [
   { href: "/courses", label: "View Courses" },
