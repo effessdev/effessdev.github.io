@@ -1,18 +1,25 @@
 ---
-title: "ESP-IDF Bluetooth LE Tutorial"
+title: "ESP-IDF Bluetooth LE Tutorial for Beginners"
 description: "This tutorial covers how to use Bluetooth Low Energy (BLE) with your ESP32 (ESP-IDF)."
-updated: "2026-08-28"
+updated: "2026-09-04"
 draft: false
 tags: ["esp-idf", "ble", "nimble"]
 ---
 
-This tutorial covers the basics of how to use Bluetooth Low Energy (BLE) in your ESP-IDF project. It's based on the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) by Espressif Systems.
+This tutorial covers the **basics** of how to use Bluetooth Low Energy (BLE) in your ESP-IDF project. It's based on the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) by Espressif Systems.
 
-This is a step-by-step tutorial, focusing on building a conceptual understanding of BLE and it's basic code implementation, rather than every single feature in detail. You can follow along from the beginning to the end. After completing this tutorial, you will learn the basics of Bluetooth Low Energy and NimBLE and you will be able to understand the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server).
+This is a practical, step-by-step tutorial, focusing on building a conceptual understanding of BLE and it's basic code implementation, rather than every single feature in detail. You can follow along from the beginning to the end. After completing this, you will be able to understand the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) and the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server).
 
 You can download the full final code [here](https://github.com/effessdev/esp-idf-examples/blob/main/examples/ble_led/main/main.c) and the full project [here](https://github.com/effessdev/esp-idf-examples/tree/main/examples/ble_led), but I recommend you to write the code yourself by following this tutorial instead.
 
 Let's start!
+
+## The Setup
+
+I am assuming you have created an empty ESP-IDF project using the `sample_project` template and verified building and flashing is working properly. If you haven't already, you can check out my tutorial:
+
+- [Read on DEV.to](https://dev.to/effessdev/beyond-arduino-getting-started-with-esp-idf-in-vs-code-for-esp32-3ed4)
+- [Read on my website](https://effessdev.github.io/posts/esp-idf-vscode-setup-guide/)
 
 ## Enabling BLE in ESP-IDF
 
@@ -414,6 +421,6 @@ If your LED responded, congrats! You just successfuly created a bluetooth-contro
 
 ## What's Next
 
-Now you have built the foundations of BLE. To learn more about BLE, check out the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) and the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server). Since you now know the basic concepts, the official docs will feel much easier.
+Now you have built the foundations of BLE. To learn more about BLE, check out the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/ble/get-started/ble-introduction.html) and the [official example](https://github.com/espressif/esp-idf/tree/e37a7ae137c0ea6ebca90c0dd67f4a528d73b727/examples/bluetooth/ble_get_started/nimble/NimBLE_GATT_Server). Since you now know the basic concepts, the docs will feel much easier to digest.
 
 If you found this tutorial helpful, please let me know!
