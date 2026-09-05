@@ -2,7 +2,6 @@
 title: "How Header Files Work Under the Hood (in C)"
 description: "Explains how #include, header files, and function declarations all work together."
 updated: "2026-08-29"
-featured: false
 draft: false
 tags: ["c", "programming"]
 ---
