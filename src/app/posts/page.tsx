@@ -1,27 +1,7 @@
 import type { Metadata } from "next";
-import { getPostById } from "@/lib/posts";
+import { getFeaturedPosts, getOtherPosts } from "@/lib/posts";
 import PostList from "@/components/post-list";
-import { Post } from "@/lib/types";
 import TopNav from "@/components/layout/top-nav";
-
-export type Category = {
-  name: string;
-  description?: string;
-  content: string[];
-};
-
-export const postCategories: Category[] = [
-  {
-    name: "Featured posts",
-    description: "",
-    content: ["ble-basics-in-esp-idf", "esp-idf-vscode-setup-guide"],
-  },
-  {
-    name: "Other posts",
-    description: "",
-    content: ["multi-file-c-programs"],
-  },
-];
 
 export const metadata: Metadata = {
   title: "Posts | EffessDev",
@@ -39,25 +19,20 @@ export const metadata: Metadata = {
 };
 
 export default function ReadPage() {
+  const featuredPosts = getFeaturedPosts();
+  const otherPosts = getOtherPosts();
+
   return (
     <>
       <TopNav backLabel="Home" backHref="/" />
       <main className="space-y-8">
-        {postCategories.map((cat) => {
-          const posts: Post[] = cat.content
-            .map((id) => getPostById(id))
-            .filter((p): p is Post => p !== null);
+        <section>
+          <PostList heading="Featured Posts" posts={featuredPosts} />
+        </section>
 
-          return (
-            <section key={cat.name}>
-              <PostList
-                heading={cat.name}
-                description={cat.description}
-                posts={posts}
-              />
-            </section>
-          );
-        })}
+        <section>
+          <PostList heading="Other Posts" posts={otherPosts} />
+        </section>
       </main>
     </>
   );

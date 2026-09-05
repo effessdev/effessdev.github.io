@@ -1,16 +1,18 @@
 import { z } from "zod";
 
 export const PostSchema = z.object({
-  id: z.string(),
   title: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
   updated: z.string(),
-  draft: z.boolean(),
-  tags: z.array(z.string()),
+  draft: z.boolean().default(false),
+  featured: z.boolean().default(false),
+  tags: z.array(z.string()).default([]),
   content: z.string(),
 });
 
-export type Post = z.infer<typeof PostSchema>;
+export type Post = z.infer<typeof PostSchema> & {
+  id: string;
+};
 
 export const CourseMetaSchema = z.object({
   id: z.string(),

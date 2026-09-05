@@ -34,15 +34,18 @@ export function getCourseChapters(courseId: string): Post[] {
     const fileContents = fs.readFileSync(path.join(courseDir, file), "utf8");
     const { data, content } = matter(fileContents);
 
-    return PostSchema.parse({
+    return {
+      ...PostSchema.parse({
+        title: data.title,
+        description: data.description,
+        updated: data.updated,
+        draft: data.draft === true,
+        featured: data.featured === true,
+        tags: data.tags ?? [],
+        content,
+      }),
       id: path.basename(file, ".md"),
-      title: data.title,
-      description: data.description,
-      updated: data.updated,
-      draft: data.draft === true,
-      tags: data.tags || [],
-      content,
-    });
+    } satisfies Post;
   });
 }
 

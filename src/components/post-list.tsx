@@ -12,6 +12,8 @@ export default function PostList({
   description?: string;
   posts: Post[];
 }) {
+  const tags = (post: Post) => post.tags ?? [];
+
   return (
     <main className="space-y-6 py-0">
       <h1 className="text-4xl font-bold tracking-tight">{heading}</h1>
@@ -44,9 +46,11 @@ export default function PostList({
                   <h2 className="text-2xl font-semibold tracking-tight text-foreground">
                     {post.title}
                   </h2>
-                  <p className="max-w-2xl text-muted-foreground">
-                    {post.description}
-                  </p>
+                  {post.description && (
+                    <p className="max-w-2xl text-muted-foreground">
+                      {post.description}
+                    </p>
+                  )}
                 </div>
                 <Link
                   href={`${post.id}`}
@@ -61,8 +65,8 @@ export default function PostList({
 
               <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
                 <Badge variant="outline">Updated on {formattedDate}</Badge>
-                {post.tags?.map((tag, index) => (
-                  <Badge variant="secondary" key={index}>
+                {tags(post).map((tag, index) => (
+                  <Badge variant="secondary" key={`${post.id}-${tag}-${index}`}>
                     {tag}
                   </Badge>
                 ))}

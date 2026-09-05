@@ -42,19 +42,19 @@ export async function generateMetadata({
 
   return {
     title: `${post.title} | EffessDev`,
-    description: post.description,
-    keywords: post.tags.join(", "),
+    description: post.description ?? "",
+    keywords: (post.tags ?? []).join(", "),
     openGraph: {
       title: post.title,
-      description: post.description,
+      description: post.description ?? "",
       type: "article",
       publishedTime: post.updated,
-      tags: post.tags,
+      tags: post.tags ?? [],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.description,
+      description: post.description ?? "",
     },
   };
 }

@@ -9,8 +9,8 @@ export default function PostComponent({ post }: { post: Post }) {
         <h1 className="text-5xl font-bold border-b pb-2">{post.title}</h1>
         <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
           <Badge variant="outline">Updated on {post.updated}</Badge>
-          {post.tags?.map((tag, index) => (
-            <Badge variant="secondary" key={index}>
+          {(post.tags ?? []).map((tag, index) => (
+            <Badge variant="secondary" key={`${post.id}-${tag}-${index}`}>
               {tag}
             </Badge>
           ))}

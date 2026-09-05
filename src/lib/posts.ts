@@ -5,8 +5,13 @@ import { Post, PostSchema } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
+function sortPostsByUpdatedDesc(a: Post, b: Post): number {
+  if (a.updated < b.updated) return 1;
+  if (a.updated > b.updated) return -1;
+  return 0;
+}
+
 export function getAllPosts(): Post[] {
-  // Get all markdown files from the posts directory
   const files = fs.readdirSync(postsDirectory);
 
   const posts = files
@@ -16,23 +21,31 @@ export function getAllPosts(): Post[] {
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(fileContents);
 
-      return PostSchema.parse({
+      return {
+        ...PostSchema.parse({
+          title: data.title,
+          description: data.description,
+          updated: data.updated,
+          draft: data.draft === true,
+          featured: data.featured === true,
+          tags: data.tags ?? [],
+          content,
+        }),
         id: path.basename(file, ".md"),
-        title: data.title,
-        description: data.description,
-        updated: data.updated,
-        draft: data.draft === true,
-        tags: data.tags || [],
-        content: content,
-      });
-    });
+      } satisfies Post;
+    })
+    .filter((post) => !post.draft)
+    .sort(sortPostsByUpdatedDesc);
 
-  // Sort by updated date (newest first)
-  return posts.sort((a, b) => {
-    if (a.updated < b.updated) return 1;
-    if (a.updated > b.updated) return -1;
-    return 0;
-  });
+  return posts;
+}
+
+export function getFeaturedPosts(): Post[] {
+  return getAllPosts().filter((post) => post.featured);
+}
+
+export function getOtherPosts(): Post[] {
+  return getAllPosts().filter((post) => !post.featured);
 }
 
 export function getPostById(id: string): Post | null {

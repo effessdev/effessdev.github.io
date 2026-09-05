@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { getPostById } from "@/lib/posts";
+import { getFeaturedPosts } from "@/lib/posts";
 import { Post, CourseMeta } from "@/lib/types";
 import { getCourseMeta } from "@/lib/courses";
 
@@ -50,7 +50,6 @@ const featuredProjects = [
 ];
 
 const featuredCourseIds = ["embedded-c"];
-const featuredPostIds = ["ble-basics-in-esp-idf", "esp-idf-vscode-setup-guide"];
 
 const quickLinks = [
   { href: "/courses", label: "View Courses" },
@@ -80,18 +79,12 @@ export const metadata: Metadata = {
 
 export default function Home() {
   let featuredCourses: CourseMeta[] = [];
-  let featuredPosts: Post[] = [];
+  const featuredPosts: Post[] = getFeaturedPosts();
 
   if (featuredCourseIds.length > 0) {
     featuredCourses = featuredCourseIds
       .map((id) => getCourseMeta(id))
       .filter((course): course is CourseMeta => course !== null);
-  }
-
-  if (featuredPostIds.length > 0) {
-    featuredPosts = featuredPostIds
-      .map((id) => getPostById(id))
-      .filter((post): post is Post => post !== null);
   }
 
   return (
@@ -284,11 +277,13 @@ export default function Home() {
                       Read
                     </Link>
                   </div>
-                  <p className="text-base leading-7 text-muted-foreground">
-                    {post.description}
-                  </p>
+                  {post.description && (
+                    <p className="text-base leading-7 text-muted-foreground">
+                      {post.description}
+                    </p>
+                  )}
                   <div className="flex mt-4 flex-wrap gap-2">
-                    {post.tags.map((tag) => (
+                    {(post.tags ?? []).map((tag) => (
                       <Badge variant="secondary" key={tag}>
                         {tag}
                       </Badge>
