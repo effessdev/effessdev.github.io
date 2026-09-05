@@ -17,7 +17,8 @@ export type Post = z.infer<typeof PostSchema> & {
 export const CourseMetaSchema = z.object({
   id: z.string(),
   title: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
+  featured: z.boolean().default(false),
 });
 
 export type CourseMeta = z.infer<typeof CourseMetaSchema>;

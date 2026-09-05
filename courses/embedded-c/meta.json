@@ -1,4 +1,5 @@
 {
   "title": "Embedded C Mastery: From Application Developer to Firmware Engineer",
-  "description": "A practical course for developers who already know basic C syntax but are new to embedded systems. If you are coming from Python, full-stack web development, or game engines like Unity and Godot, this course bridges the gap between writing C that compiles and writing firmware that works on real hardware. Learn how to think without an OS, manage memory with kilobytes of RAM, handle interrupts safely, structure modular drivers, debug with JTAG and logic analyzers, and scale to RTOS-based systems. No prior hardware experience assumed, only a solid grasp of C fundamentals and programming in general."
+  "description": "A practical course for developers who already know basic C syntax but are new to embedded systems. If you are coming from Python, full-stack web development, or game engines like Unity and Godot, this course bridges the gap between writing C that compiles and writing firmware that works on real hardware. Learn how to think without an OS, manage memory with kilobytes of RAM, handle interrupts safely, structure modular drivers, debug with JTAG and logic analyzers, and scale to RTOS-based systems. No prior hardware experience assumed, only a solid grasp of C fundamentals and programming in general.",
+  "featured": true
 }

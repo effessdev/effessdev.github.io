@@ -23,6 +23,25 @@ export function getAllCourses(): CourseMeta[] {
   return getAllCourseIds().map((id) => getCourseMeta(id));
 }
 
+export function getAllCoursesWithLatest(): (CourseMeta & {
+  latestUpdated?: string;
+})[] {
+  return getAllCourseIds().map((id) => {
+    const meta = getCourseMeta(id);
+    const chapters = getCourseChapters(id);
+
+    const latestDate = chapters
+      .map((c) => (c.updated ? new Date(c.updated) : null))
+      .filter((d): d is Date => d !== null)
+      .sort((a, b) => b.getTime() - a.getTime())[0];
+
+    return {
+      ...meta,
+      latestUpdated: latestDate ? latestDate.toISOString() : undefined,
+    };
+  });
+}
+
 export function getCourseChapters(courseId: string): Post[] {
   const courseDir = path.join(coursesDirectory, courseId);
   const files = fs

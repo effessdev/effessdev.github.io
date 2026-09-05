@@ -12,7 +12,7 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { getFeaturedPosts } from "@/lib/posts";
 import { Post, CourseMeta } from "@/lib/types";
-import { getCourseMeta } from "@/lib/courses";
+import { getAllCoursesWithLatest } from "@/lib/courses";
 
 const featuredProjects = [
   {
@@ -49,8 +49,6 @@ const featuredProjects = [
   },
 ];
 
-const featuredCourseIds = ["embedded-c"];
-
 const quickLinks = [
   { href: "/courses", label: "View Courses" },
   { href: "/posts", label: "Read Posts" },
@@ -80,12 +78,13 @@ export const metadata: Metadata = {
 export default function Home() {
   let featuredCourses: CourseMeta[] = [];
   const featuredPosts: Post[] = getFeaturedPosts();
+  const allCourses = getAllCoursesWithLatest().sort((a, b) => {
+    const ta = a.latestUpdated ? Date.parse(a.latestUpdated) : 0;
+    const tb = b.latestUpdated ? Date.parse(b.latestUpdated) : 0;
+    return tb - ta;
+  });
 
-  if (featuredCourseIds.length > 0) {
-    featuredCourses = featuredCourseIds
-      .map((id) => getCourseMeta(id))
-      .filter((course): course is CourseMeta => course !== null);
-  }
+  featuredCourses = allCourses.filter((c) => c.featured) as CourseMeta[];
 
   return (
     <>
