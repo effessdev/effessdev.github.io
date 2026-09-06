@@ -153,16 +153,8 @@ export default function Home() {
         <section>
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Featured Work
+              Featured Products
             </h2>
-            <a
-              href="https://github.com/effessdev"
-              target="_blank"
-              rel="noreferrer"
-              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              GitHub <ArrowRight />
-            </a>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -212,7 +204,7 @@ export default function Home() {
               href="/courses"
               className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Browse Courses <ArrowRight />
+              Browse <ArrowRight />
             </Link>
           </div>
 
@@ -253,7 +245,7 @@ export default function Home() {
               href="/posts"
               className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
-              Browse Posts <ArrowRight />
+              Browse <ArrowRight />
             </Link>
           </div>
 
