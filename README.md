@@ -1,28 +1,61 @@
 # My Website
 
-This is the source code for my website.
+## Creating a New Post
 
-## How It Works
+Create a Markdown file in the `/posts` folder. The filename is used as the URL slug, so keep it lowercase and use hyphens instead of spaces, for example `posts/esp-idf-vscode-setup-guide.md`.
 
-Place your posts in the "posts" directory as Markdown files. When you push your changes, a GitHub Action will build everything into a static site and deploy it to GitHub Pages.
+Use frontmatter at the top of the file:
 
-> **Note:** Currently, I use the creation date as the post id since it doesn't change.
+```yaml
+---
+title: "Title of the post"
+description: "Short summary shown in listings and metadata."
+updated: "2026-09-08"
+featured: false
+draft: false
+tags: ["tag1", "tag2", "tag3"]
+---
+```
+
+Then write the post body below it in normal Markdown.
+
+Notes:
+
+- Required fields: `title` and `updated`
+- Optional fields: `description`, `featured`, `draft`, `tags`
+- `draft: true` adds a destructive colored "draft" badge to the post
+- `featured: true` makes it show up in featured post sections
+- The file name becomes the route, so `my-post.md` becomes `/posts/my-post`
+
+## Creating a New Course
+
+Create a new folder inside `/courses`, using a short lowercase slug for the course ID, for example `/courses/embedded-c`.
+
+Each course needs a `meta.json` file inside its folder. This file defines the course landing page metadata:
+
+```json
+{
+  "title": "Embedded C Mastery: From Application Developer to Firmware Engineer",
+  "description": "A practical course for developers who already know C but are new to embedded systems.",
+  "featured": true
+}
+```
+
+The site reads the folder name as the course route, so this example becomes `/courses/embedded-c`.
+
+Inside the same course folder, add chapter files as numbered Markdown documents such as `01.md`, `02.md`, `03.md`. The app sorts them by filename, so the numeric prefix controls the chapter order.
+
+### Creating Course Chapters
+
+This is identical to creating posts.
 
 ## Documentation I Used
 
 - Shadcn UI installation: <https://ui.shadcn.com/docs/installation>
-- Dark mode: <https://ui.shadcn.com/docs/dark-mode/next>
-
-## Features I skipped
-
-I chose not to include keywords in my post URLs. Instead, each post is identified by a unique short ID (e.g., /posts/asdfkj). This gives me complete flexibility to change post titles anytime without breaking existing links or managing complex redirects.
-
-I also skipped the common compromise of combining IDs with titles (/posts/asdfkj-post-title) because that would introduce unnecessary URL complexity for practically zero SEO gain. Google has stated that keywords in URLs are a "very, very lightweight" ranking factor, contributing less than 1% to overall ranking weight.
-
-Since search engines can already read the HTML `<title>` tag, meta description, and the page body itself, the URL adds little additional signal. The trade-off is that I sacrifice a minor user experience benefit (readable URLs in search results) for complete operational freedom, which I consider a worthwhile exchange.
+- Shadcn UI Dark Mode (Next.js): <https://ui.shadcn.com/docs/dark-mode/next>
 
 ## Notes
 
-- Running the development server: `npm run dev`
-- Generating the output: `npm run build`
-- Serving the output: `npx serve@latest out`
+- Start the development server: `npm run dev`
+- Build the project: `npm run build`
+- Serve the built output: `npx serve@latest out`
