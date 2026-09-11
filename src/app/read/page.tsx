@@ -38,6 +38,7 @@ export default function ReadPage() {
       href: `/read/${post.id}`,
       updated: post.updated,
       tags: post.tags,
+      typeLabel: "Post",
     })),
     ...courses
       .filter((course) => course.featured)
@@ -48,6 +49,7 @@ export default function ReadPage() {
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
         tags: course.tags,
+        typeLabel: "Course",
       })),
   ].sort((a, b) => {
     const ta = a.updated ? Date.parse(a.updated) : 0;
@@ -63,6 +65,7 @@ export default function ReadPage() {
       href: `/read/${post.id}`,
       updated: post.updated,
       tags: post.tags,
+      typeLabel: "Post",
     })),
     ...courses
       .filter((course) => !course.featured)
@@ -73,6 +76,7 @@ export default function ReadPage() {
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
         tags: course.tags,
+        typeLabel: "Course",
       })),
   ].sort((a, b) => {
     const ta = a.updated ? Date.parse(a.updated) : 0;

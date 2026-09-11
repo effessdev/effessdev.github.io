@@ -2,6 +2,7 @@ import { Post } from "@/lib/types";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { actionLabelForType } from "@/lib/labels";
 
 export default function PostList({
   heading,
@@ -59,7 +60,7 @@ export default function PostList({
                     size: "sm",
                   })}
                 >
-                  Read
+                  {actionLabelForType("Post")}
                 </Link>
               </div>
 

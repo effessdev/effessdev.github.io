@@ -1,4 +1,5 @@
 import { ActionLink } from "@/components/ui/action-link";
+import { ActionLabels } from "@/lib/labels";
 
 const socialItems = [
   {
@@ -16,7 +17,7 @@ const socialItems = [
     href: "https://www.linkedin.com/in/effessdev/",
     icon: "fab fa-linkedin",
   },
-  { label: "Read", href: "/read", icon: "fas fa-book" },
+  { label: ActionLabels.Read, href: "/read", icon: "fas fa-book" },
 ];
 
 interface SocialLinksProps {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
+import { actionLabelForType } from "@/lib/labels";
 
 export type ContentListEntry = {
   id: string;
@@ -9,6 +10,7 @@ export type ContentListEntry = {
   href: string;
   updated?: string;
   tags?: string[];
+  typeLabel?: string;
 };
 
 export default function ContentList({
@@ -68,7 +70,7 @@ export default function ContentList({
                     size: "sm",
                   })}
                 >
-                  Read
+                  {actionLabelForType(item.typeLabel)}
                 </Link>
               </div>
 

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
+import { ActionLabels } from "@/lib/labels";
+
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/read", label: "Read" },
+  { href: "/read", label: ActionLabels.Read },
   { href: "https://github.com/effessdev", label: "GitHub" },
 ];
 

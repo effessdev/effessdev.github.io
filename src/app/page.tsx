@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { ActionLabels } from "@/lib/labels";
 import { getFeaturedPosts } from "@/lib/posts";
 import { Post } from "@/lib/types";
 import { getAllCoursesWithLatest } from "@/lib/courses";
@@ -114,7 +115,7 @@ export default function Home() {
               href="/read"
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
-              Read Content
+              {ActionLabels.ReadContent}
             </Link>
             <a
               href="https://github.com/effessdev"
