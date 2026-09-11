@@ -47,7 +47,7 @@ export default function ReadPage() {
         description: course.description,
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
-        tags: [],
+        tags: course.tags,
       })),
   ].sort((a, b) => {
     const ta = a.updated ? Date.parse(a.updated) : 0;
@@ -72,7 +72,7 @@ export default function ReadPage() {
         description: course.description,
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
-        tags: [],
+        tags: course.tags,
       })),
   ].sort((a, b) => {
     const ta = a.updated ? Date.parse(a.updated) : 0;

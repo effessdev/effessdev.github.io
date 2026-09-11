@@ -51,7 +51,7 @@ export async function generateMetadata({
     return {
       title: `${course.title} | EffessDev`,
       description: course.description,
-      keywords: [course.title, "course"].join(", "),
+      keywords: [course.title, "course", ...(course.tags ?? [])].join(", "),
       openGraph: {
         title: course.title,
         description: course.description,

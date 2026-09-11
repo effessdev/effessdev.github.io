@@ -19,6 +19,7 @@ export const CourseMetaSchema = z.object({
   title: z.string(),
   description: z.string().optional(),
   featured: z.boolean().default(false),
+  tags: z.array(z.string()).default([]),
 });
 
 export type CourseMeta = z.infer<typeof CourseMetaSchema>;
