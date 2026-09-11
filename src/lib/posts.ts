@@ -5,43 +5,63 @@ import { Post, PostSchema } from "./types";
 
 const readDirectory = path.join(process.cwd(), "read");
 
-function sortPostsByUpdatedDesc(a: Post, b: Post): number {
+export function sortPostsByUpdatedDesc(a: Post, b: Post): number {
   if (a.updated < b.updated) return 1;
   if (a.updated > b.updated) return -1;
   return 0;
 }
 
-export function getAllPosts(): Post[] {
-  const files = fs.readdirSync(readDirectory);
+export function parseMarkdownPost(filePath: string): Post {
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data, content } = matter(fileContents);
 
-  const posts = files
+  return {
+    ...PostSchema.parse({
+      title: data.title,
+      description: data.description,
+      updated: data.updated,
+      draft: data.draft === true,
+      featured: data.featured === true,
+      tags: data.tags ?? [],
+      content,
+    }),
+    id: path.basename(filePath, ".md"),
+  } satisfies Post;
+}
+
+export function getPostsFromDirectory(
+  dirPath: string,
+  options?: {
+    includeDrafts?: boolean;
+    sortBy?: "updated-desc" | "filename";
+  },
+): Post[] {
+  const files = fs
+    .readdirSync(dirPath)
     .filter(
       (entry) =>
         entry.endsWith(".md") &&
-        !fs.statSync(path.join(readDirectory, entry)).isDirectory(),
-    )
-    .map((file) => {
-      const filePath = path.join(readDirectory, file);
-      const fileContents = fs.readFileSync(filePath, "utf8");
-      const { data, content } = matter(fileContents);
+        !fs.statSync(path.join(dirPath, entry)).isDirectory(),
+    );
 
-      return {
-        ...PostSchema.parse({
-          title: data.title,
-          description: data.description,
-          updated: data.updated,
-          draft: data.draft === true,
-          featured: data.featured === true,
-          tags: data.tags ?? [],
-          content,
-        }),
-        id: path.basename(file, ".md"),
-      } satisfies Post;
-    })
-    .filter((post) => !post.draft)
-    .sort(sortPostsByUpdatedDesc);
+  const posts = files.map((file) =>
+    parseMarkdownPost(path.join(dirPath, file)),
+  );
 
-  return posts;
+  const filtered = options?.includeDrafts
+    ? posts
+    : posts.filter((post) => !post.draft);
+
+  if (options?.sortBy === "filename") return filtered;
+
+  return filtered.sort(sortPostsByUpdatedDesc);
+}
+
+export function getAllPosts(): Post[] {
+  return getPostsFromDirectory(readDirectory, {
+    includeDrafts: false,
+    sortBy: "updated-desc",
+  });
 }
 
 export function getFeaturedPosts(): Post[] {

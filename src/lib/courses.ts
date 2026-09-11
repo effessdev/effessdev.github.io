@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { Post, PostSchema, CourseMeta, CourseMetaSchema } from "./types";
+import { Post, CourseMeta, CourseMetaSchema } from "./types";
+import { getPostsFromDirectory } from "./posts";
 
 const readDirectory = path.join(process.cwd(), "read");
 
@@ -44,27 +44,10 @@ export function getAllCoursesWithLatest(): (CourseMeta & {
 
 export function getCourseChapters(courseId: string): Post[] {
   const courseDir = path.join(readDirectory, courseId);
-  const files = fs
-    .readdirSync(courseDir)
-    .filter((f) => f.endsWith(".md"))
-    .sort(); // filename order = chapter order — prefix files 01-, 02-, ...
 
-  return files.map((file) => {
-    const fileContents = fs.readFileSync(path.join(courseDir, file), "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      ...PostSchema.parse({
-        title: data.title,
-        description: data.description,
-        updated: data.updated,
-        draft: data.draft === true,
-        featured: data.featured === true,
-        tags: data.tags ?? [],
-        content,
-      }),
-      id: path.basename(file, ".md"),
-    } satisfies Post;
+  return getPostsFromDirectory(courseDir, {
+    includeDrafts: true,
+    sortBy: "filename",
   });
 }
 
