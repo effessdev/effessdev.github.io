@@ -4,7 +4,7 @@ import { ModeToggle } from "@/components/ui/mode-toggle";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Courses" },
-  { href: "/posts", label: "Posts" },
+  { href: "/read", label: "Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
 ];
 

@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/posts`,
+      url: `${baseUrl}/read`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Individual posts
   const postRoutes = posts.map((post) => ({
-    url: `${baseUrl}/posts/${post.id}`,
+    url: `${baseUrl}/read/${post.id}`,
     lastModified: new Date(post.updated),
     changeFrequency: "weekly" as const,
     priority: 0.6,

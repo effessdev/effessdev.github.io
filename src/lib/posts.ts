@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { Post, PostSchema } from "./types";
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "read");
 
 function sortPostsByUpdatedDesc(a: Post, b: Post): number {
   if (a.updated < b.updated) return 1;

@@ -51,7 +51,7 @@ const featuredProjects = [
 
 const quickLinks = [
   { href: "/courses", label: "View Courses" },
-  { href: "/posts", label: "Read Posts" },
+  { href: "/read", label: "Read Posts" },
   { href: "https://github.com/effessdev", label: "GitHub" },
   { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
 ];
@@ -108,7 +108,7 @@ export default function Home() {
               View Courses
             </Link>
             <Link
-              href="/posts"
+              href="/read"
               className={buttonVariants({ variant: "outline", size: "lg" })}
             >
               Read Posts
@@ -242,7 +242,7 @@ export default function Home() {
               Featured Posts
             </h2>
             <Link
-              href="/posts"
+              href="/read"
               className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Browse <ArrowRight />
@@ -259,7 +259,7 @@ export default function Home() {
                   <div className="flex gap-4 mb-2 w-full justify-between items-start">
                     <CardTitle className="text-2xl">{post.title}</CardTitle>
                     <Link
-                      href={`/posts/${post.id}`}
+                      href={`/read/${post.id}`}
                       className={buttonVariants({
                         variant: "default",
                         size: "default",

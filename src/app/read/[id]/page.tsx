@@ -1,19 +1,8 @@
-import Link from "next/link";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Markdown } from "@/lib/markdown";
 import { getAllPostIds, getPostById } from "@/lib/posts";
-import { Badge } from "@/components/ui/badge";
-import TopNav from "@/components/layout/top-nav";
 import PostComponent from "@/components/post-component";
+import TopNav from "@/components/layout/top-nav";
 
 interface PostPageProps {
   params: Promise<{
@@ -23,9 +12,7 @@ interface PostPageProps {
 
 export async function generateStaticParams() {
   const ids = getAllPostIds();
-  return ids.map((id) => ({
-    id,
-  }));
+  return ids.map((id) => ({ id }));
 }
 
 export async function generateMetadata({
@@ -67,16 +54,10 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
-  const formattedDate = new Date(post.updated).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   return (
     <>
       <TopNav
-        backHref="/posts"
+        backHref="/read"
         backLabel="All posts"
         extraLinks={[{ label: "Home", href: "/" }]}
       />
