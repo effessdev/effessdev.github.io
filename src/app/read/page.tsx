@@ -8,16 +8,19 @@ import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Read | EffessDev",
-  description: "Read my posts and courses on software and embedded systems.",
+  description:
+    "Read my tutorials and courses on software and embedded systems.",
   openGraph: {
     title: "Read | EffessDev",
-    description: "Read my posts and courses on software and embedded systems.",
+    description:
+      "Read my tutorials and courses on software and embedded systems.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Read | EffessDev",
-    description: "Read my posts and courses on software and embedded systems.",
+    description:
+      "Read my tutorials and courses on software and embedded systems.",
   },
 };
 

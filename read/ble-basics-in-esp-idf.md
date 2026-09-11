@@ -20,7 +20,7 @@ Let's start!
 I am assuming you have created an empty ESP-IDF project using the `sample_project` template and verified building and flashing is working properly. If you haven't already, you can check out my tutorial:
 
 - [Read on DEV.to](https://dev.to/effessdev/beyond-arduino-getting-started-with-esp-idf-in-vs-code-for-esp32-3ed4)
-- [Read on my website](https://effessdev.github.io/posts/esp-idf-vscode-setup-guide/)
+- [Read on my website](https://effessdev.github.io/read/esp-idf-vscode-setup-guide/)
 
 ## Enabling BLE in ESP-IDF
 

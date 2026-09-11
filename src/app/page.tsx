@@ -52,6 +52,7 @@ const featuredProjects = [
 const quickLinks = [
   { href: "/read", label: "Read Content" },
   { href: "https://github.com/effessdev", label: "GitHub" },
+  { href: "https://effessdev.itch.io", label: "itch.io" },
   { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
 ];
 
@@ -105,12 +106,6 @@ export default function Home() {
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
               Read Content
-            </Link>
-            <Link
-              href="/read"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
-            >
-              Browse Posts
             </Link>
             <a
               href="https://github.com/effessdev"
@@ -281,29 +276,6 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              More links
-            </h2>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {quickLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                className="flex items-center justify-between rounded-2xl border border-border bg-card px-4 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-              >
-                <span>{link.label}</span>
-                <span aria-hidden="true">→</span>
-              </a>
             ))}
           </div>
         </section>

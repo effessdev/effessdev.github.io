@@ -198,7 +198,7 @@ I (258) main_task: Returned from app_main()
 
 You might see different numbers than 258. That's not a problem.
 
-So, congratulations! You just set up your computer for ESP-IDF, created a new project, wrote some code, compiled, flashed, and monitored the output! Next, you can check out the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html#) to learn more about ESP-IDF. I also have some great tutorials which you can [read on my website](https://effessdev.github.io/posts/) or on [DEV.to](https://dev.to/effessdev).
+So, congratulations! You just set up your computer for ESP-IDF, created a new project, wrote some code, compiled, flashed, and monitored the output! Next, you can check out the [official documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/index.html#) to learn more about ESP-IDF. I also have some great tutorials which you can [read on my website](https://effessdev.github.io/read/) or on [DEV.to](https://dev.to/effessdev).
 
 ---
 
