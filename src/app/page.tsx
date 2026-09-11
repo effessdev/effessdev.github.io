@@ -86,7 +86,7 @@ export default function Home() {
       description: course.description,
       href: `/read/${course.id}`,
       updated: course.latestUpdated,
-      tags: [],
+      tags: course.tags,
       typeLabel: "Course",
     })),
   ].sort((a, b) => {
