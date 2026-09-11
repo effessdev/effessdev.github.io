@@ -10,7 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   const courses = getAllCourses();
 
-  // Base URLs
   const routes = [
     {
       url: baseUrl,
@@ -26,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Individual posts
   const postRoutes = posts.map((post) => ({
     url: `${baseUrl}/read/${post.id}`,
     lastModified: new Date(post.updated),
@@ -34,26 +32,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // Courses listing
-  routes.push({
-    url: `${baseUrl}/courses`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  });
-
-  // Individual course pages
   const courseRoutes = courses.map((course) => ({
-    url: `${baseUrl}/courses/${course.id}`,
+    url: `${baseUrl}/read/${course.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
 
-  // Course chapter pages
   const chapterRoutes = courses.flatMap((course) =>
     getCourseChapters(course.id).map((chapter) => ({
-      url: `${baseUrl}/courses/${course.id}/${chapter.id}`,
+      url: `${baseUrl}/read/${course.id}/${chapter.id}`,
       lastModified: new Date(chapter.updated),
       changeFrequency: "weekly" as const,
       priority: 0.5,

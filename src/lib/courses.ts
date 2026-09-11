@@ -3,18 +3,18 @@ import path from "path";
 import matter from "gray-matter";
 import { Post, PostSchema, CourseMeta, CourseMetaSchema } from "./types";
 
-const coursesDirectory = path.join(process.cwd(), "courses");
+const readDirectory = path.join(process.cwd(), "read");
 
 export function getAllCourseIds(): string[] {
   return fs
-    .readdirSync(coursesDirectory)
+    .readdirSync(readDirectory)
     .filter((entry) =>
-      fs.statSync(path.join(coursesDirectory, entry)).isDirectory(),
+      fs.statSync(path.join(readDirectory, entry)).isDirectory(),
     );
 }
 
 export function getCourseMeta(courseId: string): CourseMeta {
-  const metaPath = path.join(coursesDirectory, courseId, "meta.json");
+  const metaPath = path.join(readDirectory, courseId, "meta.json");
   const raw = fs.readFileSync(metaPath, "utf8");
   return CourseMetaSchema.parse({ id: courseId, ...JSON.parse(raw) });
 }
@@ -43,7 +43,7 @@ export function getAllCoursesWithLatest(): (CourseMeta & {
 }
 
 export function getCourseChapters(courseId: string): Post[] {
-  const courseDir = path.join(coursesDirectory, courseId);
+  const courseDir = path.join(readDirectory, courseId);
   const files = fs
     .readdirSync(courseDir)
     .filter((f) => f.endsWith(".md"))

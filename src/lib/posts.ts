@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { Post, PostSchema } from "./types";
 
-const postsDirectory = path.join(process.cwd(), "read");
+const readDirectory = path.join(process.cwd(), "read");
 
 function sortPostsByUpdatedDesc(a: Post, b: Post): number {
   if (a.updated < b.updated) return 1;
@@ -12,12 +12,16 @@ function sortPostsByUpdatedDesc(a: Post, b: Post): number {
 }
 
 export function getAllPosts(): Post[] {
-  const files = fs.readdirSync(postsDirectory);
+  const files = fs.readdirSync(readDirectory);
 
   const posts = files
-    .filter((file) => file.endsWith(".md"))
+    .filter(
+      (entry) =>
+        entry.endsWith(".md") &&
+        !fs.statSync(path.join(readDirectory, entry)).isDirectory(),
+    )
     .map((file) => {
-      const filePath = path.join(postsDirectory, file);
+      const filePath = path.join(readDirectory, file);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data, content } = matter(fileContents);
 

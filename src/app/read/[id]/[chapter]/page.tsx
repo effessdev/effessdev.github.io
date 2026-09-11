@@ -16,7 +16,7 @@ import { Post } from "@/lib/types";
 export function generateStaticParams() {
   return getAllCourseIds().flatMap((courseId) =>
     getCourseChapters(courseId).map((chapter) => ({
-      courseId: courseId,
+      id: courseId,
       chapter: chapter.id,
     })),
   );
@@ -25,9 +25,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ courseId: string; chapter: string }>;
+  params: Promise<{ id: string; chapter: string }>;
 }): Promise<Metadata> {
-  const { courseId, chapter: chapterId } = await params;
+  const { id: courseId, chapter: chapterId } = await params;
   const course = getCourseMeta(courseId);
   const chapter = getChapter(courseId, chapterId);
 
@@ -59,9 +59,9 @@ export async function generateMetadata({
 export default async function ChapterPage({
   params,
 }: {
-  params: Promise<{ courseId: string; chapter: string }>;
+  params: Promise<{ id: string; chapter: string }>;
 }) {
-  const { courseId, chapter: chapterId } = await params;
+  const { id: courseId, chapter: chapterId } = await params;
   const chapter = getChapter(courseId, chapterId);
   if (!chapter) notFound();
 
@@ -74,9 +74,9 @@ export default async function ChapterPage({
     <>
       <TopNav
         backLabel="Contents"
-        backHref={`/courses/${courseId}`}
+        backHref={`/read/${courseId}`}
         extraLinks={[
-          { label: "All courses", href: "/courses" },
+          { label: "All content", href: "/read" },
           { label: "Home", href: "/" },
         ]}
       />
@@ -106,7 +106,7 @@ function ChapterNav({
       {prev ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "lg" })}
-          href={`/courses/${courseId}/${prev.id}`}
+          href={`/read/${courseId}/${prev.id}`}
         >
           <ArrowLeft /> Prev
         </Link>
@@ -116,10 +116,10 @@ function ChapterNav({
       {next ? (
         <Link
           className={buttonVariants({ variant: "secondary", size: "lg" })}
-          href={`/courses/${courseId}/${next.id}`}
+          href={`/read/${courseId}/${next.id}`}
         >
           Next
-          <ArrowRight />{" "}
+          <ArrowRight />
         </Link>
       ) : (
         <span />
