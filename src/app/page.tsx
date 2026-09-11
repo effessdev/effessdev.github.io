@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { getFeaturedPosts } from "@/lib/posts";
-import { Post, CourseMeta } from "@/lib/types";
+import { Post } from "@/lib/types";
 import { getAllCoursesWithLatest } from "@/lib/courses";
+import ContentList, { type ContentListEntry } from "@/components/content-list";
+import ProjectList from "@/components/project-list";
 
 const featuredProjects = [
   {
@@ -49,13 +42,6 @@ const featuredProjects = [
   },
 ];
 
-const quickLinks = [
-  { href: "/read", label: "Read Content" },
-  { href: "https://github.com/effessdev", label: "GitHub" },
-  { href: "https://effessdev.itch.io", label: "itch.io" },
-  { href: "https://www.linkedin.com/in/effessdev", label: "LinkedIn" },
-];
-
 export const metadata: Metadata = {
   title: "EffessDev - Free Tech Courses, Tutorials, and Software (No Ads)",
   description:
@@ -76,7 +62,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  let featuredCourses: CourseMeta[] = [];
   const featuredPosts: Post[] = getFeaturedPosts();
   const allCourses = getAllCoursesWithLatest().sort((a, b) => {
     const ta = a.latestUpdated ? Date.parse(a.latestUpdated) : 0;
@@ -84,7 +69,31 @@ export default function Home() {
     return tb - ta;
   });
 
-  featuredCourses = allCourses.filter((c) => c.featured) as CourseMeta[];
+  const featuredCourses = allCourses.filter((c) => c.featured);
+  const featuredEntries: ContentListEntry[] = [
+    ...featuredPosts.map((post) => ({
+      id: post.id,
+      title: post.title,
+      description: post.description,
+      href: `/read/${post.id}`,
+      updated: post.updated,
+      tags: post.tags,
+      typeLabel: "Post",
+    })),
+    ...featuredCourses.map((course) => ({
+      id: course.id,
+      title: course.title,
+      description: course.description,
+      href: `/read/${course.id}`,
+      updated: course.latestUpdated,
+      tags: [],
+      typeLabel: "Course",
+    })),
+  ].sort((a, b) => {
+    const ta = a.updated ? Date.parse(a.updated) : 0;
+    const tb = b.updated ? Date.parse(b.updated) : 0;
+    return tb - ta;
+  });
 
   return (
     <>
@@ -144,141 +153,11 @@ export default function Home() {
       </header>
 
       <main className="space-y-8 pb-10">
-        <section>
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Featured Products
-            </h2>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            {featuredProjects.map((project) => (
-              <Card
-                key={project.title}
-                className="h-full border-border/80 bg-card"
-              >
-                <CardHeader>
-                  <CardTitle className="text-2xl">{project.title}</CardTitle>
-                  <CardDescription className="mt-2 text-base leading-7 text-muted-foreground">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-5">
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge variant="secondary" key={tag}>
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={buttonVariants({
-                      variant: "default",
-                      size: "default",
-                    })}
-                  >
-                    {project.label}
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Featured Courses
-            </h2>
-            <Link
-              href="/read"
-              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Browse <ArrowRight />
-            </Link>
-          </div>
-
-          <div className="space-y-6">
-            {featuredCourses.map((course) => (
-              <Card
-                key={course.title}
-                className="h-full border-border/80 bg-card"
-              >
-                <CardContent>
-                  <div className="flex gap-4 mb-2 w-full justify-between items-start">
-                    <CardTitle className="text-2xl">{course.title}</CardTitle>
-                    <Link
-                      href={`/read/${course.id}`}
-                      className={buttonVariants({
-                        variant: "default",
-                        size: "default",
-                      })}
-                    >
-                      Read
-                    </Link>
-                  </div>
-                  <p className="text-base leading-7 text-muted-foreground">
-                    {course.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <div className="mb-4 flex items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-              Featured Posts
-            </h2>
-            <Link
-              href="/read"
-              className="text-sm flex items-center gap-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Browse <ArrowRight />
-            </Link>
-          </div>
-
-          <div className="space-y-6">
-            {featuredPosts.map((post) => (
-              <Card
-                key={post.title}
-                className="h-full border-border/80 bg-card"
-              >
-                <CardContent>
-                  <div className="flex gap-4 mb-2 w-full justify-between items-start">
-                    <CardTitle className="text-2xl">{post.title}</CardTitle>
-                    <Link
-                      href={`/read/${post.id}`}
-                      className={buttonVariants({
-                        variant: "default",
-                        size: "default",
-                      })}
-                    >
-                      Read
-                    </Link>
-                  </div>
-                  {post.description && (
-                    <p className="text-base leading-7 text-muted-foreground">
-                      {post.description}
-                    </p>
-                  )}
-                  <div className="flex mt-4 flex-wrap gap-2">
-                    {(post.tags ?? []).map((tag) => (
-                      <Badge variant="secondary" key={tag}>
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
+        <ProjectList heading="Featured Projects" projects={featuredProjects} />
+        <ContentList
+          heading="Featured Courses & Tutorials"
+          items={featuredEntries}
+        />
       </main>
     </>
   );
