@@ -8,6 +8,20 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+# Frontmatter
+
+```
+---
+title: "Post/Chapter Title"
+description: "Description for the post/chapter (only shown in the listing page, not inside the content)."
+updated: "yyyy-mm-dd"
+draft: false
+tags: ["tag1", "tag2", "tag3"]
+---
+```
+
+Here, only `title` and `updated` are mandatory. Other fields are optional.
+
 # Course and post writing rules
 
 - Add `ai-generated` tag along with other tags if *you* are writing the post.
