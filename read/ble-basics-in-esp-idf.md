@@ -1,7 +1,7 @@
 ---
 title: "ESP-IDF Bluetooth LE Tutorial for Beginners"
 description: "This tutorial covers how to use Bluetooth Low Energy (BLE) with your ESP32 (ESP-IDF)."
-updated: "2026-09-04"
+updated: "2026-09-13"
 featured: true
 draft: false
 tags: ["esp-idf", "ble", "nimble"]

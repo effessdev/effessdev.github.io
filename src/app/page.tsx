@@ -155,10 +155,7 @@ export default function Home() {
 
       <main className="space-y-8 pb-10">
         <ProjectList heading="Featured Projects" projects={featuredProjects} />
-        <ContentList
-          heading="Featured Courses & Tutorials"
-          items={featuredEntries}
-        />
+        <ContentList heading="Featured Reads" items={featuredEntries} />
       </main>
     </>
   );
