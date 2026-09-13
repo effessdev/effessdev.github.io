@@ -10,6 +10,8 @@ export type ContentListEntry = {
   href: string;
   updated?: string;
   tags?: string[];
+  draft?: boolean;
+  aiGenerated?: boolean;
   typeLabel?: string;
 };
 
@@ -74,7 +76,9 @@ export default function ContentList({
                 </Link>
               </div>
 
-              {(item.tags ?? []).length > 0 && (
+              {(item.tags ?? []).length > 0 ||
+              item.draft ||
+              item.aiGenerated ? (
                 <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
                   {formattedDate && (
                     <Badge variant="outline">Updated on {formattedDate}</Badge>
@@ -87,8 +91,12 @@ export default function ContentList({
                       {tag}
                     </Badge>
                   ))}
+                  {item.draft && <Badge variant="destructive">Draft</Badge>}
+                  {item.aiGenerated && (
+                    <Badge variant="destructive">AI-generated</Badge>
+                  )}
                 </div>
-              )}
+              ) : null}
             </article>
           );
         })

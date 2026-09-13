@@ -38,6 +38,8 @@ export default function ReadPage() {
       href: `/read/${post.id}`,
       updated: post.updated,
       tags: post.tags,
+      draft: post.draft,
+      aiGenerated: post.aiGenerated,
       typeLabel: "Post",
     })),
     ...courses
@@ -49,6 +51,8 @@ export default function ReadPage() {
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
         tags: course.tags,
+        draft: course.draft,
+        aiGenerated: course.aiGenerated,
         typeLabel: "Course",
       })),
   ].sort((a, b) => {
@@ -65,6 +69,8 @@ export default function ReadPage() {
       href: `/read/${post.id}`,
       updated: post.updated,
       tags: post.tags,
+      draft: post.draft,
+      aiGenerated: post.aiGenerated,
       typeLabel: "Post",
     })),
     ...courses
@@ -76,6 +82,8 @@ export default function ReadPage() {
         href: `/read/${course.id}`,
         updated: course.latestUpdated,
         tags: course.tags,
+        draft: course.draft,
+        aiGenerated: course.aiGenerated,
         typeLabel: "Course",
       })),
   ].sort((a, b) => {
