@@ -15,6 +15,9 @@ export default function PostComponent({ post }: { post: Post }) {
             </Badge>
           ))}
           {post.draft && <Badge variant="destructive">Draft</Badge>}
+          {post.aiGenerated && (
+            <Badge variant="destructive">AI-generated</Badge>
+          )}
         </div>
         <Markdown content={post.content} />
       </article>

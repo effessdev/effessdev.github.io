@@ -24,7 +24,7 @@ Here, only `title` and `updated` are mandatory. Other fields are optional.
 
 # Course and post writing rules
 
-- Add `ai-generated` tag along with other tags if *you* are writing the post.
+- Add `aiGenerated: true` in the frontmatter if *you* are writing the post.
 - Use `$` and `$$` for LaTeX.
 - Do not create large tables, since many users are on smartphones.
 - Do not use horizontal rules (`---`) at all.

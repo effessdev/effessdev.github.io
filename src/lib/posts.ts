@@ -21,6 +21,7 @@ export function parseMarkdownPost(filePath: string): Post {
       description: data.description,
       updated: data.updated,
       draft: data.draft === true,
+      aiGenerated: data.aiGenerated === true,
       featured: data.featured === true,
       tags: data.tags ?? [],
       content,

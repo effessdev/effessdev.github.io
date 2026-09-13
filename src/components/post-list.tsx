@@ -72,6 +72,9 @@ export default function PostList({
                   </Badge>
                 ))}
                 {post.draft && <Badge variant="destructive">Draft</Badge>}
+                {post.aiGenerated && (
+                  <Badge variant="destructive">AI-generated</Badge>
+                )}
               </div>
             </article>
           );

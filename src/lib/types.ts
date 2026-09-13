@@ -5,6 +5,7 @@ export const PostSchema = z.object({
   description: z.string().optional(),
   updated: z.string(),
   draft: z.boolean().default(false),
+  aiGenerated: z.boolean().default(false),
   featured: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
   content: z.string(),
@@ -18,6 +19,8 @@ export const CourseMetaSchema = z.object({
   id: z.string(),
   title: z.string(),
   description: z.string().optional(),
+  draft: z.boolean().default(false),
+  aiGenerated: z.boolean().default(false),
   featured: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
 });
