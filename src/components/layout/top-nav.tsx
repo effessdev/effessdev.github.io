@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 export default function TopNav({
   backHref,
@@ -16,7 +17,8 @@ export default function TopNav({
         href={backHref}
         className={buttonVariants({ variant: "outline", size: "default" })}
       >
-        ← {backLabel}
+        <ArrowLeft className="h-4 w-4" />
+        {backLabel}
       </Link>
       {extraLinks?.map(({ label, href }) => (
         <Link
