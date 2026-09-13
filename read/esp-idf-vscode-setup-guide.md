@@ -202,23 +202,12 @@ So, congratulations! You just set up your computer for ESP-IDF, created a new pr
 
 ---
 
-## Troubleshooting
-
-> **Warning:** This section is not completed yet.
-
-### Red squiggly lines under `#include "something"`
-
-Try both. At least one of them will probably work.
-
-- Option 1: `Ctrl + Shift + P -> ESP-IDF: Run idf.py reconfigure Task`
-- Option 2: `Ctrl + Shift + P -> Add VS Code Configuration Folder`
-
-### Reconfigure or build failure
-
-Delete the `build` directory and try again.
-
 ## Tips
 
-### Using `idf.py`
+### Using the `idf.py` command
 
-`Ctrl + Shift + P -> Open ESP-IDF Terminal`. You can use `idf.py` in this terminal (e.g., `idf.py reconfigure`).
+`idf.py` may not be available in your terminal, but it's always available in the ESP-IDF terminal, which you can open using `Ctrl + Shift + P -> ESP-IDF: Open ESP-IDF Terminal`.
+
+### Adding the VS Code Configuration Folder
+
+If you accidentally deleted/edited the `.vscode` folder, you can regenerate it using the `Ctrl + Shift + P -> ESP-IDF: Add VS Code Configuration Folder` command.
