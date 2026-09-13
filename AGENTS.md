@@ -29,3 +29,4 @@ Here, only `title` and `updated` are mandatory. Other fields are optional.
 - Do not create large tables, since many users are on smartphones.
 - Do not use horizontal rules (`---`) at all.
 - Do not use level 1 headings (`#`), only use level 2 (`##`) or lower. Level 1 is reserved for the title.
+- Give the output in a Markdown code block (4 backticks instead of 3)
