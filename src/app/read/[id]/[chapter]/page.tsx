@@ -81,18 +81,17 @@ export default async function ChapterPage({
         ]}
       />
 
-      <ChapterNav courseId={courseId} prev={prev} next={next} />
+      <ChapterNavTop courseId={courseId} prev={prev} next={next} />
 
       <div className="w-full h-6" />
 
       <PostComponent post={chapter} />
 
-      <ChapterNav courseId={courseId} prev={prev} next={next} />
+      <ChapterNavBottom courseId={courseId} prev={prev} next={next} />
     </>
   );
 }
-
-function ChapterNav({
+function ChapterNavTop({
   courseId,
   prev,
   next,
@@ -123,6 +122,53 @@ function ChapterNav({
         </Link>
       ) : (
         <span />
+      )}
+    </nav>
+  );
+}
+
+function ChapterNavBottom({
+  courseId,
+  prev,
+  next,
+}: {
+  courseId: string;
+  prev: Post | null;
+  next: Post | null;
+}) {
+  const bgStyle =
+    "flex-1 bg-card border rounded-lg p-4 cursor-pointer hover:bg-card/80 transition-colors";
+
+  return (
+    <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
+      {prev ? (
+        <div className={bgStyle}>
+          <Link href={`/read/${courseId}/${prev.id}`}>
+            <div className="flex mb-2 items-center gap-2">
+              <ArrowLeft />
+              Prev
+            </div>
+            <span className="text-muted-foreground">{prev.title}</span>
+          </Link>
+        </div>
+      ) : (
+        <div className="flex-1" />
+      )}
+
+      {next ? (
+        <div className={bgStyle}>
+          <Link href={`/read/${courseId}/${next.id}`}>
+            <div className="flex mb-2 items-center gap-2">
+              Next
+              <ArrowRight />
+            </div>
+            <span className="text-right text-muted-foreground">
+              {next.title}
+            </span>
+          </Link>
+        </div>
+      ) : (
+        <div className="flex-1" />
       )}
     </nav>
   );
