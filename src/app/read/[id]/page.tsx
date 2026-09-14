@@ -88,26 +88,28 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
     );
   }
 
+  let course, chapters;
+
   try {
-    const course = getCourseMeta(id);
-    const chapters = getCourseChapters(id);
-
-    return (
-      <>
-        <TopNav
-          backHref="/read"
-          backLabel="All content"
-          extraLinks={[{ label: "Home", href: "/" }]}
-        />
-
-        <PostList
-          heading={course.title}
-          description={course.description}
-          posts={chapters}
-        />
-      </>
-    );
+    course = getCourseMeta(id);
+    chapters = getCourseChapters(id);
   } catch {
     notFound();
   }
+
+  return (
+    <>
+      <TopNav
+        backHref="/read"
+        backLabel="All content"
+        extraLinks={[{ label: "Home", href: "/" }]}
+      />
+
+      <PostList
+        heading={course.title}
+        description={course.description}
+        posts={chapters}
+      />
+    </>
+  );
 }
