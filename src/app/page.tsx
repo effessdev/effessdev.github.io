@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { ActionLabels } from "@/lib/labels";
 import { getFeaturedPosts } from "@/lib/posts";
 import { Post } from "@/lib/types";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { getAllCoursesWithLatest } from "@/lib/courses";
 import ContentList, { type ContentListEntry } from "@/components/content-list";
 import ProjectList from "@/components/project-list";
@@ -123,7 +124,7 @@ export default function Home() {
               rel="noreferrer"
               className={buttonVariants({ variant: "secondary", size: "lg" })}
             >
-              GitHub
+              GitHub <ExternalLink className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -153,9 +154,18 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="space-y-8 pb-10">
+      <main className="space-y-8 pb-2">
         <ProjectList heading="Featured Projects" projects={featuredProjects} />
+
         <ContentList heading="Featured Reads" items={featuredEntries} />
+        <div className="flex justify-end">
+          <Link
+            href="/read"
+            className={buttonVariants({ variant: "secondary", size: "lg" })}
+          >
+            View all <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </main>
     </>
   );
