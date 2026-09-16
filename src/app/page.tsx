@@ -45,7 +45,7 @@ const featuredProjects = [
 ];
 
 export const metadata: Metadata = {
-  title: "EffessDev - Free Tech Courses, Tutorials, and Software (No Ads)",
+  title: "EffessDev • Home",
   description:
     "I build apps, games, and websites, and program MCUs and IoT devices.",
   openGraph: {
