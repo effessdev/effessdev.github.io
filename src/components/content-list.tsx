@@ -2,6 +2,14 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { actionLabelForType } from "@/lib/labels";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardContent,
+} from "@/components/ui/card";
 
 export type ContentListEntry = {
   id: string;
@@ -50,54 +58,59 @@ export default function ContentList({
             : null;
 
           return (
-            <article
-              key={item.id}
-              className="rounded-2xl border border-border bg-card p-5"
-            >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <Card key={item.id}>
+              <CardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-3">
-                  <h3 className="text-2xl font-semibold tracking-tight text-foreground">
+                  <CardTitle className="text-2xl font-semibold tracking-tight text-foreground">
                     {item.title}
-                  </h3>
+                  </CardTitle>
 
                   {item.description && (
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <CardDescription className="text-muted-foreground">
+                      {item.description}
+                    </CardDescription>
                   )}
                 </div>
 
-                <Link
-                  href={item.href}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "sm",
-                  })}
-                >
-                  {actionLabelForType(item.typeLabel)}
-                </Link>
-              </div>
+                <CardAction>
+                  <Link
+                    href={item.href}
+                    className={buttonVariants({
+                      variant: "default",
+                      size: "sm",
+                    })}
+                  >
+                    {actionLabelForType(item.typeLabel)}
+                  </Link>
+                </CardAction>
+              </CardHeader>
 
               {(item.tags ?? []).length > 0 ||
               item.draft ||
               item.aiGenerated ? (
-                <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                  {formattedDate && (
-                    <Badge variant="outline">Updated on {formattedDate}</Badge>
-                  )}
-                  {(item.tags ?? []).map((tag, index) => (
-                    <Badge
-                      variant="secondary"
-                      key={`${item.id}-${tag}-${index}`}
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                  {item.draft && <Badge variant="destructive">Draft</Badge>}
-                  {item.aiGenerated && (
-                    <Badge variant="destructive">AI-generated</Badge>
-                  )}
-                </div>
+                <CardContent>
+                  <div>
+                    {formattedDate && (
+                      <Badge variant="outline">
+                        Updated on {formattedDate}
+                      </Badge>
+                    )}
+                    {(item.tags ?? []).map((tag, index) => (
+                      <Badge
+                        variant="secondary"
+                        key={`${item.id}-${tag}-${index}`}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                    {item.draft && <Badge variant="destructive">Draft</Badge>}
+                    {item.aiGenerated && (
+                      <Badge variant="destructive">AI-generated</Badge>
+                    )}
+                  </div>
+                </CardContent>
               ) : null}
-            </article>
+            </Card>
           );
         })
       )}

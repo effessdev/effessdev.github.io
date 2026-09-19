@@ -3,6 +3,14 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { actionLabelForType } from "@/lib/labels";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardAction,
+  CardContent,
+} from "@/components/ui/card";
 
 export default function PostList({
   heading,
@@ -38,45 +46,50 @@ export default function PostList({
           );
 
           return (
-            <article
-              key={post.id}
-              className="rounded-2xl bg-card border border-border p-5"
-            >
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <Card key={post.id}>
+              <CardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div className="space-y-3">
-                  <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+                  <CardTitle className="text-2xl font-semibold tracking-tight text-foreground">
                     {post.title}
-                  </h2>
+                  </CardTitle>
                   {post.description && (
-                    <p className="max-w-2xl text-muted-foreground">
+                    <CardDescription className="max-w-2xl">
                       {post.description}
-                    </p>
+                    </CardDescription>
                   )}
                 </div>
-                <Link
-                  href={`${post.id}`}
-                  className={buttonVariants({
-                    variant: "default",
-                    size: "sm",
-                  })}
-                >
-                  {actionLabelForType("Post")}
-                </Link>
-              </div>
 
-              <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <Badge variant="outline">Updated on {formattedDate}</Badge>
-                {tags(post).map((tag, index) => (
-                  <Badge variant="secondary" key={`${post.id}-${tag}-${index}`}>
-                    {tag}
-                  </Badge>
-                ))}
-                {post.draft && <Badge variant="destructive">Draft</Badge>}
-                {post.aiGenerated && (
-                  <Badge variant="destructive">AI-generated</Badge>
-                )}
-              </div>
-            </article>
+                <CardAction>
+                  <Link
+                    href={`${post.id}`}
+                    className={buttonVariants({
+                      variant: "default",
+                      size: "sm",
+                    })}
+                  >
+                    {actionLabelForType("Post")}
+                  </Link>
+                </CardAction>
+              </CardHeader>
+
+              <CardContent>
+                <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                  <Badge variant="outline">Updated on {formattedDate}</Badge>
+                  {tags(post).map((tag, index) => (
+                    <Badge
+                      variant="secondary"
+                      key={`${post.id}-${tag}-${index}`}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                  {post.draft && <Badge variant="destructive">Draft</Badge>}
+                  {post.aiGenerated && (
+                    <Badge variant="destructive">AI-generated</Badge>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           );
         })
       )}
