@@ -73,7 +73,7 @@ export default function PostList({
               </CardHeader>
 
               <CardContent>
-                <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                <div>
                   <Badge variant="outline">Updated on {formattedDate}</Badge>
                   {tags(post).map((tag, index) => (
                     <Badge
