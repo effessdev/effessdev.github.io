@@ -209,6 +209,15 @@ pre code {
   background: transparent;
 }
 
+code:not(pre code) {
+  border-radius: 0.375rem;
+  border: 1px solid var(--border);
+  background: var(--muted);
+  padding: 0.125rem 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
 /* 
 +----------------------------+
 | Syntax highlighting colors |-----------------------------------
