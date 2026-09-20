@@ -156,7 +156,7 @@ export default function Home() {
         <div className="pt-8 flex justify-end">
           <Link
             href="/read#other-posts"
-            className={buttonVariants({ variant: "secondary", size: "lg" })}
+            className={buttonVariants({ variant: "default", size: "lg" })}
           >
             View all <ArrowRight className="h-4 w-4" />
           </Link>
