@@ -22,7 +22,20 @@ export default function Footer() {
           >
             LinkedIn
           </a>
-          <a href="https://effessdev.itch.io" className="hover:text-foreground">
+          <a
+            href="https://dev.to/effessdev"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-foreground"
+          >
+            DEV.to
+          </a>
+          <a
+            href="https://effessdev.itch.io"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-foreground"
+          >
             Itch.io
           </a>
         </div>

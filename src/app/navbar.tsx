@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
-import { ActionLabels } from "@/lib/labels";
-
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/read", label: ActionLabels.Read },
+  { href: "/#projects", label: "Projects" },
+  { href: "/read", label: "Tutorials" },
   { href: "https://github.com/effessdev", label: "GitHub" },
 ];
 
