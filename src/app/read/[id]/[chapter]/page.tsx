@@ -144,29 +144,25 @@ function ChapterNavBottom({
   return (
     <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
       {prev && (
-        <div className={bgStyle}>
-          <Link href={`/read/${courseId}/${prev.id}`}>
-            <div className="flex mb-2 items-center gap-2">
-              <ArrowLeft />
-              Prev
-            </div>
-            <span className="text-muted-foreground">{prev.title}</span>
-          </Link>
-        </div>
+        <Link href={`/read/${courseId}/${prev.id}`} className={bgStyle}>
+          <div className="flex mb-2 items-center gap-2">
+            <ArrowLeft />
+            Prev
+          </div>
+          <span className="text-muted-foreground">{prev.title}</span>
+        </Link>
       )}
 
       {next && (
-        <div className={bgStyle}>
-          <Link href={`/read/${courseId}/${next.id}`}>
-            <div className="flex mb-2 items-center gap-2">
-              Next
-              <ArrowRight />
-            </div>
-            <span className="text-right text-muted-foreground">
-              {next.title}
-            </span>
-          </Link>
-        </div>
+        <Link href={`/read/${courseId}/${next.id}`} className={bgStyle}>
+          <div className="flex mb-2 items-center justify-end gap-2">
+            Next
+            <ArrowRight />
+          </div>
+          <span className="block text-right text-muted-foreground">
+            {next.title}
+          </span>
+        </Link>
       )}
     </nav>
   );
