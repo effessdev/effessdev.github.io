@@ -42,10 +42,10 @@
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-mono:
     "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
-  --radius: 0px;
+  --radius: 8px;
   --shadow-x: 0;
   --shadow-y: 1px;
-  --shadow-blur: 8px;
+  --shadow-blur: 12px;
   --shadow-spread: 0px;
   --shadow-opacity: 0.13;
   --shadow-color: #000000;
@@ -103,7 +103,7 @@
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-mono:
     "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
-  --radius: 0px;
+  --radius: 4px;
   --shadow-x: 0;
   --shadow-y: 1px;
   --shadow-blur: 8px;

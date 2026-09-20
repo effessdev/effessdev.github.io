@@ -104,7 +104,7 @@ function ChapterNavTop({
     <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
       {prev ? (
         <Link
-          className={buttonVariants({ variant: "secondary", size: "lg" })}
+          className={buttonVariants({ variant: "default", size: "lg" })}
           href={`/read/${courseId}/${prev.id}`}
         >
           <ArrowLeft /> Prev
@@ -114,7 +114,7 @@ function ChapterNavTop({
       )}
       {next ? (
         <Link
-          className={buttonVariants({ variant: "secondary", size: "lg" })}
+          className={buttonVariants({ variant: "default", size: "lg" })}
           href={`/read/${courseId}/${next.id}`}
         >
           Next
