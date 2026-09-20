@@ -91,7 +91,7 @@ export default function ContentList({
               item.draft ||
               item.aiGenerated ? (
                 <CardContent>
-                  <div>
+                  <div className="flex flex-wrap gap-2">
                     {formattedDate && (
                       <Badge variant="outline">
                         Updated on {formattedDate}

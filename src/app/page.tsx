@@ -99,7 +99,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="py-8">
+      <header className="mt-8">
         <div className="flex flex-col gap-8">
           <div>
             <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl">
@@ -147,15 +147,13 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="space-y-8 pb-2">
-        <ProjectList
-          heading="Featured Projects"
-          projects={featuredProjects}
-          id="projects"
-        />
+      <main className="pb-2">
+        <div id="projects" className="pt-8" />
+        <ProjectList heading="Featured Projects" projects={featuredProjects} />
 
+        <div className="pt-8" />
         <ContentList heading="Featured Tutorials" items={featuredEntries} />
-        <div className="flex justify-end">
+        <div className="pt-8 flex justify-end">
           <Link
             href="/read#other-posts"
             className={buttonVariants({ variant: "secondary", size: "lg" })}
