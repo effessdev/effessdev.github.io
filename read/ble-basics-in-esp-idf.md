@@ -190,44 +190,23 @@ void app_main(void) {
 
 This is the hard part. GATT stands for Generic Attribute. It defines how two connected devices package, format, and send data using a structured hierarchy of services and characteristics.
 
-A GATT profile has one or more services, which have one or more characteristics within them, which hold data and descriptors. Each service and characteristic has a UUID. Here is a diagram showing the GATT hierarchy:
+A GATT profile has one or more services, which have one or more characteristics within them, which hold data and descriptors. Each service and characteristic has a UUID. Here is a nested list showing the GATT hierarchy:
 
-```
-+---------------------------+
-|          PROFILE          |
-+---------------------------+
-|                           |
-|  +---------------------+  |
-|  | SERVICE             |  |
-|  +---------------------+  |
-|  |                     |  |
-|  | CHARACTERISTIC      |  |
-|  |  - PROPERTIES       |  |
-|  |  - VALUE            |  |
-|  |  - DESCRIPTOR       |  |
-|  |                     |  |
-|  +---------------------+  |
-|  |                     |  |
-|  |  CHARACTERISTIC     |  |
-|  |  - PROPERTIES       |  |
-|  |  - VALUE            |  |
-|  |  - DESCRIPTOR       |  |
-|  |                     |  |
-|  +---------------------+  |
-|                           |
-|  +---------------------+  |
-|  | SERVICE             |  |
-|  +---------------------+  |
-|  |                     |  |
-|  | CHARACTERISTIC      |  |  
-|  |  - PROPERTIES       |  |
-|  |  - VALUE            |  |
-|  |  - DESCRIPTOR       |  |
-|  |                     |  |
-|  +---------------------+  |
-|                           |
-+---------------------------+
-```
+- Profile
+  - Service
+    - Characteristic
+      - Properties
+      - Value
+      - Descriptor
+    - Characteristic
+      - Properties
+      - Value
+      - Descriptor
+  - Service
+    - Characteristic
+      - Properties
+      - Value
+      - Descriptor
 
 For example, you can create a "Heart Rate" service that has a "Heart Rate Measurement" characteristic, which holds the value.
 

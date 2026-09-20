@@ -40,7 +40,8 @@
   --sidebar-ring: oklch(0.4761 0.087 221.3232);
   --font-sans: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
-  --font-mono: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
+  --font-mono:
+    "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
   --radius: 0px;
   --shadow-x: 0;
   --shadow-y: 1px;
@@ -100,7 +101,8 @@
   --sidebar-ring: oklch(0.5518 0.0972 214.4813);
   --font-sans: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
-  --font-mono: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
+  --font-mono:
+    "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
   --radius: 0px;
   --shadow-x: 0;
   --shadow-y: 1px;
@@ -201,12 +203,14 @@ pre {
   border: 1px solid var(--border);
   background: var(--card);
   padding: 1rem;
+  font-family: var(--font-mono);
 }
 
 pre code {
   display: block;
   border-radius: 0.75rem;
   background: transparent;
+  font-family: var(--font-mono);
 }
 
 code:not(pre code) {
