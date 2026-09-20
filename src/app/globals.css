@@ -195,6 +195,20 @@
   white-space: normal;
 }
 
+pre {
+  overflow-x: auto;
+  border-radius: 0.875rem;
+  border: 1px solid var(--border);
+  background: var(--card);
+  padding: 1rem;
+}
+
+pre code {
+  display: block;
+  border-radius: 0.75rem;
+  background: transparent;
+}
+
 /* 
 +----------------------------+
 | Syntax highlighting colors |-----------------------------------
