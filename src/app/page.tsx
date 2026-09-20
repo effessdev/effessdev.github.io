@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ActionLabels } from "@/lib/labels";
 import { getFeaturedPosts } from "@/lib/posts";
 import { Post } from "@/lib/types";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getAllCoursesWithLatest } from "@/lib/courses";
 import ContentList, { type ContentListEntry } from "@/components/content-list";
 import ProjectList from "@/components/project-list";
+import ExploreProjectsButton from "@/components/explore-projects-button";
 
 const featuredProjects = [
   {
@@ -116,16 +116,9 @@ export default function Home() {
               href="/read"
               className={buttonVariants({ variant: "default", size: "lg" })}
             >
-              {ActionLabels.ReadContent}
+              Read Tutorials
             </Link>
-            <a
-              href="https://github.com/effessdev"
-              target="_blank"
-              rel="noreferrer"
-              className={buttonVariants({ variant: "secondary", size: "lg" })}
-            >
-              GitHub <ExternalLink className="h-4 w-4" />
-            </a>
+            <ExploreProjectsButton />
           </div>
         </div>
 
@@ -155,12 +148,16 @@ export default function Home() {
       </header>
 
       <main className="space-y-8 pb-2">
-        <ProjectList heading="Featured Projects" projects={featuredProjects} />
+        <ProjectList
+          heading="Featured Projects"
+          projects={featuredProjects}
+          id="projects"
+        />
 
-        <ContentList heading="Featured Reads" items={featuredEntries} />
+        <ContentList heading="Featured Tutorials" items={featuredEntries} />
         <div className="flex justify-end">
           <Link
-            href="/read"
+            href="/read#other-posts"
             className={buttonVariants({ variant: "secondary", size: "lg" })}
           >
             View all <ArrowRight className="h-4 w-4" />

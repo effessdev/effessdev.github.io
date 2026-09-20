@@ -19,12 +19,14 @@ interface Project {
 export default function ProjectList({
   heading,
   projects,
+  id,
 }: {
   heading: string;
   projects: Project[];
+  id?: string;
 }) {
   return (
-    <section>
+    <section id={id}>
       <div className="mb-6 flex items-center justify-between gap-3">
         <h2 className="text-4xl font-semibold tracking-tight text-foreground">
           {heading}

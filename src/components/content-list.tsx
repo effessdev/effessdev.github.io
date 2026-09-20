@@ -27,13 +27,15 @@ export default function ContentList({
   heading,
   description,
   items,
+  id,
 }: {
   heading: string;
   description?: string;
   items: ContentListEntry[];
+  id?: string;
 }) {
   return (
-    <section className="space-y-6">
+    <section id={id} className="space-y-6">
       <div className="space-y-2">
         <h2 className="text-4xl font-semibold tracking-tight text-foreground">
           {heading}

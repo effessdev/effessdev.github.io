@@ -97,7 +97,11 @@ export default function ReadPage() {
       <TopNav backLabel="Home" backHref="/" />
       <main className="space-y-8">
         <ContentList heading="Featured" items={featuredEntries} />
-        <ContentList heading="Others" items={otherEntries} />
+        <ContentList
+          heading="Other posts"
+          items={otherEntries}
+          id="other-posts"
+        />
       </main>
     </>
   );
