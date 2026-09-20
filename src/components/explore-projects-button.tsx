@@ -11,7 +11,7 @@ export default function ExploreProjectsButton() {
           .getElementById("projects")
           ?.scrollIntoView({ behavior: "smooth", block: "start" });
       }}
-      className={buttonVariants({ variant: "default", size: "lg" })}
+      className={buttonVariants({ variant: "secondary", size: "lg" })}
     >
       Explore Projects
     </button>

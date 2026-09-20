@@ -76,10 +76,7 @@ export default function PostList({
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="outline">Updated on {formattedDate}</Badge>
                   {tags(post).map((tag, index) => (
-                    <Badge
-                      variant="secondary"
-                      key={`${post.id}-${tag}-${index}`}
-                    >
+                    <Badge variant="outline" key={`${post.id}-${tag}-${index}`}>
                       {tag}
                     </Badge>
                   ))}

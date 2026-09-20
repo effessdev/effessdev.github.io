@@ -45,7 +45,7 @@ export default function ProjectList({
             <CardContent className="space-y-5">
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <Badge variant="secondary" key={tag}>
+                  <Badge variant="outline" key={tag}>
                     {tag}
                   </Badge>
                 ))}

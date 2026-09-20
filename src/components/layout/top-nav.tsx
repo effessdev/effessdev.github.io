@@ -24,7 +24,7 @@ export default function TopNav({
         <Link
           key={href}
           href={href}
-          className={buttonVariants({ variant: "secondary", size: "default" })}
+          className={buttonVariants({ variant: "outline", size: "default" })}
         >
           {label}
         </Link>

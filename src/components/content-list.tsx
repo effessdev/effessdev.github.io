@@ -99,7 +99,7 @@ export default function ContentList({
                     )}
                     {(item.tags ?? []).map((tag, index) => (
                       <Badge
-                        variant="secondary"
+                        variant="outline"
                         key={`${item.id}-${tag}-${index}`}
                       >
                         {tag}

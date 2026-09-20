@@ -10,7 +10,7 @@ export default function PostComponent({ post }: { post: Post }) {
         <div className="flex flex-wrap gap-4 mt-4 my-10 text-sm text-muted-foreground">
           <Badge variant="outline">Updated on {post.updated}</Badge>
           {(post.tags ?? []).map((tag, index) => (
-            <Badge variant="secondary" key={`${post.id}-${tag}-${index}`}>
+            <Badge variant="outline" key={`${post.id}-${tag}-${index}`}>
               {tag}
             </Badge>
           ))}
