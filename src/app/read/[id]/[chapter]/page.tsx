@@ -76,7 +76,7 @@ export default async function ChapterPage({
         backLabel="Contents"
         backHref={`/read/${courseId}`}
         extraLinks={[
-          { label: "All content", href: "/read" },
+          { label: "Tutorials", href: "/read" },
           { label: "Home", href: "/" },
         ]}
       />

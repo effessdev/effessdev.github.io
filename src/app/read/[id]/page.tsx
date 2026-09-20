@@ -79,7 +79,7 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
       <>
         <TopNav
           backHref="/read"
-          backLabel="All content"
+          backLabel="Tutorials"
           extraLinks={[{ label: "Home", href: "/" }]}
         />
 
@@ -101,7 +101,7 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
     <>
       <TopNav
         backHref="/read"
-        backLabel="All content"
+        backLabel="Tutorials"
         extraLinks={[{ label: "Home", href: "/" }]}
       />
 
