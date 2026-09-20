@@ -101,28 +101,30 @@ function ChapterNavTop({
   next: Post | null;
 }) {
   return (
-    <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
-      {prev ? (
-        <Link
-          className={buttonVariants({ variant: "default", size: "lg" })}
-          href={`/read/${courseId}/${prev.id}`}
-        >
-          <ArrowLeft /> Prev
-        </Link>
-      ) : (
-        <span />
-      )}
-      {next ? (
-        <Link
-          className={buttonVariants({ variant: "default", size: "lg" })}
-          href={`/read/${courseId}/${next.id}`}
-        >
-          Next
-          <ArrowRight />
-        </Link>
-      ) : (
-        <span />
-      )}
+    <nav className="flex gap-2 mt-8 pt-6 border-t">
+      <Link
+        className={
+          buttonVariants({ variant: "default", size: "lg" }) +
+          (!prev ? " pointer-events-none opacity-50" : "")
+        }
+        href={prev ? `/read/${courseId}/${prev.id}` : "#"}
+        aria-disabled={!prev}
+        tabIndex={!prev ? -1 : undefined}
+      >
+        <ArrowLeft /> Prev
+      </Link>
+      <Link
+        className={
+          buttonVariants({ variant: "default", size: "lg" }) +
+          (!next ? " pointer-events-none opacity-50" : "")
+        }
+        href={next ? `/read/${courseId}/${next.id}` : "#"}
+        aria-disabled={!next}
+        tabIndex={!next ? -1 : undefined}
+      >
+        Next
+        <ArrowRight />
+      </Link>
     </nav>
   );
 }
@@ -141,7 +143,7 @@ function ChapterNavBottom({
 
   return (
     <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
-      {prev ? (
+      {prev && (
         <div className={bgStyle}>
           <Link href={`/read/${courseId}/${prev.id}`}>
             <div className="flex mb-2 items-center gap-2">
@@ -151,11 +153,9 @@ function ChapterNavBottom({
             <span className="text-muted-foreground">{prev.title}</span>
           </Link>
         </div>
-      ) : (
-        <div className="flex-1" />
       )}
 
-      {next ? (
+      {next && (
         <div className={bgStyle}>
           <Link href={`/read/${courseId}/${next.id}`}>
             <div className="flex mb-2 items-center gap-2">
@@ -167,8 +167,6 @@ function ChapterNavBottom({
             </span>
           </Link>
         </div>
-      ) : (
-        <div className="flex-1" />
       )}
     </nav>
   );
