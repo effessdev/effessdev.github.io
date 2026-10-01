@@ -14,13 +14,13 @@ export function Hero() {
     <section className="bg-card">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-10 px-4 py-12 sm:px-6 md:flex-row md:items-center lg:px-8">
         <div className="flex-1">
-          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground">
+          <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden />
-            Embedded Systems · C & C++ · ESP-IDF · RTOS
+            Embedded Systems, C & C++, ESP-IDF, RTOS
           </p>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Free tutorials related to{" "}
+            Free tutorials on{" "}
             <span className="text-primary">embedded systems</span>
           </h1>
 
@@ -45,16 +45,16 @@ export function Hero() {
           </div>
 
           <p className="mt-4 text-sm text-muted-foreground">
-            This site doubles as my portfolio — the source lives on{" "}
+            This site is open source.{" "}
             <a
               href={repoUrl}
               target="_blank"
               rel="noreferrer"
               className="font-medium text-primary underline-offset-4 hover:underline"
             >
-              GitHub
-            </a>
-            , and so do I.
+              Click here
+            </a>{" "}
+            to view the GitHub repository.
           </p>
         </div>
 

@@ -41,9 +41,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <p className="text-sm text-[#b7dbf2]">
-          © 2026 {brand.owner}. Built with Next.js, open source on GitHub.
-        </p>
+        <p className="text-sm text-[#b7dbf2]">© 2026 {brand.owner}</p>
       </div>
     </footer>
   );
