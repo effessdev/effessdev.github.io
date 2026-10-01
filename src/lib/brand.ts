@@ -7,7 +7,7 @@
  */
 export const brand = {
   name: "EffessDev",
-  owner: "Faseeh Zaman F. S.",
+  owner: "Faseeh Zaman F S",
   url: "https://effessdev.github.io",
   tagline: "Tutorials on embedded systems, C, and the metal underneath.",
   description:

@@ -18,7 +18,7 @@ export function SiteFooter() {
                 {brand.name}
               </p>
               <p className="mt-1 max-w-md text-sm text-[#b7dbf2]">
-                {brand.tagline}
+                © 2026 {brand.owner}. All Rights Reserved.
               </p>
             </div>
           </div>
@@ -40,8 +40,6 @@ export function SiteFooter() {
             ))}
           </ul>
         </div>
-
-        <p className="text-sm text-[#b7dbf2]">© 2026 {brand.owner}</p>
       </div>
     </footer>
   );

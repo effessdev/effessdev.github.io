@@ -5,7 +5,7 @@ import { brand } from "@/lib/brand";
 import { getContentListings } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Tutorials",
+  title: "Embedded Systems Tutorials",
   description: brand.description,
 };
 
