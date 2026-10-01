@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import { brand } from "@/lib/brand";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -58,7 +59,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* The navbar lives in the /read layout — the home page has none. */}
+          {/* Theme toggle floats over every page, pinned to the top-right corner. */}
+          <div className="fixed right-2 top-2 z-50 sm:right-4 sm:top-4">
+            <ThemeToggle />
+          </div>
+
           <main className="flex-1 w-full">{children}</main>
 
           <SiteFooter />

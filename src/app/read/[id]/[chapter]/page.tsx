@@ -74,7 +74,7 @@ export default async function ChapterPage({
   return (
     <>
       <TopNav
-        backLabel="Contents"
+        backLabel="Chapters"
         backHref={`/read/${courseId}`}
         extraLinks={[{ label: "Tutorials", href: "/" }]}
       />
@@ -123,7 +123,7 @@ function ChapterNavTop({
   next: Post | null;
 }) {
   return (
-    <nav className="mt-8 flex gap-2 border-t pt-6">
+    <nav className="my-6 flex gap-2 border-t pt-6">
       <NavPill courseId={courseId} chapter={prev}>
         <ArrowLeft /> Prev
       </NavPill>
