@@ -66,22 +66,6 @@
   }
 }
 
-/* Soft "broadcast glow" behind the home hero, tinted with the brand mark's
-   own colors — yellow and sky signals radiating out of the sea. */
-.hero-glow {
-  background:
-    radial-gradient(
-      55rem 32rem at 8% -10%,
-      color-mix(in srgb, var(--secondary) 16%, transparent),
-      transparent 60%
-    ),
-    radial-gradient(
-      45rem 30rem at 95% 0%,
-      color-mix(in srgb, var(--accent) 18%, transparent),
-      transparent 55%
-    );
-}
-
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;

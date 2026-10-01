@@ -16,7 +16,10 @@ export default function Home() {
     <>
       <Hero />
 
-      <div id="tutorials" className="pt-12 scroll-mt-24">
+      <div
+        id="tutorials"
+        className="mx-auto w-full max-w-6xl px-4 pt-12 pb-12 sm:px-6 lg:px-8"
+      >
         <ContentList heading="Featured" items={featured} />
         <div className="pt-8" id="other-posts" />
         <ContentList heading="Other" items={other} />

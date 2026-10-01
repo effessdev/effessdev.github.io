@@ -7,8 +7,6 @@ import { ThemeProvider } from "next-themes";
 import { cn } from "@/lib/utils";
 import { brand } from "@/lib/brand";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
-import ScrollHeader from "@/components/scroll-header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -60,13 +58,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollHeader>
-            <SiteHeader />
-          </ScrollHeader>
-
-          <main className="flex-1 w-full mx-auto max-w-6xl px-4 pt-24 pb-12 sm:px-6 lg:px-8">
-            {children}
-          </main>
+          {/* The navbar lives in the /read layout — the home page has none. */}
+          <main className="flex-1 w-full">{children}</main>
 
           <SiteFooter />
         </ThemeProvider>
