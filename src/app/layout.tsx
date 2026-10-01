@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
 import { brand } from "@/lib/brand";
-import { ThemeProvider } from "@/components/theme-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import ScrollHeader from "@/components/scroll-header";

@@ -1,7 +1,7 @@
 import { Logo } from "@/components/brand/logo";
 import { SocialIcon } from "@/components/brand/social-icon";
-import { buttonVariants } from "@/components/ui/button";
-import { brand, repoUrl, socials } from "@/lib/brand";
+import { btn } from "@/components/ui";
+import { repoUrl, socials } from "@/lib/brand";
 
 const github = socials.find((social) => social.label === "GitHub")!;
 
@@ -30,14 +30,14 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#tutorials" className={buttonVariants({ size: "lg" })}>
+            <a href="#tutorials" className={btn({ size: "lg" })}>
               Start reading
             </a>
             <a
               href={github.href}
               target="_blank"
               rel="noreferrer"
-              className={buttonVariants({ variant: "outline", size: "lg" })}
+              className={btn({ variant: "outline", size: "lg" })}
             >
               <SocialIcon label="GitHub" />
               Reach out on GitHub

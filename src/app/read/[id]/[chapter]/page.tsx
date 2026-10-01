@@ -10,7 +10,8 @@ import TopNav from "@/components/layout/top-nav";
 import PostComponent from "@/components/post-component";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { btn, card } from "@/components/ui";
+import { cn } from "@/lib/utils";
 import { Post } from "@/lib/types";
 
 export function generateStaticParams() {
@@ -80,14 +81,38 @@ export default async function ChapterPage({
 
       <ChapterNavTop courseId={courseId} prev={prev} next={next} />
 
-      <div className="w-full h-6" />
-
       <PostComponent post={chapter} />
 
       <ChapterNavBottom courseId={courseId} prev={prev} next={next} />
     </>
   );
 }
+
+/** Prev/Next pill that renders disabled when there is no chapter. */
+function NavPill({
+  chapter,
+  courseId,
+  children,
+}: {
+  chapter: Post | null;
+  courseId: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={chapter ? `/read/${courseId}/${chapter.id}` : "#"}
+      aria-disabled={!chapter || undefined}
+      tabIndex={chapter ? undefined : -1}
+      className={cn(
+        btn({ size: "lg" }),
+        !chapter && "pointer-events-none opacity-50",
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+
 function ChapterNavTop({
   courseId,
   prev,
@@ -98,30 +123,13 @@ function ChapterNavTop({
   next: Post | null;
 }) {
   return (
-    <nav className="flex gap-2 mt-8 pt-6 border-t">
-      <Link
-        className={
-          buttonVariants({ variant: "default", size: "lg" }) +
-          (!prev ? " pointer-events-none opacity-50" : "")
-        }
-        href={prev ? `/read/${courseId}/${prev.id}` : "#"}
-        aria-disabled={!prev}
-        tabIndex={!prev ? -1 : undefined}
-      >
+    <nav className="mt-8 flex gap-2 border-t pt-6">
+      <NavPill courseId={courseId} chapter={prev}>
         <ArrowLeft /> Prev
-      </Link>
-      <Link
-        className={
-          buttonVariants({ variant: "default", size: "lg" }) +
-          (!next ? " pointer-events-none opacity-50" : "")
-        }
-        href={next ? `/read/${courseId}/${next.id}` : "#"}
-        aria-disabled={!next}
-        tabIndex={!next ? -1 : undefined}
-      >
-        Next
-        <ArrowRight />
-      </Link>
+      </NavPill>
+      <NavPill courseId={courseId} chapter={next}>
+        Next <ArrowRight />
+      </NavPill>
     </nav>
   );
 }
@@ -135,14 +143,13 @@ function ChapterNavBottom({
   prev: Post | null;
   next: Post | null;
 }) {
-  const bgStyle =
-    "flex-1 bg-card border rounded-lg p-4 cursor-pointer hover:bg-card/80 transition-colors";
+  const tile = cn(card, "flex-1 p-4 transition-colors hover:bg-card/80");
 
   return (
-    <nav className="flex gap-2 justify-between mt-8 pt-6 border-t">
+    <nav className="mt-8 flex justify-between gap-2 border-t pt-6">
       {prev && (
-        <Link href={`/read/${courseId}/${prev.id}`} className={bgStyle}>
-          <div className="flex mb-2 items-center gap-2">
+        <Link href={`/read/${courseId}/${prev.id}`} className={tile}>
+          <div className="mb-2 flex items-center gap-2">
             <ArrowLeft />
             Prev
           </div>
@@ -151,14 +158,15 @@ function ChapterNavBottom({
       )}
 
       {next && (
-        <Link href={`/read/${courseId}/${next.id}`} className={bgStyle}>
-          <div className="flex mb-2 items-center justify-end gap-2">
+        <Link
+          href={`/read/${courseId}/${next.id}`}
+          className={cn(tile, "text-right")}
+        >
+          <div className="mb-2 flex items-center justify-end gap-2">
             Next
             <ArrowRight />
           </div>
-          <span className="block text-right text-muted-foreground">
-            {next.title}
-          </span>
+          <span className="text-muted-foreground">{next.title}</span>
         </Link>
       )}
     </nav>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { btn } from "@/components/ui";
 import { ArrowLeft } from "lucide-react";
 
 export default function TopNav({
@@ -12,20 +12,13 @@ export default function TopNav({
   extraLinks?: { label: string; href: string }[];
 }) {
   return (
-    <div className="flex flex-wrap mb-6 items-center gap-3">
-      <Link
-        href={backHref}
-        className={buttonVariants({ variant: "outline", size: "default" })}
-      >
-        <ArrowLeft className="h-4 w-4" />
+    <div className="mb-6 flex flex-wrap items-center gap-3">
+      <Link href={backHref} className={btn({ variant: "outline" })}>
+        <ArrowLeft />
         {backLabel}
       </Link>
       {extraLinks?.map(({ label, href }) => (
-        <Link
-          key={href}
-          href={href}
-          className={buttonVariants({ variant: "outline", size: "default" })}
-        >
+        <Link key={href} href={href} className={btn({ variant: "outline" })}>
           {label}
         </Link>
       ))}

@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { MetaBadges } from "@/components/ui";
 import { repoUrl } from "@/lib/brand";
 import { Post } from "@/lib/types";
 import { Markdown } from "@/lib/markdown";
@@ -6,24 +6,15 @@ import { Markdown } from "@/lib/markdown";
 export default function PostComponent({ post }: { post: Post }) {
   return (
     <div className="space-y-8">
-      <article className="rounded-2xl sm:border bg-background sm:bg-card p-0 sm:p-5 md:p-8">
-        <h1 className="text-5xl font-bold border-b pb-2">{post.title}</h1>
-        <div className="flex flex-wrap gap-2 mt-4 my-10 text-sm text-muted-foreground">
-          <Badge variant="outline">Updated on {post.updated}</Badge>
-          {(post.tags ?? []).map((tag, index) => (
-            <Badge variant="outline" key={`${post.id}-${tag}-${index}`}>
-              {tag}
-            </Badge>
-          ))}
-          {post.draft && <Badge variant="destructive">Draft</Badge>}
-          {post.aiGenerated && (
-            <Badge variant="destructive">AI-generated</Badge>
-          )}
+      <article className="rounded-2xl bg-background p-0 sm:border sm:bg-card sm:p-5 md:p-8">
+        <h1 className="border-b pb-2 text-5xl font-bold">{post.title}</h1>
+        <div className="my-10 mt-4">
+          <MetaBadges {...post} />
         </div>
         <Markdown content={post.content} />
       </article>
 
-      <p className="text-sm text-muted-foreground w-full text-center">
+      <p className="w-full text-center text-sm text-muted-foreground">
         Found an issue? Open an{" "}
         <a href={`${repoUrl}/issues`} className="underline underline-offset-2">
           issue

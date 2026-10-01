@@ -8,7 +8,7 @@ import {
 } from "@/lib/courses";
 import PostComponent from "@/components/post-component";
 import TopNav from "@/components/layout/top-nav";
-import PostList from "@/components/post-list";
+import ContentList from "@/components/content-list";
 
 interface ReadEntryPageProps {
   params: Promise<{
@@ -97,10 +97,14 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
     <>
       <TopNav backHref="/" backLabel="Tutorials" />
 
-      <PostList
+      <ContentList
         heading={course.title}
         description={course.description}
-        posts={chapters}
+        headingLevel={1}
+        items={chapters.map((chapter) => ({
+          ...chapter,
+          href: `/read/${id}/${chapter.id}`,
+        }))}
       />
     </>
   );

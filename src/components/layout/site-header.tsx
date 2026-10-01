@@ -2,10 +2,9 @@ import Link from "next/link";
 
 import { Logo } from "@/components/brand/logo";
 import { SocialIcon } from "@/components/brand/social-icon";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { btn } from "@/components/ui";
 import { brand, socials } from "@/lib/brand";
-import { ExternalLink } from "lucide-react";
 
 const github = socials.find((social) => social.label === "GitHub")!;
 
@@ -27,23 +26,20 @@ export function SiteHeader() {
         aria-label="Main navigation"
         className="flex items-center gap-2 sm:gap-3"
       >
-        <Link
-          href="/"
-          className={buttonVariants({ variant: "default", size: "sm" })}
-        >
+        <Link href="/" className={btn({ size: "sm" })}>
           Home
         </Link>
         <a
           href={github.href}
           target="_blank"
           rel="noreferrer"
-          className={buttonVariants({ variant: "secondary", size: "sm" })}
+          className={btn({ variant: "secondary", size: "sm" })}
         >
           <SocialIcon label="GitHub" className="text-base" />
           <span className="hidden sm:inline">GitHub</span>
           <span className="sr-only sm:hidden">GitHub profile</span>
         </a>
-        <ModeToggle />
+        <ThemeToggle />
       </nav>
     </div>
   );

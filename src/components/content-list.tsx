@@ -1,15 +1,6 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import { actionLabelForType } from "@/lib/labels";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardAction,
-  CardContent,
-} from "@/components/ui/card";
+import { btn, card, MetaBadges } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 export type ContentListEntry = {
   id: string;
@@ -24,23 +15,28 @@ export type ContentListEntry = {
   typeLabel?: string;
 };
 
+/** The one list used everywhere: home page sections and course chapter lists. */
 export default function ContentList({
   heading,
   description,
   items,
   id,
+  headingLevel = 2,
 }: {
   heading: string;
   description?: string;
   items: ContentListEntry[];
   id?: string;
+  headingLevel?: 1 | 2;
 }) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
+
   return (
     <section id={id} className="space-y-6">
       <div className="space-y-2">
-        <h2 className="text-4xl font-semibold tracking-tight text-foreground">
+        <Heading className="text-4xl font-bold tracking-tight">
           {heading}
-        </h2>
+        </Heading>
         {description && (
           <p className="text-base text-muted-foreground">{description}</p>
         )}
@@ -51,71 +47,32 @@ export default function ContentList({
           Nothing here yet. Please check back soon.
         </p>
       ) : (
-        items.map((item) => {
-          const formattedDate = item.updated
-            ? new Date(item.updated).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })
-            : null;
-
-          return (
-            <Card key={item.id}>
-              <CardHeader className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div className="space-y-3">
-                  <CardTitle className="text-2xl font-semibold tracking-tight text-foreground">
-                    {item.title}
-                  </CardTitle>
-
-                  {item.description && (
-                    <CardDescription className="text-muted-foreground">
-                      {item.description}
-                    </CardDescription>
-                  )}
-                </div>
-
-                <CardAction>
-                  <Link
-                    href={item.href}
-                    className={buttonVariants({
-                      variant: "default",
-                      size: "sm",
-                    })}
-                  >
-                    {actionLabelForType(item.typeLabel)}
-                  </Link>
-                </CardAction>
-              </CardHeader>
-
-              {(item.tags ?? []).length > 0 ||
-              item.draft ||
-              item.aiGenerated ? (
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {formattedDate && (
-                      <Badge variant="outline">
-                        Updated on {formattedDate}
-                      </Badge>
-                    )}
-                    {(item.tags ?? []).map((tag, index) => (
-                      <Badge
-                        variant="outline"
-                        key={`${item.id}-${tag}-${index}`}
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                    {item.draft && <Badge variant="destructive">Draft</Badge>}
-                    {item.aiGenerated && (
-                      <Badge variant="destructive">AI-generated</Badge>
-                    )}
-                  </div>
-                </CardContent>
-              ) : null}
-            </Card>
-          );
-        })
+        items.map((item) => (
+          <article
+            key={item.id}
+            className={cn(card, "flex flex-col gap-4 p-5 md:p-6")}
+          >
+            <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+              <div className="space-y-2">
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  {item.title}
+                </h3>
+                {item.description && (
+                  <p className="max-w-2xl text-sm text-muted-foreground">
+                    {item.description}
+                  </p>
+                )}
+              </div>
+              <Link
+                href={item.href}
+                className={btn({ size: "sm" }, "shrink-0")}
+              >
+                {item.typeLabel === "Course" ? "View Chapters" : "Read"}
+              </Link>
+            </div>
+            <MetaBadges {...item} />
+          </article>
+        ))
       )}
     </section>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/brand/logo";
-import { buttonVariants } from "@/components/ui/button";
+import { btn } from "@/components/ui";
 
 export default function NotFound() {
   return (
@@ -20,7 +20,7 @@ export default function NotFound() {
         to new hardware.
       </p>
 
-      <Link href="/" className={buttonVariants({ size: "lg" })}>
+      <Link href="/" className={btn({ size: "lg" })}>
         Back to the tutorials
       </Link>
     </div>
