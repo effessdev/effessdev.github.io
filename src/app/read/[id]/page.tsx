@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   if (post) {
     return {
-      title: `${post.title} | EffessDev`,
+      title: post.title,
       description: post.description ?? "",
       keywords: (post.tags ?? []).join(", "),
       openGraph: {
@@ -49,7 +49,7 @@ export async function generateMetadata({
   try {
     const course = getCourseMeta(id);
     return {
-      title: `${course.title} | EffessDev`,
+      title: course.title,
       description: course.description,
       keywords: [course.title, "course", ...(course.tags ?? [])].join(", "),
       openGraph: {

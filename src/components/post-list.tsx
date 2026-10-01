@@ -24,7 +24,7 @@ export default function PostList({
   const tags = (post: Post) => post.tags ?? [];
 
   return (
-    <main className="space-y-6 py-0">
+    <div className="space-y-6 py-0">
       <h1 className="text-4xl font-bold tracking-tight">{heading}</h1>
       {description && (
         <p className="text-base text-muted-foreground">{description}</p>
@@ -90,6 +90,6 @@ export default function PostList({
           );
         })
       )}
-    </main>
+    </div>
   );
 }

@@ -1,32 +1,28 @@
 import Link from "next/link";
+import { Logo } from "@/components/brand/logo";
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[60vh] items-center justify-center py-12">
-      <Card className="w-full max-w-xl border-border/80 bg-card text-center">
-        <CardHeader>
-          <CardTitle className="text-4xl font-bold tracking-tight">
-            404
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6 pb-6">
-          <p className="text-lg text-muted-foreground">
-            The page you&apos;re looking for isn&apos;t here, or it may have
-            moved.
-          </p>
-          <Link
-            href="/"
-            className={buttonVariants({
-              variant: "default",
-              size: "default",
-            })}
-          >
-            Home
-          </Link>
-        </CardContent>
-      </Card>
-    </main>
+    <div className="flex min-h-[50vh] flex-col items-center justify-center gap-6 py-12 text-center">
+      <Logo className="h-24 w-24 rounded-full opacity-90" />
+
+      <p className="font-mono text-sm text-muted-foreground">
+        f() &rarr; undefined
+      </p>
+
+      <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        This page drifted off the map.
+      </h1>
+
+      <p className="max-w-md text-lg text-muted-foreground">
+        The page you&apos;re looking for isn&apos;t here, or it may have moved
+        to new hardware.
+      </p>
+
+      <Link href="/" className={buttonVariants({ size: "lg" })}>
+        Back to the tutorials
+      </Link>
+    </div>
   );
 }

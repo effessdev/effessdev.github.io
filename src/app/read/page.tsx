@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ReadRedirect from "./read-redirect";
+import { brand } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: "Tutorials | EffessDev",
-  description:
-    "Tutorials and courses on software development and embedded systems.",
+  title: "Tutorials",
+  description: brand.description,
   robots: "noindex",
 };
 

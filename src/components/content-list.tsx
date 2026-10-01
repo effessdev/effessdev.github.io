@@ -20,6 +20,7 @@ export type ContentListEntry = {
   tags?: string[];
   draft?: boolean;
   aiGenerated?: boolean;
+  featured?: boolean;
   typeLabel?: string;
 };
 

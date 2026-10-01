@@ -65,14 +65,6 @@ export function getAllPosts(): Post[] {
   });
 }
 
-export function getFeaturedPosts(): Post[] {
-  return getAllPosts().filter((post) => post.featured);
-}
-
-export function getOtherPosts(): Post[] {
-  return getAllPosts().filter((post) => !post.featured);
-}
-
 export function getPostById(id: string): Post | null {
   const posts = getAllPosts();
   const post = posts.find((p) => p.id === id);

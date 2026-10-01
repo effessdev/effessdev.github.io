@@ -39,7 +39,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${chapter.title} | ${course.title} | EffessDev`,
+    title: `${chapter.title} | ${course.title}`,
     description: chapter.description,
     keywords: chapter.tags.join(", "),
     openGraph: {
