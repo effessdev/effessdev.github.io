@@ -77,11 +77,7 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
   if (post) {
     return (
       <>
-        <TopNav
-          backHref="/read"
-          backLabel="Tutorials"
-          extraLinks={[{ label: "Home", href: "/" }]}
-        />
+        <TopNav backHref="/" backLabel="Tutorials" />
 
         <PostComponent post={post} />
       </>
@@ -99,11 +95,7 @@ export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
 
   return (
     <>
-      <TopNav
-        backHref="/read"
-        backLabel="Tutorials"
-        extraLinks={[{ label: "Home", href: "/" }]}
-      />
+      <TopNav backHref="/" backLabel="Tutorials" />
 
       <PostList
         heading={course.title}

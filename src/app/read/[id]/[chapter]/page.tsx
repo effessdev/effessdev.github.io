@@ -75,10 +75,7 @@ export default async function ChapterPage({
       <TopNav
         backLabel="Contents"
         backHref={`/read/${courseId}`}
-        extraLinks={[
-          { label: "Tutorials", href: "/read" },
-          { label: "Home", href: "/" },
-        ]}
+        extraLinks={[{ label: "Tutorials", href: "/" }]}
       />
 
       <ChapterNavTop courseId={courseId} prev={prev} next={next} />

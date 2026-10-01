@@ -14,11 +14,11 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "EffessDev",
   description:
-    "I build apps, games, and websites, and program MCUs and IoT devices.",
+    "Tutorials and courses on software development and embedded systems.",
   openGraph: {
     title: "EffessDev",
     description:
-      "I build apps, games, and websites, and program MCUs and IoT devices.",
+      "Tutorials and courses on software development and embedded systems.",
     type: "website",
     url: "https://effessdev.github.io",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "EffessDev",
     description:
-      "I build apps, games, and websites, and program MCUs and IoT devices.",
+      "Tutorials and courses on software development and embedded systems.",
   },
   verification: {
     google: "TKdqNOADhD-ATBbkWCSmNBH5dYWCBpWFuzxbRFSHGHo",
