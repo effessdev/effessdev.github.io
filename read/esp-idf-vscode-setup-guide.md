@@ -2,9 +2,8 @@
 title: "ESP-IDF VS Code Setup Tutorial"
 description: "This tutorial covers how to setup VS Code for ESP-IDF development in Windows."
 updated: "2026-09-13"
-featured: true
-draft: false
 tags: ["esp32", "esp-idf", "vscode"]
+destructiveTags: []
 ---
 
 This is a step-by-step tutorial that explains how you can set up your development environment for working with ESP-IDF projects in **VS Code**.

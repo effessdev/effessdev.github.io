@@ -46,7 +46,6 @@ export function getCourseChapters(courseId: string): Post[] {
   const courseDir = path.join(readDirectory, courseId);
 
   return getPostsFromDirectory(courseDir, {
-    includeDrafts: true,
     sortBy: "filename",
   });
 }

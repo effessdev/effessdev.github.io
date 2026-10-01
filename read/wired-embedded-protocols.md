@@ -2,10 +2,8 @@
 title: "Wired Embedded Protocols (UART, I2C, SPI, and CAN): A Practical Guide"
 description: "A practical guide to the four most common wired embedded protocols—UART, I2C, SPI, and CAN—covering how each works, when to use it, and Arduino code examples."
 updated: "2026-09-20"
-featured: false
-draft: false
-aiGenerated: true
 tags: ["embedded", "arduino", "protocols"]
+destructiveTags: ["AI-generated"]
 ---
 
 Embedded systems rarely operate in isolation. Whether you're reading a temperature sensor, logging data to an SD card, or coordinating multiple microcontrollers, you need a reliable way for chips to talk to each other. While wireless protocols like Wi-Fi and Bluetooth get plenty of attention, the workhorses of embedded communication are the wired protocols: **UART, I2C, SPI, and CAN**.

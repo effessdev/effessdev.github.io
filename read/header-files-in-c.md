@@ -2,8 +2,8 @@
 title: "Why we need header files in C"
 description: "Explains how #include, header files, and function declarations all work together."
 updated: "2026-08-29"
-draft: false
 tags: ["c", "programming"]
+destructiveTags: []
 ---
 
 Suppose we have:

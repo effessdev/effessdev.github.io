@@ -15,16 +15,19 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 title: "Post/Chapter Title"
 description: "Description for the post/chapter (only shown in the listing page, not inside the content)."
 updated: "yyyy-mm-dd"
-draft: false
 tags: ["tag1", "tag2", "tag3"]
+destructiveTags: ["tag4"]
 ---
 ```
 
 Here, only `title` and `updated` are mandatory. Other fields are optional.
 
+`tags` render as normal badges. `destructiveTags` are just like `tags`, but rendered
+with destructive styling after the normal tags — use them for warning-style labels.
+
 # Course and post writing rules
 
-- Add `aiGenerated: true` in the frontmatter if *you* are writing the post.
+- Add `"AI-generated"` to `destructiveTags` in the frontmatter if *you* are writing the post.
 - Use `$` and `$$` for LaTeX.
 - Do not create large tables, since many users are on smartphones.
 - Do not use horizontal rules (`---`) at all.

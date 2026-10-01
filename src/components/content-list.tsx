@@ -9,9 +9,7 @@ export type ContentListEntry = {
   href: string;
   updated?: string;
   tags?: string[];
-  draft?: boolean;
-  aiGenerated?: boolean;
-  featured?: boolean;
+  destructiveTags?: string[];
   typeLabel?: string;
 };
 

@@ -15,9 +15,7 @@ function toListing(
     href: `/read/${source.id}`,
     updated,
     tags: source.tags,
-    draft: source.draft,
-    aiGenerated: source.aiGenerated,
-    featured: source.featured,
+    destructiveTags: source.destructiveTags,
     typeLabel,
   };
 }
@@ -28,25 +26,12 @@ function byUpdatedDesc(a: ContentListEntry, b: ContentListEntry): number {
   return tb - ta;
 }
 
-/**
- * Every publicly readable entry on the site (posts + courses), split the way
- * the home page presents them: hand-written vs. AI-generated, featured first.
- */
-export function getContentListings() {
-  const listings: ContentListEntry[] = [
+/** Every publicly readable entry on the site (posts + courses), newest first. */
+export function getContentListings(): ContentListEntry[] {
+  return [
     ...getAllPosts().map((post) => toListing(post, "Post", post.updated)),
     ...getAllCoursesWithLatest().map((course) =>
       toListing(course, "Course", course.latestUpdated),
     ),
   ].sort(byUpdatedDesc);
-
-  const isHuman = (listing: ContentListEntry) => !listing.aiGenerated;
-
-  return {
-    featured: listings.filter(
-      (listing) => isHuman(listing) && listing.featured,
-    ),
-    other: listings.filter((listing) => isHuman(listing) && !listing.featured),
-    aiGenerated: listings.filter((listing) => !isHuman(listing)),
-  };
 }

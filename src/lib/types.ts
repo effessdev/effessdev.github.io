@@ -4,10 +4,8 @@ import { z } from "zod";
 const sharedFields = {
   title: z.string(),
   description: z.string().optional(),
-  draft: z.boolean().default(false),
-  aiGenerated: z.boolean().default(false),
-  featured: z.boolean().default(false),
   tags: z.array(z.string()).default([]),
+  destructiveTags: z.array(z.string()).default([]),
 };
 
 export const PostSchema = z.object({

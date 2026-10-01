@@ -58,17 +58,15 @@ export function Badge({
   );
 }
 
-/** The date/tags/Draft/AI-generated badge row shared by lists and articles. */
+/** The date/tags/destructive-tag badge row shared by lists and articles. */
 export function MetaBadges({
   updated,
   tags,
-  draft,
-  aiGenerated,
+  destructiveTags,
 }: {
   updated?: string;
   tags?: string[];
-  draft?: boolean;
-  aiGenerated?: boolean;
+  destructiveTags?: string[];
 }) {
   return (
     <div className="flex flex-wrap gap-2">
@@ -76,8 +74,11 @@ export function MetaBadges({
       {(tags ?? []).map((tag) => (
         <Badge key={tag}>{tag}</Badge>
       ))}
-      {draft && <Badge tone="destructive">Draft</Badge>}
-      {aiGenerated && <Badge tone="destructive">AI-generated</Badge>}
+      {(destructiveTags ?? []).map((tag) => (
+        <Badge key={tag} tone="destructive">
+          {tag}
+        </Badge>
+      ))}
     </div>
   );
 }

@@ -20,10 +20,8 @@ export function parseMarkdownPost(filePath: string): Post {
       title: data.title,
       description: data.description,
       updated: data.updated,
-      draft: data.draft === true,
-      aiGenerated: data.aiGenerated === true,
-      featured: data.featured === true,
       tags: data.tags ?? [],
+      destructiveTags: data.destructiveTags ?? [],
       content,
     }),
     id: path.basename(filePath, ".md"),
@@ -33,7 +31,6 @@ export function parseMarkdownPost(filePath: string): Post {
 export function getPostsFromDirectory(
   dirPath: string,
   options?: {
-    includeDrafts?: boolean;
     sortBy?: "updated-desc" | "filename";
   },
 ): Post[] {
@@ -49,20 +46,13 @@ export function getPostsFromDirectory(
     parseMarkdownPost(path.join(dirPath, file)),
   );
 
-  const filtered = options?.includeDrafts
-    ? posts
-    : posts.filter((post) => !post.draft);
+  if (options?.sortBy === "filename") return posts;
 
-  if (options?.sortBy === "filename") return filtered;
-
-  return filtered.sort(sortPostsByUpdatedDesc);
+  return posts.sort(sortPostsByUpdatedDesc);
 }
 
 export function getAllPosts(): Post[] {
-  return getPostsFromDirectory(readDirectory, {
-    includeDrafts: false,
-    sortBy: "updated-desc",
-  });
+  return getPostsFromDirectory(readDirectory, { sortBy: "updated-desc" });
 }
 
 export function getPostById(id: string): Post | null {
