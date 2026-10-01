@@ -47,7 +47,7 @@
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-mono:
     "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
-  --radius: 0;
+  --radius: 0px;
   --shadow-x: 0;
   --shadow-y: 1px;
   --shadow-blur: 12px;
@@ -108,7 +108,7 @@
   --font-serif: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-mono:
     "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
-  --radius: 0;
+  --radius: 0.5rem;
   --shadow-x: 0;
   --shadow-y: 1px;
   --shadow-blur: 8px;
