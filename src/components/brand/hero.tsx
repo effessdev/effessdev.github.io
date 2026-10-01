@@ -11,7 +11,7 @@ const github = socials.find((social) => social.label === "GitHub")!;
  */
 export function Hero() {
   return (
-    <section className="hero-glow relative overflow-hidden">
+    <section className="hero-glow border rounded-2xl relative overflow-hidden">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-start gap-10 px-4 py-16 sm:px-6 md:flex-row md:items-center md:py-20 lg:px-8">
         <div className="flex-1">
           <p className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 font-mono text-xs text-muted-foreground">

@@ -72,8 +72,12 @@ export default function ScrollHeader({
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full bg-background transition-transform duration-300 ease-in-out will-change-transform",
-        isVisible ? "translate-y-0" : "-translate-y-full",
+        // Fixed so it floats over the hero glow. Transparent wrapper with
+        // padding around the bar — the translucent, max-width bar itself
+        // (SiteHeader) is what slides, so the gradient never gets a hard
+        // full-bleed edge cutting through it as the navbar appears/vanishes.
+        "fixed inset-x-0 top-0 z-50 flex w-full justify-center px-4 pt-3 transition-transform duration-300 ease-in-out will-change-transform sm:px-6 lg:px-8",
+        isVisible ? "translate-y-0" : "-translate-y-[130%]",
       )}
     >
       {children}

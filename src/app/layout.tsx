@@ -64,7 +64,7 @@ export default function RootLayout({
             <SiteHeader />
           </ScrollHeader>
 
-          <main className="flex-1 w-full mx-auto max-w-6xl px-4 pb-12 sm:px-6 lg:px-8">
+          <main className="flex-1 w-full mx-auto max-w-6xl px-4 pt-24 pb-12 sm:px-6 lg:px-8">
             {children}
           </main>
 
