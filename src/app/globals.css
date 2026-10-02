@@ -57,6 +57,8 @@
   --color-border: var(--border);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+  /* Display font for the hero accent; set by displayFont in src/app/layout.tsx */
+  --font-display: var(--font-display);
 }
 
 /* Tailwind v4 defaults borders to currentColor; keep them on the brand border. */

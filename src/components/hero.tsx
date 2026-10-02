@@ -21,7 +21,7 @@ export function Hero() {
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             Free tutorials on{" "}
-            <span className="text-primary">embedded systems</span>
+            <span className="font-display text-primary">embedded systems</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
