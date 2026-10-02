@@ -94,6 +94,7 @@ export default async function ChapterPage({
   }
 
   const chapter = entry.post;
+  const course = getCourseMeta(courseId);
   const chapters = getCourseChapters(courseId);
   const idx = chapters.findIndex((c) => c.id === chapterId);
   const prev = idx > 0 ? chapters[idx - 1] : null;
@@ -105,64 +106,20 @@ export default async function ChapterPage({
         backLabel="Chapters"
         backHref={`/read/${courseId}`}
         extraLinks={[{ label: "Tutorials", href: "/" }]}
+        prevHref={prev ? `/read/${courseId}/${prev.id}` : undefined}
+        nextHref={next ? `/read/${courseId}/${next.id}` : undefined}
       />
-
-      <ChapterNavTop courseId={courseId} prev={prev} next={next} />
 
       <PostComponent post={chapter} />
 
-      <ChapterNavBottom courseId={courseId} prev={prev} next={next} />
+      <div className="h-6" />
+
+      <PrevAndNext courseId={courseId} prev={prev} next={next} />
     </>
   );
 }
 
-/** Prev/Next pill that renders disabled when there is no chapter. */
-function NavPill({
-  chapter,
-  courseId,
-  children,
-}: {
-  chapter: Post | null;
-  courseId: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={chapter ? `/read/${courseId}/${chapter.id}` : "#"}
-      aria-disabled={!chapter || undefined}
-      tabIndex={chapter ? undefined : -1}
-      className={cn(
-        btn({ size: "lg" }),
-        !chapter && "pointer-events-none opacity-50",
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function ChapterNavTop({
-  courseId,
-  prev,
-  next,
-}: {
-  courseId: string;
-  prev: Post | null;
-  next: Post | null;
-}) {
-  return (
-    <nav className="my-6 flex gap-2 border-t pt-6">
-      <NavPill courseId={courseId} chapter={prev}>
-        <ArrowLeft /> Prev
-      </NavPill>
-      <NavPill courseId={courseId} chapter={next}>
-        Next <ArrowRight />
-      </NavPill>
-    </nav>
-  );
-}
-
-function ChapterNavBottom({
+function PrevAndNext({
   courseId,
   prev,
   next,
@@ -174,7 +131,7 @@ function ChapterNavBottom({
   const tile = cn(card, "flex-1 p-4 transition-colors hover:bg-card/80");
 
   return (
-    <nav className="mt-8 flex justify-between gap-2 border-t pt-6">
+    <nav className="flex justify-between gap-2">
       {prev && (
         <Link href={`/read/${courseId}/${prev.id}`} className={tile}>
           <div className="mb-2 flex items-center gap-2">
