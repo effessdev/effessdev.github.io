@@ -6,7 +6,7 @@ import { Markdown } from "@/lib/markdown";
 export default function PostComponent({ post }: { post: Post }) {
   return (
     <div className="space-y-8">
-      <article className="rounded-2xl bg-background p-0 sm:border sm:bg-card sm:p-5 md:p-8">
+      <article>
         <h1 className="border-b pb-2 text-5xl font-bold">{post.title}</h1>
         <div className="my-10 mt-4">
           <MetaBadges {...post} />
