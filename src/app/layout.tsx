@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const displayFont = Agu_Display({
   subsets: ["latin"],
   variable: "--font-display",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
