@@ -7,7 +7,9 @@ export default function PostComponent({ post }: { post: Post }) {
   return (
     <div className="space-y-8">
       <article>
-        <h1 className="border-b pb-2 text-5xl font-bold">{post.title}</h1>
+        <h1 className="border-b pb-2 text-3xl font-bold md:text-5xl">
+          {post.title}
+        </h1>
         <div className="my-10 mt-4">
           <MetaBadges {...post} />
         </div>

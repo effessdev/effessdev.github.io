@@ -21,26 +21,26 @@ export function Markdown({ content }: { content: string }) {
         components={{
           // h1 gets a warning style — it's discouraged because the title is already h1.
           h1: ({ children }) => (
-            <h1 className="text-5xl font-bold text-destructive underline decoration-wavy decoration-2 decoration-destructive underline-offset-4">
+            <h1 className="text-[2rem] font-bold text-destructive underline decoration-wavy decoration-2 decoration-destructive underline-offset-4 md:text-5xl">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="w-full border-b pb-2 text-4xl font-bold">
+            <h2 className="w-full border-b pb-2 text-[1.75rem] font-bold md:text-4xl">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-3xl font-bold">{children}</h3>
+            <h3 className="text-[1.5rem] font-bold md:text-3xl">{children}</h3>
           ),
           h4: ({ children }) => (
-            <h4 className="text-2xl font-bold">{children}</h4>
+            <h4 className="text-[1.3rem] font-bold md:text-2xl">{children}</h4>
           ),
           h5: ({ children }) => (
-            <h5 className="text-xl font-bold">{children}</h5>
+            <h5 className="text-[1.15rem] font-bold md:text-xl">{children}</h5>
           ),
           h6: ({ children }) => (
-            <h6 className="text-lg font-bold">{children}</h6>
+            <h6 className="text-[1.05rem] font-bold md:text-lg">{children}</h6>
           ),
           ul: ({ children }) => <ul className="list-disc pl-8">{children}</ul>,
           ol: ({ children }) => (

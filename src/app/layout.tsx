@@ -60,7 +60,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Theme toggle floats over every page, pinned to the top-right corner. */}
-          <div className="fixed right-2 top-2 z-50 sm:right-4 sm:top-4">
+          <div className="fixed right-4 top-4 z-50">
             <ThemeToggle />
           </div>
 
