@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContentList from "@/components/content-list";
-import { Hero } from "@/components/brand/hero";
+import { Hero } from "@/components/hero";
 import { brand } from "@/lib/brand";
 import { getContentListings } from "@/lib/content";
 

@@ -1,5 +1,5 @@
-import { Logo } from "@/components/brand/logo";
-import { SocialIcon } from "@/components/brand/social-icon";
+import { Logo } from "@/components/logo";
+import { SocialIcon } from "@/components/social-icon";
 import { btn } from "@/components/ui";
 import { repoUrl, socials } from "@/lib/brand";
 

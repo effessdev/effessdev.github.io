@@ -7,7 +7,7 @@ import {
   getCourseMeta,
 } from "@/lib/courses";
 import PostComponent from "@/components/post-component";
-import TopNav from "@/components/layout/top-nav";
+import TopNav from "@/components/top-nav";
 import ContentList from "@/components/content-list";
 
 interface ReadEntryPageProps {

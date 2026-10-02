@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo } from "@/components/brand/logo";
+import { Logo } from "@/components/logo";
 import { btn } from "@/components/ui";
 
 export default function NotFound() {

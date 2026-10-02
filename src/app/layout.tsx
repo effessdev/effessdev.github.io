@@ -6,7 +6,7 @@ import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
 import { brand } from "@/lib/brand";
-import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteFooter } from "@/components/site-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });

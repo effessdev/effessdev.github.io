@@ -6,7 +6,7 @@ import {
   getCourseChapters,
   getCourseMeta,
 } from "@/lib/courses";
-import TopNav from "@/components/layout/top-nav";
+import TopNav from "@/components/top-nav";
 import PostComponent from "@/components/post-component";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
