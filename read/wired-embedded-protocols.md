@@ -1,7 +1,7 @@
 ---
 title: "Wired Embedded Protocols (UART, I2C, SPI, and CAN): A Practical Guide"
-description: "A practical guide to the four most common wired embedded protocols—UART, I2C, SPI, and CAN—covering how each works, when to use it, and Arduino code examples."
-updated: "2026-09-20"
+description: "A practical guide to the four most common wired embedded protocols (UART, I2C, SPI, and CAN), covering how each works, when to use it, and Arduino code examples."
+updated: "2026-10-02"
 tags: ["embedded", "arduino", "protocols"]
 destructiveTags: ["AI-generated"]
 ---
@@ -9,8 +9,6 @@ destructiveTags: ["AI-generated"]
 Embedded systems rarely operate in isolation. Whether you're reading a temperature sensor, logging data to an SD card, or coordinating multiple microcontrollers, you need a reliable way for chips to talk to each other. While wireless protocols like Wi-Fi and Bluetooth get plenty of attention, the workhorses of embedded communication are the wired protocols: **UART, I2C, SPI, and CAN**.
 
 This guide covers the fundamentals of each, when to use them, and practical Arduino code to get started.
-
----
 
 ## UART (Universal Asynchronous Receiver/Transmitter)
 
@@ -60,8 +58,6 @@ void loop() {
 ```
 
 For multiple UART ports, boards like the Arduino Mega or ESP32 provide additional hardware serial interfaces (e.g., `Serial1`, `Serial2`).
-
----
 
 ## I2C (Inter-Integrated Circuit)
 
@@ -127,8 +123,6 @@ void requestEvent() {
 
 A common practical task is scanning the I2C bus to discover connected devices, which is useful for debugging.
 
----
-
 ## SPI (Serial Peripheral Interface)
 
 SPI is a **synchronous, full-duplex** protocol known for its high speed. It uses four wires: MOSI (Master Out Slave In), MISO (Master In Slave Out), SCK (clock), and SS (Slave Select).
@@ -173,8 +167,6 @@ void loop() {
 ```
 
 SPI's full-duplex nature means every transfer sends and receives simultaneously. Even if you only want to receive, you must send a dummy byte to generate clock cycles.
-
----
 
 ## CAN (Controller Area Network)
 
@@ -245,8 +237,6 @@ void loop() {
   }
 }
 ```
-
----
 
 ## Choosing the Right Protocol
 
