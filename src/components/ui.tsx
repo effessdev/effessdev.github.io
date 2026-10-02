@@ -1,4 +1,5 @@
 import type { ComponentProps } from "react";
+import { TriangleAlert } from "lucide-react";
 import { cn, formatDate } from "@/lib/utils";
 
 /** Shared bordered-surface look (list items, articles, nav tiles). */
@@ -79,6 +80,32 @@ export function MetaBadges({
           {tag}
         </Badge>
       ))}
+    </div>
+  );
+}
+
+/** Replaces content whose frontmatter failed validation, instead of rendering it. */
+export function FrontmatterError({
+  file,
+  message,
+}: {
+  file: string;
+  message: string;
+}) {
+  return (
+    <div
+      className={cn(card, "flex flex-col items-center gap-4 p-10 text-center")}
+    >
+      <TriangleAlert className="size-10 text-destructive" />
+      <h1 className="text-3xl font-bold">This page can&apos;t be shown</h1>
+      <p className="max-w-prose text-muted-foreground">
+        The content in <code className="font-mono">{file}</code> doesn&apos;t
+        follow the required frontmatter format, so it was hidden. Fixing the
+        problem below will make it appear again.
+      </p>
+      <p className="max-w-prose rounded-xl border border-destructive/30 bg-destructive/10 px-4 py-2 font-mono text-sm text-destructive">
+        {message}
+      </p>
     </div>
   );
 }

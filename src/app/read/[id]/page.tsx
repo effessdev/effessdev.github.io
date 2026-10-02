@@ -9,6 +9,7 @@ import {
 import PostComponent from "@/components/post-component";
 import TopNav from "@/components/top-nav";
 import ContentList from "@/components/content-list";
+import { FrontmatterError } from "@/components/ui";
 
 interface ReadEntryPageProps {
   params: Promise<{
@@ -24,24 +25,32 @@ export async function generateMetadata({
   params,
 }: ReadEntryPageProps): Promise<Metadata> {
   const { id } = await params;
-  const post = getPostById(id);
+  const entry = getPostById(id);
 
+  if (entry?.status === "error") {
+    return {
+      title: "Content Not Available",
+      robots: "noindex",
+    };
+  }
+
+  const post = entry?.post;
   if (post) {
     return {
       title: post.title,
-      description: post.description ?? "",
-      keywords: (post.tags ?? []).join(", "),
+      description: post.description,
+      keywords: post.tags.join(", "),
       openGraph: {
         title: post.title,
-        description: post.description ?? "",
+        description: post.description,
         type: "article",
         publishedTime: post.updated,
-        tags: post.tags ?? [],
+        tags: post.tags,
       },
       twitter: {
         card: "summary_large_image",
         title: post.title,
-        description: post.description ?? "",
+        description: post.description,
       },
     };
   }
@@ -51,7 +60,7 @@ export async function generateMetadata({
     return {
       title: course.title,
       description: course.description,
-      keywords: [course.title, "course", ...(course.tags ?? [])].join(", "),
+      keywords: [course.title, "course", ...course.tags].join(", "),
       openGraph: {
         title: course.title,
         description: course.description,
@@ -72,14 +81,24 @@ export async function generateMetadata({
 
 export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
   const { id } = await params;
-  const post = getPostById(id);
+  const entry = getPostById(id);
 
-  if (post) {
+  if (entry) {
+    if (entry.status === "error") {
+      return (
+        <>
+          <TopNav backHref="/" backLabel="Tutorials" />
+
+          <FrontmatterError file={`read/${id}.md`} message={entry.error} />
+        </>
+      );
+    }
+
     return (
       <>
         <TopNav backHref="/" backLabel="Tutorials" />
 
-        <PostComponent post={post} />
+        <PostComponent post={entry.post} />
       </>
     );
   }

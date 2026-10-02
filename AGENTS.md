@@ -8,28 +8,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Frontmatter
+# Code writing rules
 
-```
----
-title: "Post/Chapter Title"
-description: "Description for the post/chapter (only shown in the listing page, not inside the content)."
-updated: "yyyy-mm-dd"
-tags: ["tag1", "tag2", "tag3"]
-destructiveTags: ["tag4"]
----
-```
-
-Here, only `title` and `updated` are mandatory. Other fields are optional.
-
-`tags` render as normal badges. `destructiveTags` are just like `tags`, but rendered
-with destructive styling after the normal tags — use them for warning-style labels.
-
-# Course and post writing rules
-
-- Add `"AI-generated"` to `destructiveTags` in the frontmatter if *you* are writing the post.
-- Use `$` and `$$` for LaTeX.
-- Do not create large tables, since many users are on smartphones.
-- Do not use horizontal rules (`---`) at all.
-- Do not use level 1 headings (`#`), only use level 2 (`##`) or lower. Level 1 is reserved for the title.
-- Give the output in a Markdown code block (4 backticks instead of 3)
+- Do not repeat styles. Instead define reusable components and use them accross the codebase.
+- Keep the site simple. Do not add more components unless necessary. Reuse existing ones.
+- Do not add, remove, or change the colors in `globals.css`.

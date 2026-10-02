@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import {
   getAllCourseIds,
   getChapter,
+  getChapterIds,
   getCourseChapters,
   getCourseMeta,
 } from "@/lib/courses";
@@ -10,15 +11,15 @@ import TopNav from "@/components/top-nav";
 import PostComponent from "@/components/post-component";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { btn, card } from "@/components/ui";
+import { btn, card, FrontmatterError } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { Post } from "@/lib/types";
 
 export function generateStaticParams() {
   return getAllCourseIds().flatMap((courseId) =>
-    getCourseChapters(courseId).map((chapter) => ({
+    getChapterIds(courseId).map((chapter) => ({
       id: courseId,
-      chapter: chapter.id,
+      chapter,
     })),
   );
 }
@@ -30,14 +31,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id: courseId, chapter: chapterId } = await params;
   const course = getCourseMeta(courseId);
-  const chapter = getChapter(courseId, chapterId);
+  const entry = getChapter(courseId, chapterId);
 
-  if (!chapter) {
+  if (!entry) {
     return {
       title: "Chapter Not Found",
       description: "The requested course chapter could not be found.",
     };
   }
+
+  if (entry.status === "error") {
+    return {
+      title: "Content Not Available",
+      robots: "noindex",
+    };
+  }
+
+  const chapter = entry.post;
 
   return {
     title: `${chapter.title} | ${course.title}`,
@@ -63,9 +73,27 @@ export default async function ChapterPage({
   params: Promise<{ id: string; chapter: string }>;
 }) {
   const { id: courseId, chapter: chapterId } = await params;
-  const chapter = getChapter(courseId, chapterId);
-  if (!chapter) notFound();
+  const entry = getChapter(courseId, chapterId);
+  if (!entry) notFound();
 
+  if (entry.status === "error") {
+    return (
+      <>
+        <TopNav
+          backLabel="Chapters"
+          backHref={`/read/${courseId}`}
+          extraLinks={[{ label: "Tutorials", href: "/" }]}
+        />
+
+        <FrontmatterError
+          file={`read/${courseId}/${chapterId}.md`}
+          message={entry.error}
+        />
+      </>
+    );
+  }
+
+  const chapter = entry.post;
   const chapters = getCourseChapters(courseId);
   const idx = chapters.findIndex((c) => c.id === chapterId);
   const prev = idx > 0 ? chapters[idx - 1] : null;

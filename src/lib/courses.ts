@@ -1,7 +1,12 @@
 import fs from "fs";
 import path from "path";
 import { Post, CourseMeta, CourseMetaSchema } from "./types";
-import { getPostsFromDirectory } from "./posts";
+import {
+  getPostsFromDirectory,
+  getMarkdownById,
+  getMarkdownFileIds,
+  ParsedMarkdown,
+} from "./posts";
 
 const readDirectory = path.join(process.cwd(), "read");
 
@@ -50,6 +55,15 @@ export function getCourseChapters(courseId: string): Post[] {
   });
 }
 
-export function getChapter(courseId: string, chapterId: string): Post | null {
-  return getCourseChapters(courseId).find((c) => c.id === chapterId) || null;
+/** Ids of every chapter file in a course, including ones with invalid frontmatter. */
+export function getChapterIds(courseId: string): string[] {
+  return getMarkdownFileIds(path.join(readDirectory, courseId));
+}
+
+/** Parse one chapter by id, whether or not its frontmatter is valid. Null if the file doesn't exist. */
+export function getChapter(
+  courseId: string,
+  chapterId: string,
+): ParsedMarkdown | null {
+  return getMarkdownById(path.join(readDirectory, courseId), chapterId);
 }
