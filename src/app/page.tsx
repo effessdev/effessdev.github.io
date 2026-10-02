@@ -80,6 +80,7 @@ export default function Home() {
       >
         <ContentList heading="Tutorials" items={listings} />
       </div>
+      <div className="h-12" />
     </>
   );
 }

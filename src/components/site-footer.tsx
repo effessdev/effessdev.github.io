@@ -8,7 +8,7 @@ import { brand, socials } from "@/lib/brand";
  */
 export function SiteFooter() {
   return (
-    <footer className="mt-16 bg-[#045a87] text-[#dceefb]">
+    <footer className="bg-[#045a87] text-[#dceefb]">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
           <div className="flex items-center gap-4">
