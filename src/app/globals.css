@@ -91,7 +91,7 @@
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-subst {
-  color: #d73a49;
+  color: #c9303f;
 }
 
 .hljs-number,
@@ -127,15 +127,15 @@
 
 .hljs-symbol,
 .hljs-bullet {
-  color: #e36209;
+  color: #b8520a;
 }
 
 .hljs-deletion {
-  background: #ffeef0;
+  background: #ffdce0;
 }
 
 .hljs-addition {
-  background: #f0fff4;
+  background: #cdffd8;
 }
 
 .dark .hljs {
@@ -145,13 +145,13 @@
 .dark .hljs-comment,
 .dark .hljs-quote,
 .dark .hljs-meta {
-  color: #8b949e;
+  color: #a2adb8;
 }
 
 .dark .hljs-keyword,
 .dark .hljs-selector-tag,
 .dark .hljs-subst {
-  color: #ff7b72;
+  color: #ff9088;
 }
 
 .dark .hljs-number,

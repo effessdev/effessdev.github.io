@@ -64,7 +64,7 @@ export function Markdown({ content }: { content: string }) {
           ),
           pre: ({ children }) => (
             <pre
-              className={`${RADIUS} overflow-x-auto border border-border bg-background p-2 text-sm font-mono md:p-6`}
+              className={`${RADIUS} overflow-x-auto border border-border bg-card p-2 text-sm font-mono md:p-6`}
             >
               {children}
             </pre>
