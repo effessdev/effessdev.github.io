@@ -11,7 +11,7 @@ export const brand = {
   url: "https://effessdev.github.io",
   tagline: "Tutorials on embedded systems, C, and the metal underneath.",
   description:
-    "Plain-spoken tutorials and courses on embedded systems, C, ESP-IDF, and everything that blinks back.",
+    "Plain-spoken tutorials on embedded systems, C, ESP-IDF, and everything that blinks back.",
   colors: {
     sea: "#045a87",
     yellow: "#fce168",

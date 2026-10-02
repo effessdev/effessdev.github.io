@@ -10,35 +10,21 @@ export type ContentListEntry = {
   updated?: string;
   tags?: string[];
   destructiveTags?: string[];
-  typeLabel?: string;
 };
 
-/** The one list used everywhere: home page sections and course chapter lists. */
+/** The one list used everywhere on the site. */
 export default function ContentList({
   heading,
-  description,
   items,
   id,
-  headingLevel = 2,
 }: {
   heading: string;
-  description?: string;
   items: ContentListEntry[];
   id?: string;
-  headingLevel?: 1 | 2;
 }) {
-  const Heading = headingLevel === 1 ? "h1" : "h2";
-
   return (
     <section id={id} className="space-y-6">
-      <div className="space-y-2">
-        <Heading className="text-4xl font-bold tracking-tight">
-          {heading}
-        </Heading>
-        {description && (
-          <p className="text-base text-muted-foreground">{description}</p>
-        )}
-      </div>
+      <h2 className="text-4xl font-bold tracking-tight">{heading}</h2>
 
       {items.length === 0 ? (
         <p className="text-muted-foreground">
@@ -65,7 +51,7 @@ export default function ContentList({
                 href={item.href}
                 className={btn({ size: "sm" }, "shrink-0")}
               >
-                {item.typeLabel === "Course" ? "View Chapters" : "Read"}
+                Read
               </Link>
             </div>
             <MetaBadges {...item} />

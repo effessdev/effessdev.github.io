@@ -1,14 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPostIds, getPostById } from "@/lib/posts";
-import {
-  getAllCourseIds,
-  getCourseChapters,
-  getCourseMeta,
-} from "@/lib/courses";
 import PostComponent from "@/components/post-component";
 import TopNav from "@/components/top-nav";
-import ContentList from "@/components/content-list";
 import { FrontmatterError } from "@/components/ui";
 
 interface ReadEntryPageProps {
@@ -18,7 +12,7 @@ interface ReadEntryPageProps {
 }
 
 export async function generateStaticParams() {
-  return [...getAllPostIds(), ...getAllCourseIds()].map((id) => ({ id }));
+  return getAllPostIds().map((id) => ({ id }));
 }
 
 export async function generateMetadata({
@@ -27,104 +21,60 @@ export async function generateMetadata({
   const { id } = await params;
   const entry = getPostById(id);
 
-  if (entry?.status === "error") {
+  if (!entry) {
+    return {
+      title: "Content Not Found",
+    };
+  }
+
+  if (entry.status === "error") {
     return {
       title: "Content Not Available",
       robots: "noindex",
     };
   }
 
-  const post = entry?.post;
-  if (post) {
-    return {
+  const post = entry.post;
+  return {
+    title: post.title,
+    description: post.description,
+    keywords: post.tags.join(", "),
+    openGraph: {
       title: post.title,
       description: post.description,
-      keywords: post.tags.join(", "),
-      openGraph: {
-        title: post.title,
-        description: post.description,
-        type: "article",
-        publishedTime: post.updated,
-        tags: post.tags,
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: post.title,
-        description: post.description,
-      },
-    };
-  }
-
-  try {
-    const course = getCourseMeta(id);
-    return {
-      title: course.title,
-      description: course.description,
-      keywords: [course.title, "course", ...course.tags].join(", "),
-      openGraph: {
-        title: course.title,
-        description: course.description,
-        type: "website",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: course.title,
-        description: course.description,
-      },
-    };
-  } catch {
-    return {
-      title: "Content Not Found",
-    };
-  }
+      type: "article",
+      publishedTime: post.updated,
+      tags: post.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+  };
 }
 
 export default async function ReadEntryPage({ params }: ReadEntryPageProps) {
   const { id } = await params;
   const entry = getPostById(id);
 
-  if (entry) {
-    if (entry.status === "error") {
-      return (
-        <>
-          <TopNav backHref="/" backLabel="Tutorials" />
+  if (!entry) notFound();
 
-          <FrontmatterError file={`read/${id}.md`} message={entry.error} />
-        </>
-      );
-    }
-
+  if (entry.status === "error") {
     return (
       <>
         <TopNav backHref="/" backLabel="Tutorials" />
 
-        <PostComponent post={entry.post} />
+        <FrontmatterError file={`read/${id}.md`} message={entry.error} />
       </>
     );
-  }
-
-  let course, chapters;
-
-  try {
-    course = getCourseMeta(id);
-    chapters = getCourseChapters(id);
-  } catch {
-    notFound();
   }
 
   return (
     <>
       <TopNav backHref="/" backLabel="Tutorials" />
 
-      <ContentList
-        heading={course.title}
-        description={course.description}
-        headingLevel={1}
-        items={chapters.map((chapter) => ({
-          ...chapter,
-          href: `/read/${id}/${chapter.id}`,
-        }))}
-      />
+      <PostComponent post={entry.post} />
     </>
   );
 }

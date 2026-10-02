@@ -56,12 +56,7 @@ export function getMarkdownFileIds(dirPath: string): string[] {
     .map((entry) => entry.slice(0, -".md".length));
 }
 
-export function getPostsFromDirectory(
-  dirPath: string,
-  options?: {
-    sortBy?: "updated-desc" | "filename";
-  },
-): Post[] {
+export function getPostsFromDirectory(dirPath: string): Post[] {
   const posts: Post[] = [];
 
   for (const id of getMarkdownFileIds(dirPath)) {
@@ -73,13 +68,11 @@ export function getPostsFromDirectory(
     }
   }
 
-  if (options?.sortBy === "filename") return posts;
-
   return posts.sort(sortPostsByUpdatedDesc);
 }
 
 export function getAllPosts(): Post[] {
-  return getPostsFromDirectory(readDirectory, { sortBy: "updated-desc" });
+  return getPostsFromDirectory(readDirectory);
 }
 
 /** Parse one `.md` file by id, whether or not its frontmatter is valid. Null if the file doesn't exist. */
