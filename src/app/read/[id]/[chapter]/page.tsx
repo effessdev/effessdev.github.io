@@ -128,10 +128,10 @@ function PrevAndNext({
   prev: Post | null;
   next: Post | null;
 }) {
-  const tile = cn(card, "flex-1 p-4 transition-colors hover:bg-card/80");
+  const tile = cn(card, "basis-1/2 p-4 transition-colors hover:bg-card/80");
 
   return (
-    <nav className="flex justify-between gap-2">
+    <nav className="flex justify-center gap-2">
       {prev && (
         <Link href={`/read/${courseId}/${prev.id}`} className={tile}>
           <div className="mb-2 flex items-center gap-2">
@@ -143,11 +143,8 @@ function PrevAndNext({
       )}
 
       {next && (
-        <Link
-          href={`/read/${courseId}/${next.id}`}
-          className={cn(tile, "text-right")}
-        >
-          <div className="mb-2 flex items-center justify-end gap-2">
+        <Link href={`/read/${courseId}/${next.id}`} className={tile}>
+          <div className="mb-2 flex items-center gap-2">
             Next
             <ArrowRight />
           </div>
