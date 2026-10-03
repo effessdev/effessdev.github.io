@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
-import { btn } from "@/components/ui";
+import { btn, card, Markdown } from "@/components/ui";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "EffessDev • Home",
 };
 
 export default function Home() {
+  const homeContent = readFileSync(
+    join(process.cwd(), "content", "home.md"),
+    "utf8",
+  );
+
   return (
     <>
       <section className="bg-card">
@@ -62,7 +70,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div id="content"></div>
+      <div id="content" />
+      <article className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+        <Markdown content={homeContent} />
+      </article>
       <div className="h-12" />
     </>
   );

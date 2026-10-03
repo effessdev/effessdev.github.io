@@ -1,4 +1,6 @@
 import type { ComponentProps } from "react";
+import ReactMarkdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 
 /** Shared bordered-surface look (list items, articles, nav tiles). */
@@ -55,5 +57,79 @@ export function Badge({
       )}
       {...props}
     />
+  );
+}
+
+/** Maps markdown elements to simple typographic styles (no typography plugin). */
+const MD_ELEMENTS: Components = {
+  h1: ({ children }) => (
+    <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+      {children}
+    </h1>
+  ),
+  h2: ({ children }) => (
+    <h2 className="mt-8 text-2xl font-bold tracking-tight text-foreground">
+      {children}
+    </h2>
+  ),
+  h3: ({ children }) => (
+    <h3 className="mt-6 text-lg font-semibold text-foreground">{children}</h3>
+  ),
+  p: ({ children }) => (
+    <p className="mt-4 leading-relaxed text-muted-foreground">{children}</p>
+  ),
+  ul: ({ children }) => (
+    <ul className="mt-4 list-disc space-y-1 pl-6 text-muted-foreground">
+      {children}
+    </ul>
+  ),
+  ol: ({ children }) => (
+    <ol className="mt-4 list-decimal space-y-1 pl-6 text-muted-foreground">
+      {children}
+    </ol>
+  ),
+  li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+  a: ({ href, children }) => (
+    <a
+      href={href}
+      className="font-medium text-primary underline-offset-4 hover:underline"
+    >
+      {children}
+    </a>
+  ),
+  code: ({ children }) => (
+    <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
+      {children}
+    </code>
+  ),
+  blockquote: ({ children }) => (
+    <blockquote className="mt-4 border-l-2 border-primary pl-4 text-muted-foreground italic">
+      {children}
+    </blockquote>
+  ),
+  hr: () => <hr className="my-8 border-border" />,
+  table: ({ children }) => (
+    <div className="mt-4 overflow-x-auto">
+      <table className="w-full border-collapse text-sm">{children}</table>
+    </div>
+  ),
+  th: ({ children }) => (
+    <th className="border border-border bg-muted px-3 py-2 text-left font-semibold text-foreground">
+      {children}
+    </th>
+  ),
+  td: ({ children }) => (
+    <td className="border border-border px-3 py-2 text-muted-foreground">
+      {children}
+    </td>
+  ),
+};
+
+/** Renders a markdown string with the site's look. */
+export function Markdown({ content }: { content: string }) {
+  return (
+    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_ELEMENTS}>
+      {content}
+    </ReactMarkdown>
   );
 }
