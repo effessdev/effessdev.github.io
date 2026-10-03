@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { brand } from "@/lib/brand";
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
 import { btn } from "@/components/ui";
-import { repoUrl, socials } from "@/lib/brand";
-
-const github = socials.find((social) => social.label === "GitHub")!;
 
 export const metadata: Metadata = {
-  title: "Embedded Systems Tutorials",
-  description: brand.description,
+  title: "EffessDev • Home",
 };
 
 export default function Home() {
@@ -38,7 +33,7 @@ export default function Home() {
                 Scroll down
               </a>
               <a
-                href={github.href}
+                href="https://github.com/effessdev"
                 target="_blank"
                 rel="noreferrer"
                 className={btn({ variant: "outline", size: "lg" })}
@@ -51,7 +46,7 @@ export default function Home() {
             <p className="mt-4 text-sm text-muted-foreground">
               This site is open source.{" "}
               <a
-                href={repoUrl}
+                href="https://github.com/effessdev/effessdev.github.io"
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-primary underline-offset-4 hover:underline"

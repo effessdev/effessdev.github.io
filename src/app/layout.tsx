@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter, JetBrains_Mono, Agu_Display } from "next/font/google";
+import { Inter, Agu_Display } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
 
 import { cn } from "@/lib/utils";
-import { brand } from "@/lib/brand";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -18,23 +17,23 @@ const displayFont = Agu_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(brand.url),
+  metadataBase: new URL("https://effessdev.github.io"),
   title: {
-    default: brand.name,
-    template: `%s | ${brand.name}`,
+    default: "EffessDev",
+    template: `%s • EffessDev`,
   },
-  description: brand.description,
+  description: "I am EffessDev. This is my GitHub Pages website.",
   openGraph: {
-    title: brand.name,
-    description: brand.description,
+    title: "EffessDev",
+    description: "I am EffessDev. This is my GitHub Pages website.",
     type: "website",
-    url: brand.url,
-    siteName: brand.name,
+    url: "https://effessdev.github.io",
+    siteName: "EffessDev",
   },
   twitter: {
     card: "summary_large_image",
-    title: brand.name,
-    description: brand.description,
+    title: "EffessDev",
+    description: "I am EffessDev. This is my GitHub Pages website.",
   },
   verification: {
     google: "TKdqNOADhD-ATBbkWCSmNBH5dYWCBpWFuzxbRFSHGHo",
