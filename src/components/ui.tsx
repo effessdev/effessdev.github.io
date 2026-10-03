@@ -63,7 +63,7 @@ export function Badge({
 /** Maps markdown elements to simple typographic styles (no typography plugin). */
 const MD_ELEMENTS: Components = {
   h1: ({ children }) => (
-    <h1 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+    <h1 className="mt-2 text-3xl font-bold text-primary font-display tracking-tight">
       {children}
     </h1>
   ),
@@ -103,7 +103,7 @@ const MD_ELEMENTS: Components = {
     </code>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="mt-4 border-l-2 border-primary pl-4 text-muted-foreground italic">
+    <blockquote className="mt-4 border-l-2 border-primary pl-4 text-muted-foreground">
       {children}
     </blockquote>
   ),
