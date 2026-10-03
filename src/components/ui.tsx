@@ -60,35 +60,58 @@ export function Badge({
   );
 }
 
-/** Maps markdown elements to simple typographic styles (no typography plugin). */
+const AFTER_HEADING = "[h1+&]:mt-4 [h2+&]:mt-3 [h3+&]:mt-2";
+
+const HEADING_AFTER_HEADING = "[h1+&]:mt-4 [h2+&]:mt-4 [h3+&]:mt-3";
+
+const AFTER_HR = "[hr+&]:mt-10";
+
 const MD_ELEMENTS: Components = {
   h1: ({ children }) => (
-    <h1 className="mt-2 text-3xl font-bold text-primary font-display tracking-tight">
+    <h1
+      className={`mt-10 text-3xl font-bold leading-tight tracking-tight text-primary font-display first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
+    >
       {children}
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="mt-8 text-2xl font-bold tracking-tight text-foreground">
+    <h2
+      className={`mt-12 text-2xl font-bold leading-snug tracking-tight text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
+    >
       {children}
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="mt-6 text-lg font-semibold text-foreground">{children}</h3>
+    <h3
+      className={`mt-8 text-lg font-semibold leading-snug text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
+    >
+      {children}
+    </h3>
   ),
   p: ({ children }) => (
-    <p className="mt-4 leading-relaxed text-muted-foreground">{children}</p>
+    <p
+      className={`mt-5 leading-7 text-muted-foreground first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
+    >
+      {children}
+    </p>
   ),
   ul: ({ children }) => (
-    <ul className="mt-4 list-disc space-y-1 pl-6 text-muted-foreground">
+    <ul
+      className={`mt-5 list-disc space-y-2 pl-6 text-muted-foreground first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
+    >
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="mt-4 list-decimal space-y-1 pl-6 text-muted-foreground">
+    <ol
+      className={`mt-5 list-decimal space-y-2 pl-6 text-muted-foreground first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
+    >
       {children}
     </ol>
   ),
-  li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+  li: ({ children }) => (
+    <li className="pl-1 leading-7 [&>ol]:mt-2 [&>ul]:mt-2">{children}</li>
+  ),
   a: ({ href, children }) => (
     <a
       href={href}
@@ -103,23 +126,27 @@ const MD_ELEMENTS: Components = {
     </code>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="mt-4 border-l-2 border-primary pl-4 text-muted-foreground">
+    <blockquote
+      className={`mt-6 border-l-2 border-primary py-1 pl-5 text-muted-foreground first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
+    >
       {children}
     </blockquote>
   ),
-  hr: () => <hr className="my-8 border-border" />,
+  hr: () => <hr className="mt-10 border-border first:mt-0" />,
   table: ({ children }) => (
-    <div className="mt-4 overflow-x-auto">
+    <div
+      className={`mt-6 overflow-x-auto first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
+    >
       <table className="w-full border-collapse text-sm">{children}</table>
     </div>
   ),
   th: ({ children }) => (
-    <th className="border border-border bg-muted px-3 py-2 text-left font-semibold text-foreground">
+    <th className="border border-border bg-muted px-4 py-2.5 text-left font-semibold text-foreground">
       {children}
     </th>
   ),
   td: ({ children }) => (
-    <td className="border border-border px-3 py-2 text-muted-foreground">
+    <td className="border border-border px-4 py-2.5 align-top leading-relaxed text-muted-foreground">
       {children}
     </td>
   ),
