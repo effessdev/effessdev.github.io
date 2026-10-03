@@ -1,11 +1,7 @@
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
-import { brand, socials } from "@/lib/brand";
+import { socials } from "@/lib/brand";
 
-/**
- * Solid slab of the brand's deep sea blue — the mark's own canvas color —
- * so the footer reads the same in light and dark mode.
- */
 export function SiteFooter() {
   return (
     <footer className="bg-[#045a87] text-[#dceefb]">
@@ -15,10 +11,10 @@ export function SiteFooter() {
             <Logo className="h-12 w-12 rounded-full ring-2 ring-white/25" />
             <div>
               <p className="text-lg font-semibold tracking-tight text-white">
-                {brand.name}
+                EffessDev
               </p>
               <p className="mt-1 max-w-md text-sm text-[#b7dbf2]">
-                © 2026 {brand.owner}. All Rights Reserved.
+                © 2026 Faseeh Zaman F S. All Rights Reserved.
               </p>
             </div>
           </div>
