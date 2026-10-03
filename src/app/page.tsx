@@ -3,8 +3,8 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
-import { btn, card, Markdown } from "@/components/ui";
-import { cn } from "@/lib/utils";
+import { btn, Markdown, TableOfContents } from "@/components/ui";
+import { extractHeadings } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "EffessDev • Home",
@@ -15,6 +15,7 @@ export default function Home() {
     join(process.cwd(), "content", "home.md"),
     "utf8",
   );
+  const headings = extractHeadings(homeContent);
 
   return (
     <>
@@ -71,9 +72,18 @@ export default function Home() {
         </div>
       </section>
       <div id="content" />
-      <article className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-        <Markdown content={homeContent} />
-      </article>
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+          <aside className="hidden lg:block">
+            <div className="sticky top-12">
+              <TableOfContents headings={headings} />
+            </div>
+          </aside>
+          <article>
+            <Markdown content={homeContent} />
+          </article>
+        </div>
+      </div>
       <div className="h-12" />
     </>
   );

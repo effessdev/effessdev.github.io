@@ -1,7 +1,7 @@
-import type { ComponentProps } from "react";
+import React, { type ComponentProps, type ReactNode } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { cn } from "@/lib/utils";
+import { cn, slugify, type TocHeading } from "@/lib/utils";
 
 /** Shared bordered-surface look (list items, articles, nav tiles). */
 export const card = "rounded-2xl border border-border bg-card";
@@ -66,28 +66,52 @@ const HEADING_AFTER_HEADING = "[h1+&]:mt-4 [h2+&]:mt-4 [h3+&]:mt-3";
 
 const AFTER_HR = "[hr+&]:mt-10";
 
+/** Recovers plain text from rendered heading children to build a stable anchor id. */
+function headingText(children: ReactNode): string {
+  if (typeof children === "string") return children;
+  if (typeof children === "number") return String(children);
+  if (Array.isArray(children)) return children.map(headingText).join("");
+  if (React.isValidElement<{ children?: ReactNode }>(children)) {
+    return headingText(children.props.children);
+  }
+  return "";
+}
+
+/** A markdown heading with an `id` so the sidebar's anchor links land on it. */
+function makeHeading(
+  Tag: "h1" | "h2" | "h3",
+  className: string,
+  { children }: ComponentProps<"h1">,
+) {
+  return (
+    <Tag
+      id={slugify(headingText(children))}
+      className={cn("scroll-mt-24", className)}
+    >
+      {children}
+    </Tag>
+  );
+}
+
 const MD_ELEMENTS: Components = {
-  h1: ({ children }) => (
-    <h1
-      className={`mt-10 text-3xl font-bold leading-tight tracking-tight text-primary font-display first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
-    >
-      {children}
-    </h1>
-  ),
-  h2: ({ children }) => (
-    <h2
-      className={`mt-12 text-2xl font-bold leading-snug tracking-tight text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
-    >
-      {children}
-    </h2>
-  ),
-  h3: ({ children }) => (
-    <h3
-      className={`mt-8 text-lg font-semibold leading-snug text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`}
-    >
-      {children}
-    </h3>
-  ),
+  h1: ({ children }) =>
+    makeHeading(
+      "h1",
+      `mt-10 text-3xl font-bold leading-tight tracking-tight text-primary font-display first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`,
+      { children },
+    ),
+  h2: ({ children }) =>
+    makeHeading(
+      "h2",
+      `mt-12 text-2xl font-bold leading-snug tracking-tight text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`,
+      { children },
+    ),
+  h3: ({ children }) =>
+    makeHeading(
+      "h3",
+      `mt-8 text-lg font-semibold leading-snug text-foreground first:mt-0 ${HEADING_AFTER_HEADING} ${AFTER_HR}`,
+      { children },
+    ),
   p: ({ children }) => (
     <p
       className={`mt-5 leading-7 text-muted-foreground first:mt-0 ${AFTER_HEADING} ${AFTER_HR}`}
@@ -158,5 +182,31 @@ export function Markdown({ content }: { content: string }) {
     <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_ELEMENTS}>
       {content}
     </ReactMarkdown>
+  );
+}
+
+const TOC_LEVEL_INDENT = ["pl-0", "pl-3", "pl-6"];
+
+/** Left-rail navigation listing the article's headings. */
+export function TableOfContents({ headings }: { headings: TocHeading[] }) {
+  if (headings.length === 0) return null;
+  return (
+    <nav aria-label="On this page" className="text-sm">
+      <ul className="space-y-1.5 border-l border-border">
+        {headings.map((h) => (
+          <li key={h.slug} className={TOC_LEVEL_INDENT[h.level - 1]}>
+            <a
+              href={`#${h.slug}`}
+              className={cn(
+                "block py-0.5 pl-3 text-muted-foreground leading-snug transition-colors hover:text-foreground",
+                h.level === 1 && "font-medium text-foreground",
+              )}
+            >
+              {h.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
