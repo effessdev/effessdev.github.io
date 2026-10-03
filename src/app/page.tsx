@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import ContentList from "@/components/content-list";
 import { brand } from "@/lib/brand";
-import { getContentListings } from "@/lib/content";
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
 import { btn } from "@/components/ui";
@@ -15,8 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const listings = getContentListings();
-
   return (
     <>
       <section className="bg-card">
@@ -24,24 +20,22 @@ export default function Home() {
           <div className="flex-1">
             <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden />
-              Learn for free, without ads!
+              Embedded Systems • ESP-IDF
             </p>
 
             <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Free tutorials on{" "}
-              <span className="font-display text-primary">
-                embedded systems
-              </span>
+              Hi, I am{" "}
+              <span className="font-display text-primary">EffessDev</span>
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Learn about microcontrollers, low-level programming, embedded
-              protocols, etc. I hope you find this useful :D
+              This is my personal GitHub Pages website. Please scroll down, you
+              might find something interesting!
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href="#tutorials" className={btn({ size: "lg" })}>
-                Start reading
+              <a href="#content" className={btn({ size: "lg" })}>
+                Scroll down
               </a>
               <a
                 href={github.href}
@@ -73,13 +67,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div
-        id="tutorials"
-        className="mx-auto w-full max-w-6xl px-4 pt-12 pb-12 sm:px-6 lg:px-8"
-      >
-        <ContentList heading="Tutorials" items={listings} />
-      </div>
+      <div id="content"></div>
       <div className="h-12" />
     </>
   );

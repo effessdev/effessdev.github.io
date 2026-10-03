@@ -10,6 +10,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Code writing rules
 
-- Do not repeat styles. Instead define reusable components and use them accross the codebase.
-- Keep the site simple. Do not add more components unless necessary. Reuse existing ones.
-- Do not add, remove, or change the colors in `globals.css`.
+- Do not repeat styles. Instead define reusable components and use them accross the codebase so the UI is consistent and can be easily changed.
+- Keep the code simple. Try to keep the codebase LOC small. Do not add more components unless necessary. Reuse existing ones.
+- Do not add, remove, or change any colors in `globals.css`.
