@@ -60,6 +60,16 @@ export function Badge({
   );
 }
 
+/**
+ * A markdown link renders as a button when its title names a button type:
+ * `[Label](url "button")`, `[Label](url "button outline")`,
+ * `[Label](url "button secondary lg")` — variant and size are optional.
+ */
+const MD_BUTTON_RE = new RegExp(
+  `^button(?:\\s+(${Object.keys(BTN_VARIANTS).join("|")}))?(?:\\s+(${Object.keys(BTN_SIZES).join("|")}))?$`,
+  "i",
+);
+
 const AFTER_HEADING = "[h1+&]:mt-4 [h2+&]:mt-3 [h3+&]:mt-2";
 
 const HEADING_AFTER_HEADING = "[h1+&]:mt-4 [h2+&]:mt-4 [h3+&]:mt-3";
@@ -136,14 +146,33 @@ const MD_ELEMENTS: Components = {
   li: ({ children }) => (
     <li className="pl-1 leading-7 [&>ol]:mt-2 [&>ul]:mt-2">{children}</li>
   ),
-  a: ({ href, children }) => (
-    <a
-      href={href}
-      className="font-medium text-primary underline-offset-4 hover:underline"
-    >
-      {children}
-    </a>
-  ),
+  a: ({ href, title, children }) => {
+    const button = title ? MD_BUTTON_RE.exec(title) : null;
+    if (button) {
+      return (
+        <a
+          href={href}
+          className={cn(
+            btn({
+              variant: button[1] as keyof typeof BTN_VARIANTS,
+              size: button[2] as keyof typeof BTN_SIZES,
+            }),
+            "my-2",
+          )}
+        >
+          {children}
+        </a>
+      );
+    }
+    return (
+      <a
+        href={href}
+        className="font-medium text-primary underline-offset-4 hover:underline"
+      >
+        {children}
+      </a>
+    );
+  },
   code: ({ children }) => (
     <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm text-foreground">
       {children}

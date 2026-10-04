@@ -1,10 +1,10 @@
 # My courses
 
-## Embedded Systems, for the age of AI
+## Embedded Systems With ESP32 & ESP-IDF
 
 An updated embedded systems course to help you become a successful embedded systems engineer by integrating AI into your workflow, not fighting it. Focuses on ESP32 microcontrollres and the native ESP-IDF framework.
 
-- [Browse the course](https://effessdev.github.io/esp-idf)
+[Browse the Course](https://effessdev.github.io/esp-idf "button solid")
 
 > **Note:** This course is heavily under development and is NOT completed yet.
 
