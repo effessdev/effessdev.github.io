@@ -1,21 +1,17 @@
 import type { Metadata } from "next";
-import { readFileSync } from "fs";
-import { join } from "path";
 import { Logo } from "@/components/logo";
 import { SocialIcon } from "@/components/social-icon";
-import { btn, Markdown, TableOfContents } from "@/components/ui";
-import { extractHeadings } from "@/lib/utils";
+import { RepoCard } from "@/components/repo-card";
+import { btn } from "@/components/ui";
+import { loadHome } from "@/lib/content";
+import { slugify } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "EffessDev • Home",
 };
 
-export default function Home() {
-  const homeContent = readFileSync(
-    join(process.cwd(), "content", "home.md"),
-    "utf8",
-  );
-  const headings = extractHeadings(homeContent);
+export default async function Home() {
+  const categories = await loadHome();
 
   return (
     <>
@@ -72,17 +68,29 @@ export default function Home() {
         </div>
       </section>
       <div id="content" />
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
-          <aside className="hidden lg:block">
-            <div className="sticky top-12">
-              <TableOfContents headings={headings} />
-            </div>
-          </aside>
-          <article>
-            <Markdown content={homeContent} />
-          </article>
-        </div>
+      <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <article className="space-y-14">
+          {categories.map((category) => (
+            <section key={category.name} className="scroll-mt-24">
+              <h2
+                id={slugify(category.name)}
+                className="text-2xl font-bold tracking-tight text-foreground"
+              >
+                {category.name}
+              </h2>
+              {category.description && (
+                <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
+                  {category.description}
+                </p>
+              )}
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                {category.repos.map((repo) => (
+                  <RepoCard key={repo.url || repo.label} repo={repo} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </article>
       </div>
       <div className="h-12" />
     </>

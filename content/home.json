@@ -1,0 +1,43 @@
+{
+  "categories": [
+    {
+      "name": "Courses",
+      "description": "Structured, project-based courses to level up your engineering skills.",
+      "repos": ["esp-idf"]
+    },
+    {
+      "name": "Embedded Systems",
+      "description": "Firmware and hardware projects built on ESP32 and the native ESP-IDF framework.",
+      "repos": ["smart-led", "esp-idf-examples"]
+    },
+    {
+      "name": "Software Engineering",
+      "description": "Developer tools and desktop apps that streamline everyday workflows.",
+      "repos": ["reptclip-vscode", "GiffyPy", "ghsync-gui"]
+    },
+    {
+      "name": "Web Development",
+      "description": "Web apps exploring AI-assisted productivity and full data ownership.",
+      "repos": [
+        {
+          "name": "MmOrganized",
+          "github": false,
+          "url": "https://mmorganized.vercel.app",
+          "description": "An AI-powered memory capture and recall app, with complete control over your data and zero vendor lock-in."
+        }
+      ]
+    },
+    {
+      "name": "Game Development",
+      "description": "Small games and interactive experiments made with Godot.",
+      "repos": [
+        {
+          "name": "The Stellar Expedition",
+          "github": false,
+          "url": "https://effessdev.itch.io/the-stellar-expedition",
+          "description": "Float through space to reach your station. A 2D game made with Godot."
+        }
+      ]
+    }
+  ]
+}
