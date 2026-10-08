@@ -1,5 +1,4 @@
-import { Star } from "lucide-react";
-import { Badge, card } from "@/components/ui";
+import { card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import type { Repo } from "@/lib/content";
 
@@ -22,12 +21,6 @@ export function RepoCard({ repo }: { repo: Repo }) {
         <h3 className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
           {repo.label}
         </h3>
-        {typeof repo.stars === "number" && repo.stars > 0 && (
-          <span className="inline-flex shrink-0 items-center gap-1 text-xs text-muted-foreground">
-            <Star className="size-3.5" aria-hidden />
-            {repo.stars}
-          </span>
-        )}
       </div>
 
       {repo.description && (
@@ -38,12 +31,6 @@ export function RepoCard({ repo }: { repo: Repo }) {
 
       {repo.note && (
         <p className="text-xs font-medium text-destructive">{repo.note}</p>
-      )}
-
-      {repo.language && (
-        <div className="mt-auto flex items-center gap-2 pt-2">
-          <Badge>{repo.language}</Badge>
-        </div>
       )}
     </a>
   );

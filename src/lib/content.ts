@@ -54,7 +54,9 @@ async function fetchRepoMeta(owner: string, name: string) {
         "User-Agent": "effessdev.github.io",
         Accept: "application/vnd.github+json",
       },
-      next: { revalidate: 0 },
+      // Static export has no runtime to re-fetch, so `cache: "no-store"` would
+      // break the build. Default (force-cache) runs once per build and bakes
+      // the result into the HTML — i.e. descriptions refresh every build.
     });
     if (!res.ok) return null;
     const data = await res.json();
