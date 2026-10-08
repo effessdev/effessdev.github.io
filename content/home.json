@@ -2,7 +2,6 @@
   "categories": [
     {
       "name": "Embedded Systems",
-      "description": "Firmware and hardware projects built on ESP32 and the native ESP-IDF framework.",
       "repos": [
         {
           "name": "ESP-IDF Course",
@@ -13,23 +12,15 @@
     },
     {
       "name": "Software Engineering",
-      "description": "Developer tools and desktop apps that streamline everyday workflows.",
       "repos": ["reptclip-vscode", "GiffyPy", "ghsync-gui"]
     },
     {
-      "name": "Web Development",
-      "description": "Web apps exploring AI-assisted productivity and full data ownership.",
+      "name": "Web & Game Development",
       "repos": [
         {
           "name": "mmorganized",
           "description": "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!"
-        }
-      ]
-    },
-    {
-      "name": "Game Development",
-      "description": "Small games and interactive experiments made with Godot.",
-      "repos": [
+        },
         {
           "name": "The Stellar Expedition",
           "description": "Float through space to reach your station. A relaxing physics-based 2D game made with Godot.",
