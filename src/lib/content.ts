@@ -111,6 +111,7 @@ function ownerOf(ref: RepoRef): string | null {
 async function resolveRepo(
   ref: RepoRef,
   repos: Map<string, RepoMeta>,
+  isDevServer: boolean,
 ): Promise<Repo> {
   const entry = typeof ref === "string" ? { name: ref } : ref;
   const isGithub = entry.github ?? true;
@@ -126,6 +127,9 @@ async function resolveRepo(
       description = entry.description ?? meta.description;
       language = meta.language;
       stars = meta.stars;
+    } else if (isDevServer && !description) {
+      // Dev server skips the GitHub fetch, so hint why the text is missing.
+      description = "Description unavailable in dev server (fetched on build).";
     }
   }
 
@@ -147,11 +151,17 @@ export async function loadHome(): Promise<Category[]> {
   const { categories } = HomeSchema.parse(JSON.parse(raw));
 
   // Fetch once per distinct owner, then reuse that listing for every repo.
+  // Skip entirely on the dev server: it would re-fetch on every page render
+  // and exhaust the GitHub API rate limit. `next build` (NODE_ENV=production)
+  // still fetches once at build time.
+  const isDevServer = process.env.NODE_ENV === "development";
   const owners = new Set<string>();
-  for (const category of categories) {
-    for (const ref of category.repos) {
-      const owner = ownerOf(ref);
-      if (owner) owners.add(owner);
+  if (!isDevServer) {
+    for (const category of categories) {
+      for (const ref of category.repos) {
+        const owner = ownerOf(ref);
+        if (owner) owners.add(owner);
+      }
     }
   }
   const reposByOwner = new Map<string, Map<string, RepoMeta>>();
@@ -171,6 +181,7 @@ export async function loadHome(): Promise<Category[]> {
           return resolveRepo(
             ref,
             (owner && reposByOwner.get(owner)) || new Map(),
+            isDevServer,
           );
         }),
       ),
