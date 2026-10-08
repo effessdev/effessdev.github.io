@@ -1,14 +1,15 @@
 {
   "categories": [
     {
-      "name": "Courses",
-      "description": "Structured, project-based courses to level up your skills.",
-      "repos": ["esp-idf"]
-    },
-    {
       "name": "Embedded Systems",
       "description": "Firmware and hardware projects built on ESP32 and the native ESP-IDF framework.",
-      "repos": ["smart-led", "esp-idf-examples"]
+      "repos": [
+        {
+          "name": "ESP-IDF Course",
+          "description": "Learn ESP-IDF the modern way. Skip what AI already automates, and focus on what it still struggles with."
+        },
+        "smart-led"
+      ]
     },
     {
       "name": "Software Engineering",
@@ -18,12 +19,23 @@
     {
       "name": "Web Development",
       "description": "Web apps exploring AI-assisted productivity and full data ownership.",
-      "repos": ["mmorganized"]
+      "repos": [
+        {
+          "name": "mmorganized",
+          "description": "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!"
+        }
+      ]
     },
     {
       "name": "Game Development",
       "description": "Small games and interactive experiments made with Godot.",
-      "repos": ["the-stellar-expedition"]
+      "repos": [
+        {
+          "name": "The Stellar Expedition",
+          "description": "Float through space to reach your station. A relaxing physics-based 2D game made with Godot.",
+          "url": "https://effessdev.itch.io/the-stellar-expedition"
+        }
+      ]
     }
   ]
 }
