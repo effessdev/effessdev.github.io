@@ -5,7 +5,8 @@
       "repos": [
         {
           "name": "ESP-IDF Course",
-          "description": "Learn ESP-IDF the modern way. Skip what AI already automates, and focus on what it still struggles with."
+          "description": "Learn ESP-IDF the modern way. Skip what AI already automates, and focus on what it still struggles with.",
+          "url": "https://effessdev.github.io/esp-idf"
         },
         "smart-led"
       ]
@@ -19,7 +20,8 @@
       "repos": [
         {
           "name": "mmorganized",
-          "description": "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!"
+          "description": "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!",
+          "url": "https://mmorganized.vercel.app"
         },
         {
           "name": "The Stellar Expedition",
