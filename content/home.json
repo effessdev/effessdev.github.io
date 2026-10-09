@@ -2,6 +2,7 @@
   "categories": [
     {
       "name": "Embedded Systems",
+      "description": "My top projects related to embedded systems.",
       "repos": [
         {
           "name": "ESP-IDF Course",
@@ -13,10 +14,12 @@
     },
     {
       "name": "Software Engineering",
+      "description": "My top projects related to software engineering.",
       "repos": ["reptclip-vscode", "GiffyPy", "ghsync-gui"]
     },
     {
       "name": "Web & Game Development",
+      "description": "My top projects related to web and game development.",
       "repos": [
         {
           "name": "mmorganized",
@@ -27,6 +30,22 @@
           "name": "The Stellar Expedition",
           "description": "Float through space to reach your station. A relaxing physics-based 2D game made with Godot.",
           "url": "https://effessdev.itch.io/the-stellar-expedition"
+        }
+      ]
+    },
+    {
+      "name": "Everything else",
+      "description": "Click the following links to find my other projects.",
+      "repos": [
+        {
+          "name": "GitHub Repositories",
+          "description": "Browse my all public repositories.",
+          "url": "https://github.com/effessdev?tab=repositories"
+        },
+        {
+          "name": "Itch.io Games",
+          "description": "Browse my games on Itch.io.",
+          "url": "https://effessdev.itch.io"
         }
       ]
     }
