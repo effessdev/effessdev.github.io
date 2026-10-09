@@ -20,7 +20,7 @@ export default async function Home() {
           <div className="flex-1">
             <p className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs text-muted-foreground">
               <span className="h-2 w-2 rounded-full bg-secondary" aria-hidden />
-              Embedded Systems • ESP-IDF
+              Full Name: Faseeh Zaman F S
             </p>
 
             <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
