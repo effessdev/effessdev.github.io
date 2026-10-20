@@ -10,9 +10,66 @@ export const metadata: Metadata = {
   title: "EffessDev • Home",
 };
 
-export default async function Home() {
-  const categories = await loadHome();
+const categories = await loadHome([
+  {
+    name: "Embedded Systems",
+    description: "My top projects related to embedded systems.",
+    repos: [
+      {
+        name: "ESP-IDF Course",
+        url: "https://effessdev.github.io/esp-idf",
+        description:
+          "Learn ESP-IDF the modern way. Skip what AI already automates, and focus on what it still struggles with.",
+      },
+      { name: "smart-led" },
+    ],
+  },
+  {
+    name: "Software Engineering",
+    description: "My top projects related to software engineering.",
+    repos: [
+      { name: "reptclip-vscode" },
+      { name: "GiffyPy" },
+      { name: "ghsync-gui" },
+    ],
+  },
+  {
+    name: "Web & Game Development",
+    description: "My top projects related to web and game development.",
+    repos: [
+      {
+        name: "mmorganized",
+        url: "https://mmorganized.vercel.app",
+        description:
+          "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!",
+      },
+      {
+        name: "The Stellar Expedition",
+        url: "https://effessdev.itch.io/the-stellar-expedition",
+        description:
+          "Float through space to reach your station. A relaxing physics-based 2D game made with Godot.",
+      },
+    ],
+  },
+  {
+    name: "Everything else",
+    description: "Click the following links to find my other projects.",
+    repos: [
+      {
+        name: "GitHub Repositories",
+        url: "https://github.com/effessdev?tab=repositories",
+        description: "Browse all my public repositories.",
+      },
+      {
+        name: "Itch.io Games",
+        url: "https://effessdev.itch.io",
+        description: "Browse my games on Itch.io.",
+      },
+    ],
+  },
+]);
 
+export default async function Home() {
   return (
     <>
       <section className="bg-card">
@@ -29,13 +86,13 @@ export default async function Home() {
             </h1>
 
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              This is my personal GitHub Pages website. Please scroll down, you
-              might find something interesting!
+              I build apps, games, and websites, and program MCUs and IoT
+              devices.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a href="#content" className={btn({ size: "lg" })}>
-                Scroll down
+                See my Work
               </a>
               <a
                 href="https://github.com/effessdev"

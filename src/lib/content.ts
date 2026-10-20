@@ -1,8 +1,6 @@
-import { readFileSync } from "fs";
-import { join } from "path";
 import { z } from "zod";
 
-/** GitHub account that owns the plain-string repos in `home.json`. */
+/** GitHub account that owns the default repo entries. */
 const DEFAULT_OWNER = "effessdev";
 
 /**
@@ -23,17 +21,7 @@ const RepoRefSchema = z.union([
   }),
 ]);
 
-const CategorySchema = z.object({
-  name: z.string(),
-  description: z.string().default(""),
-  repos: z.array(RepoRefSchema).default([]),
-});
-
-const HomeSchema = z.object({
-  categories: z.array(CategorySchema),
-});
-
-type RepoRef = z.infer<typeof RepoRefSchema>;
+export type RepoRef = z.infer<typeof RepoRefSchema>;
 
 export type Repo = {
   label: string;
@@ -45,6 +33,11 @@ export type Repo = {
 };
 
 export type Category = { name: string; description: string; repos: Repo[] };
+export type CategoryInput = {
+  name: string;
+  description?: string;
+  repos: RepoRef[];
+};
 
 /** Live metadata for a GitHub repo, read fresh on every build. */
 type RepoMeta = {
@@ -145,11 +138,10 @@ async function resolveRepo(
   };
 }
 
-/** Reads `home.json` and enriches each repo with build-time GitHub metadata. */
-export async function loadHome(): Promise<Category[]> {
-  const raw = readFileSync(join(process.cwd(), "content", "home.json"), "utf8");
-  const { categories } = HomeSchema.parse(JSON.parse(raw));
-
+/** Enriches repo data with build-time GitHub metadata when the inline list does not already provide it. */
+export async function loadHome(
+  categories: CategoryInput[],
+): Promise<Category[]> {
   // Fetch once per distinct owner, then reuse that listing for every repo.
   // Skip entirely on the dev server: it would re-fetch on every page render
   // and exhaust the GitHub API rate limit. `next build` (NODE_ENV=production)
@@ -174,7 +166,7 @@ export async function loadHome(): Promise<Category[]> {
   return Promise.all(
     categories.map(async (category) => ({
       name: category.name,
-      description: category.description,
+      description: category.description ?? "",
       repos: await Promise.all(
         category.repos.map((ref) => {
           const owner = ownerOf(ref);
