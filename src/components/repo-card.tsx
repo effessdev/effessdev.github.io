@@ -14,7 +14,7 @@ export function RepoCard({ repo }: { repo: Repo }) {
       rel="noreferrer"
       className={cn(
         card,
-        "group flex min-w-0 flex-col gap-2 p-5 transition-colors hover:border-primary/50 hover:bg-muted/40",
+        "group flex min-w-0 flex-col gap-2 p-5 transition-[color,background-color,border-color,box-shadow,translate] duration-150 ease-out hover:border-primary/50 hover:bg-muted/40 hover:translate-y-px hover:shadow-[0_3px_0_0_var(--card-edge),var(--card-lift)] active:translate-y-[3px] active:shadow-[0_1px_0_0_var(--card-edge),var(--card-lift)] active:duration-75",
       )}
     >
       <div className="flex items-center justify-between gap-3">
