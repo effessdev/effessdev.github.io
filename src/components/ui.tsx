@@ -20,7 +20,7 @@ export const card = `rounded-2xl border border-border bg-card ${CARD_LIFT}`;
 const BTN_VARIANTS = {
   solid:
     "bg-primary text-primary-foreground [--btn-edge:var(--btn-edge-solid)]",
-  outline: "bg-background [--btn-edge:var(--btn-edge-outline)]",
+  outline: "border-border bg-background [--btn-edge:var(--btn-edge-outline)]",
   secondary:
     "bg-secondary text-secondary-foreground [--btn-edge:var(--btn-edge-secondary)]",
 };
