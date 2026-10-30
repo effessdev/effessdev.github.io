@@ -6,10 +6,17 @@ import { cn, slugify, type TocHeading } from "@/lib/utils";
 /** Shared bordered-surface look (list items, articles, nav tiles). */
 export const card = "rounded-2xl border border-border bg-card";
 
+/**
+ * Each variant also sets `--btn-edge`: the darker shade of its own face that
+ * forms the pressed-in side of the physical button (see `btn` below).
+ */
 const BTN_VARIANTS = {
-  solid: "bg-primary text-primary-foreground hover:bg-primary/80",
-  outline: "border-border bg-background hover:bg-muted",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+  solid:
+    "bg-primary text-primary-foreground hover:bg-primary/80 [--btn-edge:color-mix(in_oklab,var(--color-primary),black_30%)]",
+  outline:
+    "border-border bg-background hover:bg-muted [--btn-edge:var(--color-border)]",
+  secondary:
+    "bg-secondary text-secondary-foreground hover:bg-secondary/80 [--btn-edge:color-mix(in_oklab,var(--color-secondary),black_25%)]",
 };
 
 const BTN_SIZES = {
@@ -22,6 +29,10 @@ const BTN_SIZES = {
 /**
  * Button classes for `<a>`/`<Link>` elements and real `<button>`s alike —
  * one definition, so links and buttons never drift apart visually.
+ *
+ * Shaped like a physical key: a 4px solid edge sits under the face at rest.
+ * Hovering sinks it 1px and clicking sinks it 3px — never the whole way, so a
+ * sliver of edge stays visible. The bottom stays planted throughout.
  */
 export function btn(
   {
@@ -34,7 +45,10 @@ export function btn(
   className?: string,
 ) {
   return cn(
-    "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-transparent text-sm font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4",
+    "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-transparent text-sm font-medium whitespace-nowrap outline-none select-none",
+    "shadow-[0_4px_0_0_var(--btn-edge)] transition-[color,background-color,border-color,box-shadow,translate] duration-150 ease-out",
+    "hover:translate-y-px hover:shadow-[0_3px_0_0_var(--btn-edge)] active:translate-y-[3px] active:shadow-[0_1px_0_0_var(--btn-edge)] active:duration-75",
+    "focus-visible:ring-2 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4",
     BTN_VARIANTS[variant],
     BTN_SIZES[size],
     className,
