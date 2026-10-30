@@ -16,6 +16,11 @@
   --accent: #82d1fe;
   --destructive: #b3341f;
   --border: #d3e1ec;
+  /* Solid "underside" shades under buttons and cards (see ui.tsx). */
+  --btn-edge-solid: #033f5f;
+  --btn-edge-outline: #c3d6e6;
+  --btn-edge-secondary: #bda94e;
+  --card-edge: #cbdce9;
   --font-sans: Google Sans Flex, ui-sans-serif, sans-serif, system-ui;
   --font-mono:
     "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
@@ -34,6 +39,10 @@
   --accent: #fdc268;
   --destructive: #ff8d7a;
   --border: #14577c;
+  --btn-edge-solid: #0d70a5;
+  --btn-edge-outline: #052e45;
+  --btn-edge-secondary: #8f7420;
+  --card-edge: #165475;
 }
 
 @theme inline {

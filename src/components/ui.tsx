@@ -5,25 +5,24 @@ import { cn, slugify, type TocHeading } from "@/lib/utils";
 
 /**
  * Shared bordered-surface look (list items, articles, nav tiles) — raised on a
- * 4px solid edge, like the buttons. `--card-edge` is the darker side shade and
- * `--card-lift` the soft contact + ambient shadow that grounds it on the page.
+ * 4px solid edge like the buttons. `--card-edge` (globals.css) is the underside
+ * shade, `--card-lift` the soft contact + ambient shadow that grounds it.
  */
 const CARD_LIFT =
   "[--card-lift:0_4px_5px_-4px_rgb(0_0_0/0.1),0_9px_12px_-8px_rgb(0_0_0/0.12)] shadow-[0_4px_0_0_var(--card-edge),var(--card-lift)]";
 
-export const card = `rounded-2xl border border-border bg-card [--card-edge:color-mix(in_oklab,var(--color-card),black_15%)] ${CARD_LIFT}`;
+export const card = `rounded-2xl border border-border bg-card ${CARD_LIFT}`;
 
 /**
- * Each variant also sets `--btn-edge`: the darker shade of its own face that
- * forms the pressed-in side of the physical button (see `btn` below).
+ * Each variant points `--btn-edge` at its own underside shade from globals.css,
+ * so the pressed side stays darker than the face in both themes.
  */
 const BTN_VARIANTS = {
   solid:
-    "bg-primary text-primary-foreground hover:bg-primary/80 [--btn-edge:color-mix(in_oklab,var(--color-primary),black_30%)]",
-  outline:
-    "border-border bg-background hover:bg-muted [--btn-edge:var(--color-border)]",
+    "bg-primary text-primary-foreground [--btn-edge:var(--btn-edge-solid)]",
+  outline: "bg-background [--btn-edge:var(--btn-edge-outline)]",
   secondary:
-    "bg-secondary text-secondary-foreground hover:bg-secondary/80 [--btn-edge:color-mix(in_oklab,var(--color-secondary),black_25%)]",
+    "bg-secondary text-secondary-foreground [--btn-edge:var(--btn-edge-secondary)]",
 };
 
 const BTN_SIZES = {
@@ -53,7 +52,7 @@ export function btn(
 ) {
   return cn(
     "inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl border border-transparent text-sm font-medium whitespace-nowrap outline-none select-none",
-    "shadow-[0_4px_0_0_var(--btn-edge)] transition-[color,background-color,border-color,box-shadow,translate] duration-150 ease-out",
+    "shadow-[0_4px_0_0_var(--btn-edge)] transition-[box-shadow,translate] duration-150 ease-out",
     "hover:translate-y-px hover:shadow-[0_3px_0_0_var(--btn-edge)] active:translate-y-[3px] active:shadow-[0_1px_0_0_var(--btn-edge)] active:duration-75",
     "focus-visible:ring-2 focus-visible:ring-primary/50 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4",
     BTN_VARIANTS[variant],
