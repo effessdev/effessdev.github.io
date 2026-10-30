@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { floatBtn } from "@/components/ui";
@@ -21,10 +22,17 @@ const THEME_ICON: Record<Theme, typeof Sun> = {
 /** One small floating button that cycles light → dark → system. */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const current: Theme =
+
+  // The stored theme is only readable in the browser, so the server and the
+  // first client render both use the default to keep the markup identical.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const stored: Theme | undefined =
     theme === "light" || theme === "dark" || theme === "system"
       ? theme
-      : "system";
+      : undefined;
+  const current: Theme = (mounted && stored) || "system";
   const Icon = THEME_ICON[current];
 
   return (
