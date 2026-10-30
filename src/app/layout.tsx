@@ -54,7 +54,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("font-sans", inter.variable, displayFont.variable)}
+      className={cn(
+        "font-sans scroll-smooth motion-reduce:scroll-auto",
+        inter.variable,
+        displayFont.variable,
+      )}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground antialiased">
