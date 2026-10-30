@@ -29,7 +29,6 @@ const BTN_SIZES = {
   sm: "h-8 px-3",
   md: "h-9 px-3",
   lg: "h-10 px-4",
-  icon: "size-9",
 };
 
 /**
@@ -60,6 +59,19 @@ export function btn(
     className,
   );
 }
+
+/**
+ * Circular icon button for controls that float above the page (the theme
+ * switch). Nothing sits under it, so instead of a key edge it casts a soft
+ * shadow all round and grows a halo ring on hover. It wears the primary face so
+ * it stays visible over any page background.
+ */
+export const floatBtn = cn(
+  "inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground",
+  "shadow-[0_2px_4px_rgb(0_0_0/0.18),0_8px_20px_-8px_rgb(0_0_0/0.4)] transition-[box-shadow] duration-150 ease-out",
+  "hover:ring-4 hover:ring-primary/30 active:shadow-[0_1px_2px_rgb(0_0_0/0.16),0_4px_10px_-6px_rgb(0_0_0/0.3)] active:duration-75",
+  "outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background [&_svg]:pointer-events-none [&_svg]:size-4",
+);
 
 export function Badge({
   className,

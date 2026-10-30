@@ -2,7 +2,7 @@
 
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { btn } from "@/components/ui";
+import { floatBtn } from "@/components/ui";
 
 type Theme = "light" | "dark" | "system";
 
@@ -18,7 +18,7 @@ const THEME_ICON: Record<Theme, typeof Sun> = {
   system: Monitor,
 };
 
-/** One small button that cycles light → dark → system. */
+/** One small floating button that cycles light → dark → system. */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const current: Theme =
@@ -32,7 +32,7 @@ export function ThemeToggle() {
       type="button"
       aria-label={`Current theme: ${current}. Click to switch.`}
       onClick={() => setTheme(NEXT_THEME[current])}
-      className={btn({ variant: "outline", size: "icon" })}
+      className={floatBtn}
     >
       <Icon />
     </button>
