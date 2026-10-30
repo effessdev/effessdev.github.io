@@ -14,31 +14,19 @@ const categories = await loadHome([
   {
     name: "Embedded Systems",
     description: "My top projects related to embedded systems.",
-    repos: [
-      {
-        name: "ESP-IDF Course",
-        url: "https://effessdev.github.io/esp-idf",
-        description:
-          "Learn ESP-IDF the modern way. Skip what AI already automates, and focus on what it still struggles with.",
-      },
-      { name: "smart-led" },
-    ],
+    repos: [{ name: "esp-idf" }, { name: "smart-led" }],
   },
   {
     name: "Software Engineering",
     description: "My top projects related to software engineering.",
-    repos: [
-      { name: "reptclip-vscode" },
-      { name: "GiffyPy" },
-      { name: "ghsync-gui" },
-    ],
+    repos: [{ name: "reptclip-vscode" }, { name: "GiffyPy" }],
   },
   {
     name: "Web & Game Development",
     description: "My top projects related to web and game development.",
     repos: [
       {
-        name: "mmorganized",
+        name: "MmOrganized",
         url: "https://mmorganized.vercel.app",
         description:
           "An AI-powered memory capture and recall app. Made with Next.js, Drizzle, Shadcn, Pusher, Razorpay, etc. Limited free credits for new users!",
