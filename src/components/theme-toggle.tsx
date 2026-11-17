@@ -3,15 +3,10 @@
 import { useEffect, useState } from "react";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { floatBtn } from "@/components/ui";
 
 type Theme = "light" | "dark" | "system";
 
-const NEXT_THEME: Record<Theme, Theme> = {
-  light: "dark",
-  dark: "system",
-  system: "light",
-};
+const THEMES: Theme[] = ["light", "dark", "system"];
 
 const THEME_ICON: Record<Theme, typeof Sun> = {
   light: Sun,
@@ -19,7 +14,12 @@ const THEME_ICON: Record<Theme, typeof Sun> = {
   system: Monitor,
 };
 
-/** One small floating button that cycles light → dark → system. */
+const SEGMENT = 28; // px — width of each segment, keep in sync with w-7 below
+
+/**
+ * A tiny segmented control showing all three theme options at once,
+ * with a spring-animated pill that slides to the active choice.
+ */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
@@ -33,16 +33,44 @@ export function ThemeToggle() {
       ? theme
       : undefined;
   const current: Theme = (mounted && stored) || "system";
-  const Icon = THEME_ICON[current];
+  const activeIndex = THEMES.indexOf(current);
 
   return (
-    <button
-      type="button"
-      aria-label={`Current theme: ${current}. Click to switch.`}
-      onClick={() => setTheme(NEXT_THEME[current])}
-      className={floatBtn}
+    <div
+      role="radiogroup"
+      aria-label="Theme"
+      className="relative inline-flex items-center gap-0 rounded-full border border-border bg-muted p-1 shadow-inner"
     >
-      <Icon />
-    </button>
+      {/* Highlight pill */}
+      <span
+        aria-hidden
+        className="absolute inset-y-1 left-1 w-7 rounded-full bg-card shadow-md"
+        style={{ transform: `translateX(${activeIndex * SEGMENT}px)` }}
+      />
+
+      {THEMES.map((t) => {
+        const Icon = THEME_ICON[t];
+        const isActive = mounted && t === current;
+        return (
+          <button
+            key={t}
+            type="button"
+            role="radio"
+            aria-checked={isActive}
+            aria-label={`${t} theme`}
+            onClick={() => setTheme(t)}
+            className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full"
+          >
+            <Icon
+              className={`h-3.5 w-3.5 ${
+                isActive
+                  ? "scale-110 text-primary"
+                  : "scale-90 text-muted-foreground hover:text-foreground"
+              }`}
+            />
+          </button>
+        );
+      })}
+    </div>
   );
 }
