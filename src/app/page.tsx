@@ -19,7 +19,7 @@ const categories = await loadHome([
   {
     name: "Software Engineering",
     description: "My top projects related to software engineering.",
-    repos: [{ name: "reptclip-vscode" }, { name: "GiffyPy" }],
+    repos: [{ name: "reptclip" }, { name: "GiffyPy" }],
   },
   {
     name: "Web & Game Development",
