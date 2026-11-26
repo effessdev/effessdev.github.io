@@ -7,7 +7,7 @@ import { loadHome } from "@/lib/content";
 import { slugify } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "EffessDev • Home",
+  title: "EffessDev | Personal Website",
 };
 
 const categories = await loadHome([
