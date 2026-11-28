@@ -14,15 +14,14 @@ const THEME_ICON: Record<Theme, typeof Sun> = {
   system: Monitor,
 };
 
-const SEGMENT = 28; // px — width of each segment, keep in sync with w-7 below
-
 // No-op subscribe: this snapshot only flips once, from the initial hydration
 // mismatch being resolved, so there's nothing external to subscribe to.
 const subscribe = () => () => {};
 
 /**
- * A tiny segmented control showing all three theme options at once,
- * with a spring-animated pill that slides to the active choice.
+ * A tiny segmented control showing all three theme options as hanging
+ * ribbons. The active ribbon drops down below the others and picks up
+ * its own color and border, like a pressed tab.
  */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -40,21 +39,13 @@ export function ThemeToggle() {
       ? theme
       : undefined;
   const current: Theme = (mounted && stored) || "system";
-  const activeIndex = THEMES.indexOf(current);
 
   return (
     <div
       role="radiogroup"
       aria-label="Theme"
-      className="relative inline-flex items-center gap-0 rounded-full border border-border bg-muted p-1 shadow-[0_2px_0_0_var(--card-edge)]"
+      className="inline-flex items-start gap-1"
     >
-      {/* Highlight pill */}
-      <span
-        aria-hidden
-        className="absolute inset-y-1 left-1 w-7 rounded-full bg-card shadow-[0_1.5px_0_0_var(--card-edge)]"
-        style={{ transform: `translateX(${activeIndex * SEGMENT}px)` }}
-      />
-
       {THEMES.map((t) => {
         const Icon = THEME_ICON[t];
         const isActive = mounted && t === current;
@@ -66,15 +57,16 @@ export function ThemeToggle() {
             aria-checked={isActive}
             aria-label={`${t} theme`}
             onClick={() => setTheme(t)}
-            className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full"
+            className={`flex w-7 items-start justify-center bg-muted transition-all duration-200 ease-out ${
+              isActive
+                ? "h-12 pt-4"
+                : "h-9 pt-1.5 text-muted-foreground hover:text-foreground"
+            }`}
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 100% 78%, 50% 100%, 0 78%)",
+            }}
           >
-            <Icon
-              className={`h-3.5 w-3.5 ${
-                isActive
-                  ? "scale-110 text-primary"
-                  : "scale-90 text-muted-foreground hover:text-foreground"
-              }`}
-            />
+            <Icon className={`h-3.5 w-3.5 ${isActive ? "text-primary" : ""}`} />
           </button>
         );
       })}

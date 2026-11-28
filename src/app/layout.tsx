@@ -68,8 +68,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Theme toggle floats over every page, pinned to the top-right corner. */}
-          <div className="fixed right-4 top-4 z-50">
+          {/* Theme toggle floats over every page, ribbons hanging from the very top edge. */}
+          <div className="fixed right-4 top-0 z-50">
             <ThemeToggle />
           </div>
 
