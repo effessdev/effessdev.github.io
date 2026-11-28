@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -16,6 +16,10 @@ const THEME_ICON: Record<Theme, typeof Sun> = {
 
 const SEGMENT = 28; // px — width of each segment, keep in sync with w-7 below
 
+// No-op subscribe: this snapshot only flips once, from the initial hydration
+// mismatch being resolved, so there's nothing external to subscribe to.
+const subscribe = () => () => {};
+
 /**
  * A tiny segmented control showing all three theme options at once,
  * with a spring-animated pill that slides to the active choice.
@@ -25,8 +29,11 @@ export function ThemeToggle() {
 
   // The stored theme is only readable in the browser, so the server and the
   // first client render both use the default to keep the markup identical.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
 
   const stored: Theme | undefined =
     theme === "light" || theme === "dark" || theme === "system"
