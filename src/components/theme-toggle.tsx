@@ -39,12 +39,12 @@ export function ThemeToggle() {
     <div
       role="radiogroup"
       aria-label="Theme"
-      className="relative inline-flex items-center gap-0 rounded-full border border-border bg-muted p-1 shadow-inner"
+      className="relative inline-flex items-center gap-0 rounded-full border border-border bg-muted p-1 shadow-[0_2px_0_0_var(--card-edge)]"
     >
       {/* Highlight pill */}
       <span
         aria-hidden
-        className="absolute inset-y-1 left-1 w-7 rounded-full bg-card shadow-md"
+        className="absolute inset-y-1 left-1 w-7 rounded-full bg-card shadow-[0_1.5px_0_0_var(--card-edge)]"
         style={{ transform: `translateX(${activeIndex * SEGMENT}px)` }}
       />
 
